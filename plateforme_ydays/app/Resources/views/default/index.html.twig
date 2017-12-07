@@ -116,3 +116,12 @@
     }
 </style>
 {% endblock %}
+
+{% block javascripts %}
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $('.tooltipped').tooltip({delay: 50});
+            $('.modal').modal();
+        });
+    </script>
+{% endblock %}
