@@ -23,7 +23,6 @@ class DefaultController extends Controller
         // On définit une nouvelle valeur pour cette variable user_id
         $session->set('user_id', 91);
 
-        return new Response("Je suis une page de test, je n'ai rien à dire".$userId);
         // replace this example code with whatever you need
         return $this->render('default/index.html.twig', [
             'base_dir' => realpath($this->getParameter('kernel.project_dir')).DIRECTORY_SEPARATOR,
