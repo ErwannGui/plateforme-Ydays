@@ -7,10 +7,10 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-class DefaultController extends Controller
+class ConnexionController extends Controller
 {
     /**
-     * @Route("/", name="homepage")
+     * @Route("/", name="connexion")
      */
     public function indexAction(Request $request)
     {
@@ -24,8 +24,13 @@ class DefaultController extends Controller
         $session->set('user_id', 91);
 
         // replace this example code with whatever you need
-        return $this->render('default/index.html.twig', [
+        return $this->render('connexion/connexion.html.twig', [
             'base_dir' => realpath($this->getParameter('kernel.project_dir')).DIRECTORY_SEPARATOR,
         ]);
+    }
+
+     public function addAction(Request $request)
+    {
+        
     }
 }
