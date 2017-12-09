@@ -17,6 +17,7 @@ use Doctrine\ORM\EntityRepository;
 class ConnexionController extends Controller
 {
     /**
+     * @Route("/lol", name="connexion")
      */
     public function indexAction(Request $request)
     {
