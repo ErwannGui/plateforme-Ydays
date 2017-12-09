@@ -10,21 +10,13 @@ use Symfony\Component\HttpFoundation\Response;
 class DashboardController extends Controller
 {
     /**
-     * @Route("/dashboard", name="dashboard")
+     * @Route("/", name="dashboard")
      */
     public function indexAction(Request $request)
     {
-        // Récupération de la session
-        $session = $request->getSession();
-        
-        // On récupère le contenu de la variable user_id
-        $userId = $session->get('user_id');
-
-        // On définit une nouvelle valeur pour cette variable user_id
-        $session->set('user_id', 91);
 
         // replace this example code with whatever you need
-        return $this->render('connexion/index.html.twig', [
+        return $this->render('dashboard/index.html.twig', [
             'base_dir' => realpath($this->getParameter('kernel.project_dir')).DIRECTORY_SEPARATOR,
         ]);
     }

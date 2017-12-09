@@ -1,95 +1,229 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}
-    Plateforme de gestion des projets YDays
+    Dashboard
 {% endblock %}
 
 {% block body %}
-    <main>
-        <h1 class="center-align">Connexion</h1>
-        <form method="post" action="verif.php" enctype="multipart/form-data">
-            <div class="row">
-                <div class="col s12 m8 l6 xl4 offset-m2 offset-l3 offset-xl4">
-                    <div class="card-panel grey lighten-5">
-                        <div class="row">
-                            <div class="input-field col s12">
-                                <input id="identifiant" type="text" name="identifiant" class="validate" required>
-                                <label class="cyan-text text-darken-1" for="identifiant">Identifiant</label>
-                            </div>
-                            <div class="input-field col s12">
-                                <input id="password" type="password" name="password" class="validate" required>
-                                <label class="cyan-text text-darken-1" for="password">Mot de passe</label>
-                            </div>
-                            <div class="row btn-fin-form">
-                                <div class="col s6">
-                                    <a href="#inscription" class="btn tooltipped grey lighten-1" data-position="bottom" data-delay="50" data-tooltip="Pas de compte ? Créez vous en un !">Inscription<i class="left material-icons white-text">person_add</i></a>
-                                </div>
-                                <div class="col s6 right-align">
-                                    <button type="submit" name="connexion" class="waves-effect waves-light btn cyan">Connexion<i class="left material-icons white-text">check</i></button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </form>
-        <div id="inscription" class="modal">
-            <form method="post" action="inscription.php" enctype="multipart/form-data">
-                <div class="modal-content row">
-                    <h4>Création d'un nouveau compte</h4>
-                    <div class="row">
-                        <div class="input-field col s6">
-                            <input id="nom" name="nom" type="text" class="validate">
-                            <label for="nom">Nom</label>
-                        </div>
-                        <div class="input-field col s6">
-                            <input id="prenom" name="prenom" type="text" class="validate">
-                            <label for="prenom">Prénom</label>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="input-field col s12">
-                            <i class="material-icons prefix">person</i>
-                            <input id="pseudo" name="pseudo" type="text" class="validate">
-                            <label for="pseudo">Pseudonyme</label>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="input-field col s12">
-                            <i class="material-icons prefix">fingerprint</i>
-                            <input id="new_password" type="password" name="new_password" class="validate">
-                            <label for="new_password">Mot de passe</label>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="input-field col s12">
-                            <i class="material-icons prefix">fingerprint</i>
-                            <input id="conf_password" type="password" name="conf_password" class="validate">
-                            <label for="conf_password">Confirmez votre mot de passe</label>
-                        </div>
-                    </div>
-                    <div class="row">
+        <header>
+            <nav>
+                <!--Barre de navigation responsive et custom avec materialize-->
+                <div class="nav-wrapper grey darken-2">
+                    <!--Partie de la barre horizontale en haut de page-->
+                    <a href="" class="brand-logo"><img class="hide-on-med-and-down" src="img/ynov.png" alt="Img logo" id="header_logo"/>Dashboard</a>
+                    <!--Boutton d'ouvertue du menu hamburger à gauche apparaissant sous petite résolution-->
+                    <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+                    <form class="hide-on-med-and-down right">
+                        <!--Formulaire de recherche positionné à droite-->
                         <div class="input-field">
-                            <i class="material-icons prefix">email</i>
-                            <input id="mail" name="mail" type="email" class="validate" required>
-                            <label for="mail">Adresse mail de contact</label>
+                            <input id="search" type="search" required>
+                            <label class="label-icon" for="search"><i class="material-icons">search</i></label>
+                            <i class="material-icons">close</i>
+                        </div>
+                    </form>
+                    <!--Boutton d'ouverture du menu utilisateur à droite sous format desktop-->
+                    <a href="#" class="hide-on-med-and-down right left_header-logo" data-activates="slide-out"><i class="material-icons">person</i></a>
+                    <!--Contenu du menu utilisateur-->
+                    <ul id="slide-out" class="side-nav">
+                        <li>
+                            <div class="user-view">
+                                <div class="background">
+                                    <img src="img/ynov.png">
+                                </div>
+                                <a href="#!name"><i class="material-icons large left">person</i><span class="name">Mr.XXXX</span></a>
+                                <a href="#!email"><span class="email">mr.xxxx@gmail.com</span></a>
+                            </div>
+                        </li>
+                        <li><a href="#!"><i class="material-icons">settings</i>Paramètres du compte</a></li>
+                        <li><a href="#!">Informations pratiques</a></li>
+                        <li><div class="divider"></div></li>
+                        <li><a class="subheader">Option désactivée</a></li>
+                    </ul>
+                    <!--Contenu du menu hamburger-->
+                    <ul class="side-nav" id="mobile-demo">
+                        <li id="side-nav_header">
+                            <div class="grey darken-1 side-menu_header valign-wrapper">
+                                <h2 class="user_name">Mr. XXXXX</h2>
+                            </div>
+                        </li>
+                        <div id="side-nav_main">
+                            <li><a href=""><i class="material-icons">dashboard</i>Tableau de bord</a></li>
+                            <li><a href=""><i class="material-icons">date_range</i>Agenda</a></li>
+                            <li><a href=""><i class="material-icons">call</i>Alertes</a></li>
+                            <li><a href=""><i class="material-icons">chat</i>Commentaires</a></li>
+                        </div>
+                        <li id="side-nav_footer">
+                            <div class="grey darken-3 side-menu_footer center-align">
+                                <a href=""><i class="material-icons">info</i></a>
+                                <a href=""><i class="material-icons">help</i></a>
+                                <a href=""><i class="material-icons">settings</i></a>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+            <!--Barre latérale affichée sous format desktop-->
+            <nav class="vertical-menu hide-on-med-and-down grey darken-1">
+                <ul class="vertical-bar center-align">
+                    <li><a class="vertical-link" href=""><i class="material-icons">dashboard</i>Tableau de bord</a></li>
+                    <li><a class="vertical-link" href=""><i class="material-icons">date_range</i>Agenda</a></li>
+                    <li><a class="vertical-link" href=""><i class="material-icons">call</i>Alertes</a></li>
+                    <li><a class="vertical-link" href=""><i class="material-icons">chat</i>Comments.</a></li>
+                    <li><a class="vertical-link" href=""><i class="material-icons">contacts</i>Contact</a></li>
+                    <li><a class="vertical-link" href=""><i class="material-icons">settings</i>Paramètres</a></li>
+                </ul>
+            </nav>
+        </header>
+        <main class="main-content row">
+            <section class="col s12 l6">
+                <div class="row">
+                    <!--Div ou vont s'appliquer le JS des charts-->
+                    <canvas class="col s6 l12" id="web_chart_person"></canvas>
+                    <canvas class="col s6 l12" id="web_chart_all"></canvas>
+                    <canvas class="col s6 l12" id="horizontal-graph"></canvas>
+                </div>
+            </section>
+            <section class="col s12 l6">
+                <h2 class="flow-text">Rendez-vous actuel</h2>
+                <div>
+                    <div class="card-panel grey lighten-2 urgent">
+                        <div class="choice left center-align">
+                            <!--Choix d'accepter ou refuser le rdv-->
+                            <a href="" class="grey lighten-1"><i class="material-icons black-text">done</i></a>
+                            <a href="" class="grey darken-1"><i class="material-icons black-text">clear</i></a>
+                        </div>
+                        <!--<div class="circle" id="avatar"><img src="" alt="Profil"/></div>-->
+                        <i class="material-icons large">person</i>
+                        <h3 class="flow-text">Mr. XXXXX</h3>
+                        <!--<a class="btn-floating btn waves-effect waves-light right grey"><i class="material-icons">edit</i></a>-->
+                        <span class="date right flow-text">XXhXX</span>
+                        <p class="flow-text">Adresse</p>
+                    </div>
+                </div>
+                <h2 class="flow-text">Rendez-vous suivants</h2>
+                <div>
+                    <h3>Demain</h3>
+                    <!--Accordéon-->
+                    <ul class="collapsible" data-collapsible="accordion">
+                        <li>
+                            <div class="collapsible-header"><i class="material-icons">person</i>Mr. XXXXX</div>
+                            <div class="collapsible-body"><span>Adresse, temps de trajet pour y arriver</span></div>
+                        </li>
+                        <li>
+                            <div class="collapsible-header"><i class="material-icons">person</i>Mr. XXXXX</div>
+                            <div class="collapsible-body"><span>Adresse, temps de trajet pour y arriver</span></div>
+                        </li>
+                        <li>
+                            <div class="collapsible-header"><i class="material-icons">person</i>Mr. XXXXX</div>
+                            <div class="collapsible-body"><span>Adresse, temps de trajet pour y arriver</span></div>
+                        </li>
+                    </ul>
+                    <h3>Jours suivants</h3>
+                    <ul class="collapsible" data-collapsible="accordion">
+                        <li>
+                            <div class="collapsible-header"><i class="material-icons">person</i>Mr. XXXXX</div>
+                            <div class="collapsible-body"><span>Adresse, temps de trajet pour y arriver</span></div>
+                        </li>
+                        <li>
+                            <div class="collapsible-header"><i class="material-icons">person</i>Mr. XXXXX</div>
+                            <div class="collapsible-body"><span>Adresse, temps de trajet pour y arriver</span></div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="calls row">
+                    <div class="col s6">
+                        <!-- Déclencheur d'ouverture du modal -->
+                        <a class="btn modal-trigger flow-text center-align" href="#modal_pass"><i class="material-icons right">call</i>Appels à passer</a>
+
+                        <!-- Contenu du modal -->
+                        <div id="modal_pass" class="modal">
+                            <div class="modal-content">
+                                <h4>Appels à passer</h4>
+                                <!--Accordéon séparé-->
+                                <ul class="collapsible popout" data-collapsible="accordion">
+                                    <li>
+                                        <div class="collapsible-header"><i class="material-icons">person</i>01 23 45 67 89</div>
+                                        <div class="collapsible-body">
+                                            <span>Adresse, RDV</span>
+                                            <!--Lien renvoyant vers une appli interne de telephonie-->
+                                            <a href="tel:0123456789" class="right">Appeler</a>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="collapsible-header"><i class="material-icons">person</i>01 23 45 67 89</div>
+                                        <div class="collapsible-body">
+                                            <span>Adresse, RDV</span>
+                                            <a href="tel:0123456789" class="right">Appeler</a>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="collapsible-header"><i class="material-icons">person</i>01 23 45 67 89</div>
+                                        <div class="collapsible-body">
+                                            <span>Adresse, RDV</span>
+                                            <a href="tel:0123456789" class="right">Appeler</a>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="collapsible-header"><i class="material-icons">person</i>01 23 45 67 89</div>
+                                        <div class="collapsible-body">
+                                            <span>Adresse, RDV</span>
+                                            <a href="tel:0123456789" class="right">Appeler</a>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="collapsible-header"><i class="material-icons">person</i>01 23 45 67 89</div>
+                                        <div class="collapsible-body">
+                                            <span>Adresse, RDV</span>
+                                            <a href="tel:0123456789" class="right">Appeler</a>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="modal-footer">
+                                <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Fermer</a>
+                            </div>
                         </div>
                     </div>
-                    <div class="switch right">
-                        <label>
-                          Utilisateur
-                            <input name="admin" type="checkbox">
-                            <span class="lever"></span>
-                          Administrateur
-                        </label>
+                    <div class="col s6">
+                        <a class="btn modal-trigger flow-text center-align" href="#modal_fail"><i class="material-icons right">call_end</i>Appels manqués</a>
+                        <div id="modal_fail" class="modal">
+                            <div class="modal-content">
+                                <h4>Appels manqués</h4>
+                                <ul class="collapsible popout" data-collapsible="accordion">
+                                    <li>
+                                        <div class="collapsible-header"><i class="material-icons">person</i>01 23 45 67 89</div>
+                                        <div class="collapsible-body">
+                                            <span>Adresse, Heure</span>
+                                            <a href="tel:0123456789" class="right">Rappeler</a>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="collapsible-header"><i class="material-icons">person</i>01 23 45 67 89</div>
+                                        <div class="collapsible-body">
+                                            <span>Adresse, Heure</span>
+                                            <a href="tel:0123456789" class="right">Rappeler</a>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="collapsible-header"><i class="material-icons">person</i>01 23 45 67 89</div>
+                                        <div class="collapsible-body">
+                                            <span>Adresse, Heure</span>
+                                            <a href="tel:0123456789" class="right">Rappeler</a>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="modal-footer">
+                                <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Fermer</a>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="modal-footer">
-                    <button type="submit" name="inscrire" class="modal-action waves-effect waves-green btn-flat">Valider</button>
-                </div>
-            </form>
-        </div>          
-    </main>
+            </section>
+        </main>
+        <footer>
+            <!--Je n'ai pas vu la nécessité de faire un footer pour le genre de page-->
+        </footer>
 {% endblock %}
 
 {% block stylesheets %}
@@ -125,6 +259,7 @@
     <script type="text/javascript">
         $(document).ready(function(){
             $('.tooltipped').tooltip({delay: 50});
+            $('.collapsible').collapsible();
             $('.modal').modal();
         });
     </script>
