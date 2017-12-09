@@ -10,7 +10,7 @@
                 <!--Barre de navigation responsive et custom avec materialize-->
                 <div class="nav-wrapper grey darken-2">
                     <!--Partie de la barre horizontale en haut de page-->
-                    <a href="" class="brand-logo"><img class="hide-on-med-and-down" src="img/ynov.png" alt="Img logo" id="header_logo"/>Dashboard</a>
+                    <a href="" class="brand-logo"><img class="hide-on-med-and-down" src="{{ asset('ynov.png') }}" alt="Img logo" id="header_logo"/>Dashboard</a>
                     <!--Boutton d'ouvertue du menu hamburger à gauche apparaissant sous petite résolution-->
                     <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
                     <form class="hide-on-med-and-down right">
@@ -256,11 +256,159 @@
 {% endblock %}
 
 {% block javascripts %}
-    <script type="text/javascript">
-        $(document).ready(function(){
+    <script>
+        $( document ).ready(function(){
+            /*Initialisation du sideNav*/
+            $(".button-collapse").sideNav({
+                menuWidth: 548, // Default is 300
+            });
+            $(".left_header-logo").sideNav({
+                menuWidth: 300, // Default is 300
+                edge: 'right'
+            });
+            /*Initialisation des accordéons et modal*/
             $('.tooltipped').tooltip({delay: 50});
             $('.collapsible').collapsible();
             $('.modal').modal();
-        });
+        })
+    </script>
+    <script>
+        /*Fonction retournant des nombres aléatoires pour remplir les graphs*/
+        var randomScalingFactor = function() {
+            return Math.round(Math.random() * 100);
+        };
+
+        var color = Chart.helpers.color;
+        /*Donnés config utilisées pour la création des graphs*/
+        var config = {
+            type: 'radar',
+            data: {
+                /*Titres des différents pics du radar*/
+                labels: ["Lorem", "Ipsum", "Dolor", "Sit", "Amet", "Consectetur", "Adipiscing"],
+                datasets: [{
+                    /*Exemple de toile*/
+                    label: "Journalier",
+                    backgroundColor: color(window.chartColors.red).alpha(0.2).rgbString(),
+                    borderColor: window.chartColors.red,
+                    pointBackgroundColor: window.chartColors.red,
+                    data: [
+                        /*Rappel de la fonction créant des nombres aléatoires*/
+                        randomScalingFactor(),
+                        randomScalingFactor(),
+                        randomScalingFactor(),
+                        randomScalingFactor(),
+                        randomScalingFactor(),
+                        randomScalingFactor(),
+                        randomScalingFactor()
+                    ]
+                }, {
+                    label: "Hebdomadaire",
+                    backgroundColor: color(window.chartColors.blue).alpha(0.2).rgbString(),
+                    borderColor: window.chartColors.blue,
+                    pointBackgroundColor: window.chartColors.blue,
+                    data: [
+                        randomScalingFactor(),
+                        randomScalingFactor(),
+                        randomScalingFactor(),
+                        randomScalingFactor(),
+                        randomScalingFactor(),
+                        randomScalingFactor(),
+                        randomScalingFactor()
+                    ]
+                }, {
+                    label: "Mensuel",
+                    backgroundColor: color(window.chartColors.green).alpha(0.2).rgbString(),
+                    borderColor: window.chartColors.green,
+                    pointBackgroundColor: window.chartColors.green,
+                    data: [
+                        randomScalingFactor(),
+                        randomScalingFactor(),
+                        randomScalingFactor(),
+                        randomScalingFactor(),
+                        randomScalingFactor(),
+                        randomScalingFactor(),
+                        randomScalingFactor()
+                    ]
+                },]
+            },
+            options: {
+                /*Options complémentaires (j'ai modifié certaines choses dans le fichier Chart.js pour adapter la taille de police)*/
+                legend: {
+                    position: 'right',
+                },
+                title: {
+                    display: true,
+                    text: 'Objectifs : Personnel-Entreprise'
+                },
+                scale: {
+                  ticks: {
+                    beginAtZero: true
+                  }
+                }
+            }
+        };
+        
+        /*Nouvelles données pour l'autre type de graph*/
+        var MONTHS = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+        var color = Chart.helpers.color;
+        var horizontalBarChartData = {
+            labels: ["January", "February", "March", "April", "May", "June", "July"],
+            datasets: [{
+                label: 'Personnel',
+                backgroundColor: color(window.chartColors.red).alpha(0.5).rgbString(),
+                borderColor: window.chartColors.red,
+                borderWidth: 1,
+                data: [
+                    randomScalingFactor(),
+                    randomScalingFactor(),
+                    randomScalingFactor(),
+                    randomScalingFactor(),
+                    randomScalingFactor(),
+                    randomScalingFactor(),
+                    randomScalingFactor()
+                ]
+            }, {
+                label: 'Entreprise',
+                backgroundColor: color(window.chartColors.blue).alpha(0.5).rgbString(),
+                borderColor: window.chartColors.blue,
+                data: [
+                    randomScalingFactor(),
+                    randomScalingFactor(),
+                    randomScalingFactor(),
+                    randomScalingFactor(),
+                    randomScalingFactor(),
+                    randomScalingFactor(),
+                    randomScalingFactor()
+                ]
+            }]
+
+        };
+
+        window.onload = function() {
+            window.myRadar = new Chart(document.getElementById("web_chart_person"), config);
+            window.myRadar = new Chart(document.getElementById("web_chart_all"), config);
+            var ctx = document.getElementById("horizontal-graph").getContext("2d");
+            window.myHorizontalBar = new Chart(ctx, {
+                type: 'horizontalBar',
+                data: horizontalBarChartData,
+                options: {
+                    // Elements options apply to all of the options unless overridden in a dataset
+                    // In this case, we are setting the border of each horizontal bar to be 2px wide
+                    elements: {
+                        rectangle: {
+                            borderWidth: 2,
+                        }
+                    },
+                    responsive: true,
+                    legend: {
+                        position: 'right',
+                    },
+                    title: {
+                        display: true,
+                        text: 'Résultas mensuels'
+                    }
+                }
+            });
+        };
     </script>
 {% endblock %}
