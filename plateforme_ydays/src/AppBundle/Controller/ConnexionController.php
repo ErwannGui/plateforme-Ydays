@@ -60,12 +60,8 @@ class ConnexionController extends Controller
           'form' => $form->createView(),
         ));*/
 
-        $nom = "toto";
-        return $this->createQueryBuilder('test')
-                    ->where("nom = ?1")
-                    ->setParameter(1, $nom)
-                    ->getQuery()
-                    ->getResult();
+        $response = $this->forward('AppBundle:Dashboard:index');
+
 
         /*$identifiant = $form->get('identifiant')->getData();
         return $identifiant;
