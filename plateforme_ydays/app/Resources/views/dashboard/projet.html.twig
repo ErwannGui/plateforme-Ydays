@@ -10,7 +10,7 @@
             <!--Barre de navigation responsive et custom avec materialize-->
             <div class="nav-wrapper blue darken-3">
                 <!--Partie de la barre horizontale en haut de page-->
-                <a href="" class="brand-logo"><img class="hide-on-med-and-down" src="{{ asset('ynov.png') }}" alt="Img logo" id="header_logo"/>Mes projets</a>
+                <a href="" class="brand-logo"><img class="hide-on-med-and-down" src="{{ asset('ynov.png') }}" alt="Img logo" id="header_logo"/>Mon projet</a>
                 <!--Boutton d'ouvertue du menu hamburger à gauche apparaissant sous petite résolution-->
                 <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
                 <!-- <form class="hide-on-med-and-down right">
@@ -73,81 +73,95 @@
         </nav>
     </header>
     <main class="main-content row">
-        <section style="padding-top: 10px" class="col s12 l12">
-            <div style="" class="col s12 m4 l3">
-                <div class="row">
-                <div class="col s12">
-                  <div class="card">
-                    <div class="card-image">
-                      <img src="{{ asset('image1projet.jpg') }}">
+        <section style="padding-top: 10px" class="col s12 l12"> 
+            <div class="row">
+                <div class="col s12 l6">
+                    <div class="card">
+                        <div class="card-image">
+                            <img src="{{ asset('image1projet.jpg') }}">
+                            <a class="btn-floating halfway-fab waves-effect waves-light blue lighten-2 hide-on-med-and-down"><i class="material-icons">edit</i></a>
+                        </div>
+                        <div class="card-content">
+                            <span class="card-title">Nom du projet</span>
+                            <p>Description du projet: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras convallis enim et orci ultrices, eget lobortis ante sollicitudin. Donec non magna vitae est tristique commodo eget sed mi.</p>
+                            <a class="waves-effect waves-light btn right hide-on-large-only">Modifier la ficher technique</a>
+                        </div>
                     </div>
-                    <div class="card-content">
-                        <span class="card-title">Nom du projet: blabla</span>
-                        <p>Description du projet: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras convallis enim et orci ultrices, eget lobortis ante sollicitudin. Donec non magna vitae est tristique commodo eget sed mi.</p>
-                    </div>
-                  </div>
                 </div>
-              </div>
-            </div>
-            <div style="" class="col s12 m4 l3">
-                <div class="row">
-                <div class="col s12">
-                  <div class="card">
-                    <div class="card-image">
-                      <img src="{{ asset('image2projet.jpg') }}">
+                <div class="col s12 l6">
+                    <div class="card">
+                        <div class="card-image">
+                            <img src="{{ asset('image1projet.jpg') }}">
+                            <a class="btn-floating halfway-fab waves-effect waves-light blue lighten-2 hide-on-med-and-down"><i class="material-icons">edit</i></a>
+                        </div>
+                        <div class="card-content">
+                            <span class="card-title">Nom du projet</span>
+                            <p>Description du projet: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras convallis enim et orci ultrices, eget lobortis ante sollicitudin. Donec non magna vitae est tristique commodo eget sed mi.</p>
+                            <a class="waves-effect waves-light btn right hide-on-large-only">Modifier la ficher technique</a>
+                        </div>
                     </div>
-                    <div class="card-content">
-                        <span class="card-title">Nom du projet: blabla</span>
-                        <p>Description du projet: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras convallis enim et orci ultrices, eget lobortis ante sollicitudin. Donec non magna vitae est tristique commodo eget sed mi.</p>
-                    </div>
-                  </div>
                 </div>
-              </div>
-            </div>
-            <div style="" class="col s12 m4 l3">
-                <div class="row">
                 <div class="col s12">
-                  <div class="card">
-                    <div class="card-image">
-                      <img src="{{ asset('image3projet.jpg') }}">
-                    </div>
-                    <div class="card-content">
-                        <span class="card-title">Nom du projet: blabla</span>
-                        <p>Description du projet: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras convallis enim et orci ultrices, eget lobortis ante sollicitudin. Donec non magna vitae est tristique commodo eget sed mi.</p>
-                    </div>
-                  </div>
+                    <ul class="collapsible popout" data-collapsible="accordion">
+                        <li>
+                            <div class="collapsible-header"><i class="material-icons">filter_drama</i>Priorité haute</div>
+                            <div class="collapsible-body">
+                                <ul class="collapsible" data-collapsible="accordion">
+                                    <li>
+                                        <div class="collapsible-header"><i class="material-icons">filter_drama</i>Projet concerné</div>
+                                        <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
+                                    </li>
+                                    <li>
+                                        <div class="collapsible-header"><i class="material-icons">place</i>Projet concerné</div>
+                                        <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
+                                    </li>
+                                    <li>
+                                        <div class="collapsible-header"><i class="material-icons">whatshot</i>Projet concerné</div>
+                                        <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="collapsible-header"><i class="material-icons">place</i>Priorité haute</div>
+                            <div class="collapsible-body">
+                                <ul class="collapsible" data-collapsible="accordion">
+                                    <li>
+                                        <div class="collapsible-header"><i class="material-icons">filter_drama</i>Projet concerné</div>
+                                        <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
+                                    </li>
+                                    <li>
+                                        <div class="collapsible-header"><i class="material-icons">place</i>Projet concerné</div>
+                                        <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
+                                    </li>
+                                    <li>
+                                        <div class="collapsible-header"><i class="material-icons">whatshot</i>Projet concerné</div>
+                                        <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="collapsible-header"><i class="material-icons">whatshot</i>Priorité basse</div>
+                            <div class="collapsible-body">
+                                <ul class="collapsible" data-collapsible="accordion">
+                                    <li>
+                                        <div class="collapsible-header"><i class="material-icons">filter_drama</i>Projet concerné</div>
+                                        <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
+                                    </li>
+                                    <li>
+                                        <div class="collapsible-header"><i class="material-icons">place</i>Projet concerné</div>
+                                        <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
+                                    </li>
+                                    <li>
+                                        <div class="collapsible-header"><i class="material-icons">whatshot</i>Projet concerné</div>
+                                        <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                    </ul>
                 </div>
-              </div>
-            </div>
-            <div style="" class="col s12 m4 l3">
-                <div class="row">
-                <div class="col s12">
-                  <div class="card">
-                    <div class="card-image">
-                      <img src="{{ asset('image2projet.jpg') }}">
-                    </div>
-                    <div class="card-content">
-                        <span class="card-title">Nom du projet: blabla</span>
-                        <p>Description du projet: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras convallis enim et orci ultrices, eget lobortis ante sollicitudin. Donec non magna vitae est tristique commodo eget sed mi.</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div style="" class="col s12 m4 l3">
-                <div class="row">
-                <div class="col s12">
-                  <div class="card">
-                    <div class="card-image">
-                      <img src="{{ asset('image1projet.jpg') }}">
-                    </div>
-                    <div class="card-content">
-                        <span class="card-title">Nom du projet: blabla</span>
-                        <p>Description du projet: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras convallis enim et orci ultrices, eget lobortis ante sollicitudin. Donec non magna vitae est tristique commodo eget sed mi.</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
             </div>
         </section>
     </main>
@@ -197,7 +211,14 @@
     .side-nav .user-view .background{
         position: relative!important;
     }
-    
+    @media (min-width: 992px) {
+        .card .card-image{
+            position: relative!important;
+        }
+        .card{
+            position: relative!important;
+        }
+    }
 </style>
 {% endblock %}
 
