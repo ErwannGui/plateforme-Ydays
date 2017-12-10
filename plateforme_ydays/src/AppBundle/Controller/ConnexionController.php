@@ -34,6 +34,9 @@ class ConnexionController extends Controller
      public function verifAction()
     {
 
+        /*{{ render(controller('AppBundle:Connexion:verif')) }}*/
+
+        
         /*// On crée un objet Advert
         $advert = new Response();
 
@@ -59,13 +62,6 @@ class ConnexionController extends Controller
         return $this->render('connexion/add.html.twig', array(
           'form' => $form->createView(),
         ));*/
-
-        $nom = "toto";
-        return $this->createQueryBuilder('test')
-                    ->where("nom = ?1")
-                    ->setParameter(1, $nom)
-                    ->getQuery()
-                    ->getResult();
 
         /*$identifiant = $form->get('identifiant')->getData();
         return $identifiant;

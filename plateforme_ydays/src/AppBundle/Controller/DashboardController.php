@@ -14,10 +14,13 @@ class DashboardController extends Controller
      */
     public function indexAction(Request $request)
     {
+        $statut = 'adm';
 
-        // replace this example code with whatever you need
-        return $this->render('dashboard/index.html.twig', [
-            'base_dir' => realpath($this->getParameter('kernel.project_dir')).DIRECTORY_SEPARATOR,
-        ]);
+        if ($statut == 'adm') {        
+            // replace this example code with whatever you need
+            return $this->render('dashboard/index.html.twig', [
+                'base_dir' => realpath($this->getParameter('kernel.project_dir')).DIRECTORY_SEPARATOR,
+            ]);
+        }
     }
 }
