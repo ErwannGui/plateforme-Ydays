@@ -18,7 +18,7 @@ class DashboardController extends Controller
 
         if ($statut == 'adm') {        
             // replace this example code with whatever you need
-            return $this->render('dashboard/index.html.twig', [
+            return $this->render('dashboard/admin.html.twig', [
                 'base_dir' => realpath($this->getParameter('kernel.project_dir')).DIRECTORY_SEPARATOR,
             ]);
         }

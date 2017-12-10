@@ -13,14 +13,15 @@
                 <a href="" class="brand-logo"><img class="hide-on-med-and-down" src="{{ asset('ynov.png') }}" alt="Img logo" id="header_logo"/>Mes projets</a>
                 <!--Boutton d'ouvertue du menu hamburger à gauche apparaissant sous petite résolution-->
                 <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
-                <form class="hide-on-med-and-down right">
-                    <!--Formulaire de recherche positionné à droite-->
+                <!-- <form class="hide-on-med-and-down right">
+                    Formulaire de recherche positionné à droite
                     <div class="input-field">
                         <input id="search" type="search" required>
                         <label class="label-icon" for="search"><i class="material-icons">search</i></label>
                         <i class="material-icons">close</i>
                     </div>
-                </form>
+                </form> -->
+                <a href="#" class="hide-on-med-and-down right">Déconnexion<i class="material-icons right">exit_to_app</i></a>
                 <!--Boutton d'ouverture du menu utilisateur à droite sous format desktop-->
                 <a href="#" class="hide-on-med-and-down right left_header-logo" data-activates="slide-out"><i class="material-icons">person</i></a>
                 <!--Contenu du menu utilisateur-->
@@ -37,7 +38,6 @@
                     <li><a href="#!"><i class="material-icons">settings</i>Paramètres du compte</a></li>
                     <li><a href="#!">Informations pratiques</a></li>
                     <li><div class="divider"></div></li>
-                    <li><a class="subheader">Option désactivée</a></li>
                 </ul>
                 <!--Contenu du menu hamburger-->
                 <ul class="side-nav" id="mobile-demo">
@@ -50,6 +50,7 @@
                         <li><a href="#!"><i class="material-icons">note</i>Les projets</a></li>
                         <li><a href="#!"><i class="material-icons">folder</i>Mes projets</a></li>
                         <li><a href="#!"><i class="material-icons">person</i>Mon profil</a></li>
+                        <li><a href="#!"><i class="material-icons">exit_to_app</i>Déconnexion</a></li>
                     </div>
                     <li id="side-nav_footer">
                         <div class="grey darken-3 side-menu_footer center-align">
@@ -62,71 +63,87 @@
             </div>
         </nav>
         <!--Barre latérale affichée sous format desktop-->
-        <nav class="vertical-menu hide-on-med-and-down  blue lighten-2">
+        <nav class="vertical-menu hide-on-med-and-down blue lighten-2">
             <ul class="vertical-bar center-align">
                 <li><a class="vertical-link" href="#"><i class="material-icons">note</i>Les projets</a></li>
                 <li><a class="vertical-link" href="#"><i class="material-icons">folder</i>Mes projets</a></li>
                 <li><a class="vertical-link" href="#"><i class="material-icons">person</i>Mon profil</a></li>
+                <li><a class="vertical-link" href="#"><i class="material-icons">exit_to_app</i>Quitter</a></li>
             </ul>
         </nav>
     </header>
     <main class="main-content row">
         <section style="padding-top: 10px" class="col s12 l12">
-            <div style="" class="col s12 l3">
+            <div style="" class="col s12 m4 l3">
                 <div class="row">
                 <div class="col s12">
                   <div class="card">
                     <div class="card-image">
-                      <img src="{{ asset('ynov.png') }}">
+                      <img src="{{ asset('image1projet.jpg') }}">
                     </div>
                     <div class="card-content">
-                      <p>I am a very simple card. I am good at containing small bits of information.
-                      I am convenient because I require little markup to use effectively.</p>
+                        <span class="card-title">Nom du projet: blabla</span>
+                        <p>Description du projet: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras convallis enim et orci ultrices, eget lobortis ante sollicitudin. Donec non magna vitae est tristique commodo eget sed mi.</p>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-            <div style="" class="col s12 l3">
+            <div style="" class="col s12 m4 l3">
                 <div class="row">
                 <div class="col s12">
                   <div class="card">
                     <div class="card-image">
-                      <img src="{{ asset('ynov.png') }}">
+                      <img src="{{ asset('image2projet.jpg') }}">
                     </div>
                     <div class="card-content">
-                      <p>I am a very simple card. I am good at containing small bits of information.
-                      I am convenient because I require little markup to use effectively.</p>
+                        <span class="card-title">Nom du projet: blabla</span>
+                        <p>Description du projet: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras convallis enim et orci ultrices, eget lobortis ante sollicitudin. Donec non magna vitae est tristique commodo eget sed mi.</p>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-            <div style="" class="col s12 l3">
+            <div style="" class="col s12 m4 l3">
                 <div class="row">
                 <div class="col s12">
                   <div class="card">
                     <div class="card-image">
-                      <img src="{{ asset('ynov.png') }}">
+                      <img src="{{ asset('image3projet.jpg') }}">
                     </div>
                     <div class="card-content">
-                      <p>I am a very simple card. I am good at containing small bits of information.
-                      I am convenient because I require little markup to use effectively.</p>
+                        <span class="card-title">Nom du projet: blabla</span>
+                        <p>Description du projet: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras convallis enim et orci ultrices, eget lobortis ante sollicitudin. Donec non magna vitae est tristique commodo eget sed mi.</p>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-            <div style="" class="col s12 l3">
+            <div style="" class="col s12 m4 l3">
                 <div class="row">
                 <div class="col s12">
                   <div class="card">
                     <div class="card-image">
-                      <img src="{{ asset('ynov.png') }}">
+                      <img src="{{ asset('image2projet.jpg') }}">
                     </div>
                     <div class="card-content">
-                      <p>I am a very simple card. I am good at containing small bits of information.
-                      I am convenient because I require little markup to use effectively.</p>
+                        <span class="card-title">Nom du projet: blabla</span>
+                        <p>Description du projet: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras convallis enim et orci ultrices, eget lobortis ante sollicitudin. Donec non magna vitae est tristique commodo eget sed mi.</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div style="" class="col s12 m4 l3">
+                <div class="row">
+                <div class="col s12">
+                  <div class="card">
+                    <div class="card-image">
+                      <img src="{{ asset('image1projet.jpg') }}">
+                    </div>
+                    <div class="card-content">
+                        <span class="card-title">Nom du projet: blabla</span>
+                        <p>Description du projet: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras convallis enim et orci ultrices, eget lobortis ante sollicitudin. Donec non magna vitae est tristique commodo eget sed mi.</p>
                     </div>
                   </div>
                 </div>
