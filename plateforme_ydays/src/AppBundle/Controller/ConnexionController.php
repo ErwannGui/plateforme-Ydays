@@ -60,9 +60,6 @@ class ConnexionController extends Controller
           'form' => $form->createView(),
         ));*/
 
-        $response = $this->forward('AppBundle:Dashboard:index');
-
-
         /*$identifiant = $form->get('identifiant')->getData();
         return $identifiant;
 
