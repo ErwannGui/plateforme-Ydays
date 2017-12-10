@@ -3,4 +3,12 @@ app:
     type: annotation
 
 
+# login_check:
+#     pattern:   /login_check
 
+# logout:
+#     pattern:   /logout
+
+# dashboard:
+#     pattern:   /
+#     defaults:  { _controller: AppBundle:Dashboard:index }

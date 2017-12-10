@@ -75,11 +75,10 @@
     <main class="main-content row">
         <section style="padding-top: 10px" class="col s12 l12"> 
             <div class="row">
-                <div class="col s12">
+                <div class="col s12  l6">
                     <div class="card">
                         <div class="card-image">
-                            <img src="{{ asset('image1projet.jpg') }}">
-                            <a class="btn halfway-fab waves-effect waves-light blue lighten-2 hide-on-med-and-down" style="position: initial!important;"><i class="material-icons">edit</i></a>
+                            <img src="{{ asset('image1projet.jpg') }}"></a>
                         </div>
                         <div class="card-content">
                             <span class="card-title">Nom du projet</span>
@@ -88,7 +87,43 @@
                         </div>
                     </div>
                 </div>
-                <div class="col s12 l6">
+                <div class="col s12 l6 hide-on-med-and-down">
+                    <div class="card">
+                        <div class="card-content">
+                            <span class="card-title">Nom du projet</span>
+                            <p class="truncate">Description du projet: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras convallis enim et orci ultrices, eget lobortis ante sollicitudin. Donec non magna vitae est tristique commodo eget sed mi.</p>
+                            <p>Type de projet: Interne</p>
+                            <p>Projet Perso</p>
+                            <p>Chef de projet : Machin Chose</p>
+                            <p>Reférent helper : Richard Couet</p>
+                            <table class="striped" style="height: 20vh;">
+                                <thead>
+                                    <tr>
+                                        <th>Nom</th>
+                                        <th>Prenom</th>
+                                        <th>Promotion</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+                                    <tr>
+                                        <td>Alvin</td>
+                                        <td>Eclair</td>
+                                        <td>Ingésup B2</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Alan</td>
+                                        <td>Jellybean</td>
+                                        <td>Limart B2</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <p>Evaluation du projet : ***</p>
+                            <a class="waves-effect waves-light btn right">Modifier la ficher technique</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col s12">
                     <h3 class="flow-text">Rapports</h3>
                     <ul class="collapsible popout" data-collapsible="accordion">
                         <li>
@@ -98,26 +133,29 @@
                                     <li>
                                         <div class="collapsible-header">
                                             <i class="material-icons">place</i>
-                                            <a class="btn halfway-fab waves-effect waves-light blue lighten-2 right"><i class="material-icons">edit</i></a>
                                             Date du rapport
                                         </div>
-                                        <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
+                                        <div class="collapsible-body">
+                                            <a class="btn halfway-fab waves-effect waves-light blue lighten-2"><i class="material-icons">edit</i></a>
+                                        </div>
                                     </li>
                                     <li>
                                         <div class="collapsible-header">
                                             <i class="material-icons">place</i>
-                                            <a class="btn halfway-fab waves-effect waves-light blue lighten-2 right"><i class="material-icons">edit</i></a>
                                             Date du rapport
                                         </div>
-                                        <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
+                                        <div class="collapsible-body">
+                                            <a class="btn halfway-fab waves-effect waves-light blue lighten-2"><i class="material-icons">edit</i></a>
+                                        </div>
                                     </li>
                                     <li>
                                         <div class="collapsible-header">
                                             <i class="material-icons">place</i>
-                                            <a class="btn halfway-fab waves-effect waves-light blue lighten-2 right"><i class="material-icons">edit</i></a>
                                             Date du rapport
                                         </div>
-                                        <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
+                                        <div class="collapsible-body">
+                                            <a class="btn halfway-fab waves-effect waves-light blue lighten-2"><i class="material-icons">edit</i></a>
+                                        </div>
                                     </li>
                                 </ul>
                             </div>
@@ -162,7 +200,7 @@
                         </li>
                     </ul>
                 </div>
-                <div class="col s12 l6">
+                <div class="col s12">
                     <h3 class="flow-text">Commentaires</h3>
                     <ul class="collapsible popout" data-collapsible="accordion">
                         <li>
