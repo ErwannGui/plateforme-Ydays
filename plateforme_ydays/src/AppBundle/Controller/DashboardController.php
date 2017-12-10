@@ -33,9 +33,9 @@ class DashboardController extends Controller
     }
 
     /**
-     * @Route("/form", name="dashboard")
+     * @Route("/dashboard/form", name="form")
      */
-    /*public function formAction(Request $request){
+    public function formAction(Request $request){
         // On crée un objet
         $utilisateur = new Utilisateur();
         $projets = $this->getDoctrine()
@@ -61,5 +61,5 @@ class DashboardController extends Controller
         return $this->render('default/add.html.twig', array(
           'form' => $form->createView(),
         ));
-    }*/
+    }
 }
