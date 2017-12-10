@@ -34,6 +34,9 @@ class ConnexionController extends Controller
      public function verifAction()
     {
 
+        /*{{ render(controller('AppBundle:Connexion:verif')) }}*/
+
+        
         /*// On crée un objet Advert
         $advert = new Response();
 
