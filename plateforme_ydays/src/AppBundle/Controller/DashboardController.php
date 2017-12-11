@@ -18,7 +18,7 @@ use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 class DashboardController extends Controller
 {
     /**
-     * @Route("/", name="dashboard")
+     * @Route("/dashboard", name="dashboard")
      */
     public function indexAction(Request $request)
     {
@@ -31,18 +31,16 @@ class DashboardController extends Controller
             ]);
         }
     }
-<<<<<<< HEAD
-	/**
-     * @Route("/listprojet", name="listprojet")
-     */
 
+	/**
+     * @Route("/dashboard/listprojet", name="listprojet")
+     */
     public function List(Request $request){
     // replace this example code with whatever you need
         return $this->render('listprojet/listprojet.html.twig', [
             'base_dir' => realpath($this->getParameter('kernel.project_dir')).DIRECTORY_SEPARATOR,
         ]);
-    }    
-=======
+    }  
 
     /**
      * @Route("/dashboard/projet", name="projet")
@@ -85,5 +83,4 @@ class DashboardController extends Controller
           'form' => $form->createView(),
         ));
     }
->>>>>>> origin/dev
 }
