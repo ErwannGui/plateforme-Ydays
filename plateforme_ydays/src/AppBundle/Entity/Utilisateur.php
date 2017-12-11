@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Utilisateur
  *
- * @ORM\Table(name="utilisateurs")
+ * @ORM\Table(name="utilisateur")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\UtilisateurRepository")
  */
 class Utilisateur
@@ -15,7 +15,7 @@ class Utilisateur
     /**
      * @var int
      *
-     * @ORM\Column(name="id", type="integer")
+     * @ORM\Column(name="id_usr", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
@@ -36,27 +36,18 @@ class Utilisateur
     private $prenom;
 
     /**
-     * @var string
+     * @var int
      *
-     * @ORM\Column(name="classe_ou_fonction", type="string", length=255)
+     * @ORM\Column(name="#id_classe", type="integer")
      */
-    private $classeOuFonction;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="role", type="string", length=255, nullable=true)
-     */
-    private $role;
+    private $classe;
 
     /**
      * @var int
      *
-     * @ORM\Column(name="projet", type="integer", nullable=true)
-     * @ORM\OneToOne(targetEntity="AppBundle\Entity\Projet", cascade={"persist"})
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\Column(name="role", type="integer")
      */
-    private $projet;
+    private $role;
 
     /**
      * @var string
@@ -75,23 +66,9 @@ class Utilisateur
     /**
      * @var string
      *
-     * @ORM\Column(name="nom_slack", type="string", length=255, nullable=true)
+     * @ORM\Column(name="slack", type="string", length=255, nullable=true)
      */
     private $nomSlack;
-
-    /**
-     * @var bool
-     *
-     * @ORM\Column(name="actif", type="boolean", nullable=true)
-     */
-    private $actif;
-
-    /**
-     * @var int
-     *
-     * @ORM\Column(name="id_statuts", type="integer")
-     */
-    private $idStatuts;
 
     /**
      * @var int
@@ -101,15 +78,6 @@ class Utilisateur
      * @ORM\JoinColumn(nullable=false)
      */
     private $idProjets;
-
-    /**
-     * @var int
-     *
-     * @ORM\Column(name="id_entreprise", type="integer")
-     * @ORM\OneToOne(targetEntity="AppBundle\Entity\Entreprise", cascade={"persist"})
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $idEntreprise;
 
 
     /**
@@ -171,33 +139,33 @@ class Utilisateur
     }
 
     /**
-     * Set classeOuFonction
+     * Set classe
      *
-     * @param string $classeOuFonction
+     * @param int $classe
      *
      * @return Utilisateur
      */
-    public function setClasseOuFonction($classeOuFonction)
+    public function setClasse($classe)
     {
-        $this->classeOuFonction = $classeOuFonction;
+        $this->classe = $classe;
 
         return $this;
     }
 
     /**
-     * Get classeOuFonction
+     * Get classe
      *
      * @return string
      */
-    public function getClasseOuFonction()
+    public function getClasse()
     {
-        return $this->classeOuFonction;
+        return $this->classe;
     }
 
     /**
      * Set role
      *
-     * @param string $role
+     * @param int $role
      *
      * @return Utilisateur
      */
@@ -293,11 +261,11 @@ class Utilisateur
     /**
      * Set nomSlack
      *
-     * @param string $nomSlack
+     * @param string $slack
      *
      * @return Utilisateur
      */
-    public function setNomSlack($nomSlack)
+    public function setSlack($slack)
     {
         $this->nomSlack = $nomSlack;
 
@@ -309,57 +277,9 @@ class Utilisateur
      *
      * @return string
      */
-    public function getNomSlack()
+    public function getSlack()
     {
-        return $this->nomSlack;
-    }
-
-    /**
-     * Set actif
-     *
-     * @param boolean $actif
-     *
-     * @return Utilisateur
-     */
-    public function setActif($actif)
-    {
-        $this->actif = $actif;
-
-        return $this;
-    }
-
-    /**
-     * Get actif
-     *
-     * @return bool
-     */
-    public function getActif()
-    {
-        return $this->actif;
-    }
-
-    /**
-     * Set idStatuts
-     *
-     * @param integer $idStatuts
-     *
-     * @return Utilisateur
-     */
-    public function setIdStatuts($idStatuts)
-    {
-        $this->idStatuts = $idStatuts;
-
-        return $this;
-    }
-
-    /**
-     * Get idStatuts
-     *
-     * @return int
-     */
-    public function getIdStatuts()
-    {
-        return $this->idStatuts;
+        return $this->slack;
     }
 
     /**
