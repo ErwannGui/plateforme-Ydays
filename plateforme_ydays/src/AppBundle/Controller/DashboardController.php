@@ -23,4 +23,14 @@ class DashboardController extends Controller
             ]);
         }
     }
+	/**
+     * @Route("/listprojet", name="listprojet")
+     */
+
+    public function List(Request $request){
+    // replace this example code with whatever you need
+        return $this->render('listprojet/listprojet.html.twig', [
+            'base_dir' => realpath($this->getParameter('kernel.project_dir')).DIRECTORY_SEPARATOR,
+        ]);
+    }    
 }
