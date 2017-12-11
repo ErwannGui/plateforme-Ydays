@@ -5,10 +5,10 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Entreprise
+ * entreprise
  *
  * @ORM\Table(name="entreprise")
- * @ORM\Entity(repositoryClass="AppBundle\Repository\EntrepriseRepository")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\entrepriseRepository")
  */
 class Entreprise
 {
@@ -29,6 +29,27 @@ class Entreprise
     private $nom;
 
     /**
+     * @var int
+     *
+     * @ORM\Column(name="numero_voie", type="integer")
+     */
+    private $numeroVoie;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="voie", type="string", length=255)
+     */
+    private $voie;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="cp", type="integer")
+     */
+    private $cp;
+
+    /**
      * @var string
      *
      * @ORM\Column(name="ville", type="string", length=255)
@@ -36,39 +57,32 @@ class Entreprise
     private $ville;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="type_voie", type="string", length=255)
-     */
-    private $typeVoie;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="nom_voie", type="string", length=255)
-     */
-    private $nomVoie;
-
-    /**
-     * @var int
-     *
-     * @ORM\Column(name="num_voie", type="integer")
-     */
-    private $numVoie;
-
-    /**
-     * @var int
-     *
-     * @ORM\Column(name="code_postal", type="integer")
-     */
-    private $codePostal;
-
-    /**
-     * @var int
+     * @var bigint
      *
      * @ORM\Column(name="siret", type="integer")
      */
     private $siret;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="type", type="string", length=255)
+     */
+    private $type;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="domaine", type="string", length=255)
+     */
+    private $domaine;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="secteur", type="string", length=255)
+     */
+    private $secteur;
 
 
     /**
@@ -86,7 +100,7 @@ class Entreprise
      *
      * @param string $nom
      *
-     * @return Entreprise
+     * @return entreprise
      */
     public function setNom($nom)
     {
@@ -106,11 +120,83 @@ class Entreprise
     }
 
     /**
+     * Set numeroVoie
+     *
+     * @param integer $numeroVoie
+     *
+     * @return entreprise
+     */
+    public function setNumeroVoie($numeroVoie)
+    {
+        $this->numeroVoie = $numeroVoie;
+
+        return $this;
+    }
+
+    /**
+     * Get numeroVoie
+     *
+     * @return int
+     */
+    public function getNumeroVoie()
+    {
+        return $this->numeroVoie;
+    }
+
+    /**
+     * Set voie
+     *
+     * @param integer $voie
+     *
+     * @return entreprise
+     */
+    public function setVoie($voie)
+    {
+        $this->voie = $voie;
+
+        return $this;
+    }
+
+    /**
+     * Get voie
+     *
+     * @return int
+     */
+    public function getVoie()
+    {
+        return $this->voie;
+    }
+
+    /**
+     * Set cp
+     *
+     * @param integer $cp
+     *
+     * @return entreprise
+     */
+    public function setCp($cp)
+    {
+        $this->cp = $cp;
+
+        return $this;
+    }
+
+    /**
+     * Get cp
+     *
+     * @return int
+     */
+    public function getCp()
+    {
+        return $this->cp;
+    }
+
+    /**
      * Set ville
      *
      * @param string $ville
      *
-     * @return Entreprise
+     * @return entreprise
      */
     public function setVille($ville)
     {
@@ -130,107 +216,11 @@ class Entreprise
     }
 
     /**
-     * Set typeVoie
-     *
-     * @param string $typeVoie
-     *
-     * @return Entreprise
-     */
-    public function setTypeVoie($typeVoie)
-    {
-        $this->typeVoie = $typeVoie;
-
-        return $this;
-    }
-
-    /**
-     * Get typeVoie
-     *
-     * @return string
-     */
-    public function getTypeVoie()
-    {
-        return $this->typeVoie;
-    }
-
-    /**
-     * Set nomVoie
-     *
-     * @param string $nomVoie
-     *
-     * @return Entreprise
-     */
-    public function setNomVoie($nomVoie)
-    {
-        $this->nomVoie = $nomVoie;
-
-        return $this;
-    }
-
-    /**
-     * Get nomVoie
-     *
-     * @return string
-     */
-    public function getNomVoie()
-    {
-        return $this->nomVoie;
-    }
-
-    /**
-     * Set numVoie
-     *
-     * @param integer $numVoie
-     *
-     * @return Entreprise
-     */
-    public function setNumVoie($numVoie)
-    {
-        $this->numVoie = $numVoie;
-
-        return $this;
-    }
-
-    /**
-     * Get numVoie
-     *
-     * @return int
-     */
-    public function getNumVoie()
-    {
-        return $this->numVoie;
-    }
-
-    /**
-     * Set codePostal
-     *
-     * @param integer $codePostal
-     *
-     * @return Entreprise
-     */
-    public function setCodePostal($codePostal)
-    {
-        $this->codePostal = $codePostal;
-
-        return $this;
-    }
-
-    /**
-     * Get codePostal
-     *
-     * @return int
-     */
-    public function getCodePostal()
-    {
-        return $this->codePostal;
-    }
-
-    /**
      * Set siret
      *
      * @param integer $siret
      *
-     * @return Entreprise
+     * @return entreprise
      */
     public function setSiret($siret)
     {
@@ -248,5 +238,76 @@ class Entreprise
     {
         return $this->siret;
     }
-}
 
+    /**
+     * Set type
+     *
+     * @param string $type
+     *
+     * @return entreprise
+     */
+    public function setType($type)
+    {
+        $this->type = $type;
+
+        return $this;
+    }
+
+    /**
+     * Get type
+     *
+     * @return string
+     */
+    public function getType()
+    {
+        return $this->type;
+    }
+
+    /**
+     * Set domaine
+     *
+     * @param string $domaine
+     *
+     * @return entreprise
+     */
+    public function setDomaine($domaine)
+    {
+        $this->domaine = $domaine;
+
+        return $this;
+    }
+
+    /**
+     * Get domaine
+     *
+     * @return string
+     */
+    public function getDomaine()
+    {
+        return $this->domaine;
+    }
+
+    /**
+     * Set secteur
+     *
+     * @param string $secteur
+     *
+     * @return entreprise
+     */
+    public function setSecteur($secteur)
+    {
+        $this->secteur = $secteur;
+
+        return $this;
+    }
+
+    /**
+     * Get secteur
+     *
+     * @return string
+     */
+    public function getSecteur()
+    {
+        return $this->secteur;
+    }
+}

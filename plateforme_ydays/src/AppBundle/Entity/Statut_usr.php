@@ -5,12 +5,12 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Priorite
+ * statut_usr
  *
- * @ORM\Table(name="priorite")
- * @ORM\Entity(repositoryClass="AppBundle\Repository\PrioriteRepository")
+ * @ORM\Table(name="statut_usr")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\statut_usrRepository")
  */
-class Priorite
+class Statut_usr
 {
     /**
      * @var int
@@ -24,9 +24,9 @@ class Priorite
     /**
      * @var string
      *
-     * @ORM\Column(name="nom", type="string", length=255)
+     * @ORM\Column(name="intitule", type="string", length=255)
      */
-    private $nom;
+    private $intitule;
 
 
     /**
@@ -40,27 +40,27 @@ class Priorite
     }
 
     /**
-     * Set nom
+     * Set intitule
      *
-     * @param string $nom
+     * @param string $intitule
      *
-     * @return Priorite
+     * @return statut_usr
      */
-    public function setNom($nom)
+    public function setIntitule($intitule)
     {
-        $this->nom = $nom;
+        $this->intitule = $intitule;
 
         return $this;
     }
 
     /**
-     * Get nom
+     * Get intitule
      *
      * @return string
      */
-    public function getNom()
+    public function getIntitule()
     {
-        return $this->nom;
+        return $this->intitule;
     }
 }
 

@@ -5,12 +5,12 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * commentaire
+ * rapport
  *
- * @ORM\Table(name="commentaire")
- * @ORM\Entity(repositoryClass="AppBundle\Repository\commentaireRepository")
+ * @ORM\Table(name="rapport")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\rapportRepository")
  */
-class Commentaire
+class Rapport
 {
     /**
      * @var int
@@ -20,6 +20,13 @@ class Commentaire
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="titre", type="string", length=255)
+     */
+    private $titre;
 
     /**
      * @var string
@@ -35,13 +42,6 @@ class Commentaire
      */
     private $date;
 
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="priorite", type="string", length=255)
-     */
-    private $priorite;
-
 
     /**
      * Get id
@@ -54,11 +54,35 @@ class Commentaire
     }
 
     /**
+     * Set titre
+     *
+     * @param string $titre
+     *
+     * @return rapport
+     */
+    public function setTitre($titre)
+    {
+        $this->titre = $titre;
+
+        return $this;
+    }
+
+    /**
+     * Get titre
+     *
+     * @return string
+     */
+    public function getTitre()
+    {
+        return $this->titre;
+    }
+
+    /**
      * Set contenu
      *
      * @param string $contenu
      *
-     * @return commentaire
+     * @return rapport
      */
     public function setContenu($contenu)
     {
@@ -78,11 +102,35 @@ class Commentaire
     }
 
     /**
+     * Set dtae
+     *
+     * @param \DateTime $dtae
+     *
+     * @return rapport
+     */
+    public function setDtae($dtae)
+    {
+        $this->dtae = $dtae;
+
+        return $this;
+    }
+
+    /**
+     * Get dtae
+     *
+     * @return \DateTime
+     */
+    public function getDtae()
+    {
+        return $this->dtae;
+    }
+
+    /**
      * Set date
      *
      * @param \DateTime $date
      *
-     * @return commentaire
+     * @return rapport
      */
     public function setDate($date)
     {
@@ -100,29 +148,4 @@ class Commentaire
     {
         return $this->date;
     }
-
-    /**
-     * Set priorite
-     *
-     * @param string $priorite
-     *
-     * @return commentaire
-     */
-    public function setPriorite($priorite)
-    {
-        $this->priorite = $priorite;
-
-        return $this;
-    }
-
-    /**
-     * Get priorite
-     *
-     * @return string
-     */
-    public function getPriorite()
-    {
-        return $this->priorite;
-    }
 }
-

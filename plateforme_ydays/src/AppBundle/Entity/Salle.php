@@ -5,10 +5,10 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Salle
+ * salle
  *
  * @ORM\Table(name="salle")
- * @ORM\Entity(repositoryClass="AppBundle\Repository\SalleRepository")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\salleRepository")
  */
 class Salle
 {
@@ -31,9 +31,9 @@ class Salle
     /**
      * @var int
      *
-     * @ORM\Column(name="etage", type="integer")
+     * @ORM\Column(name="numero", type="integer")
      */
-    private $etage;
+    private $numero;
 
 
     /**
@@ -51,7 +51,7 @@ class Salle
      *
      * @param string $nom
      *
-     * @return Salle
+     * @return salle
      */
     public function setNom($nom)
     {
@@ -71,27 +71,27 @@ class Salle
     }
 
     /**
-     * Set etage
+     * Set numero
      *
-     * @param integer $etage
+     * @param integer $numero
      *
-     * @return Salle
+     * @return salle
      */
-    public function setEtage($etage)
+    public function setNumero($numero)
     {
-        $this->etage = $etage;
+        $this->numero = $numero;
 
         return $this;
     }
 
     /**
-     * Get etage
+     * Get numero
      *
      * @return int
      */
-    public function getEtage()
+    public function getNumero()
     {
-        return $this->etage;
+        return $this->numero;
     }
 }
 
