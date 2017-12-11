@@ -24,7 +24,7 @@ class ConnexionController extends Controller
     }
 
     /**
-     * @Route("/login", name="connexion")
+     * @Route("/login", name="login")
      */
     /*public function loginAction(Request $request)
     {
