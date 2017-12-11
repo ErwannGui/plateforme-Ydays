@@ -35,12 +35,12 @@ class DashboardController extends Controller
 	/**
      * @Route("/dashboard/listprojet", name="listprojet")
      */
-    public function List(Request $request){
+    public function listAction(Request $request){
     // replace this example code with whatever you need
-        return $this->render('listprojet/listprojet.html.twig', [
+        return $this->render('dashboard/listprojet.html.twig', [
             'base_dir' => realpath($this->getParameter('kernel.project_dir')).DIRECTORY_SEPARATOR,
         ]);
-    }  
+    }
 
     /**
      * @Route("/dashboard/projet", name="projet")
