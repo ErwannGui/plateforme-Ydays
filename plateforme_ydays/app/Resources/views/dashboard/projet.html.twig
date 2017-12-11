@@ -75,33 +75,144 @@
     <main class="main-content row">
         <section style="padding-top: 10px" class="col s12 l12"> 
             <div class="row">
-                <div class="col s12 l6">
+                <div class="col s12  l6">
                     <div class="card">
                         <div class="card-image">
-                            <img src="{{ asset('image1projet.jpg') }}">
-                            <a class="btn-floating halfway-fab waves-effect waves-light blue lighten-2 hide-on-med-and-down"><i class="material-icons">edit</i></a>
+                            <img src="{{ asset('image1projet.jpg') }}"></a>
                         </div>
                         <div class="card-content">
                             <span class="card-title">Nom du projet</span>
                             <p>Description du projet: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras convallis enim et orci ultrices, eget lobortis ante sollicitudin. Donec non magna vitae est tristique commodo eget sed mi.</p>
-                            <a class="waves-effect waves-light btn right hide-on-large-only">Modifier la ficher technique</a>
+                            <a class="waves-effect waves-light btn right hide-on-large-only modal-trigger" style="position: initial!important;">Modifier la ficher technique</a>
                         </div>
                     </div>
                 </div>
-                <div class="col s12 l6">
+                <div class="col s12 l6 hide-on-med-and-down">
                     <div class="card">
-                        <div class="card-image">
-                            <img src="{{ asset('image1projet.jpg') }}">
-                            <a class="btn-floating halfway-fab waves-effect waves-light blue lighten-2 hide-on-med-and-down"><i class="material-icons">edit</i></a>
-                        </div>
                         <div class="card-content">
                             <span class="card-title">Nom du projet</span>
-                            <p>Description du projet: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras convallis enim et orci ultrices, eget lobortis ante sollicitudin. Donec non magna vitae est tristique commodo eget sed mi.</p>
-                            <a class="waves-effect waves-light btn right hide-on-large-only">Modifier la ficher technique</a>
+                            <p class="truncate">Description du projet: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras convallis enim et orci ultrices, eget lobortis ante sollicitudin. Donec non magna vitae est tristique commodo eget sed mi.</p>
+                            <p>Type de projet: Interne</p>
+                            <p>Projet Perso</p>
+                            <p>Chef de projet : Machin Chose</p>
+                            <p>Reférent helper : Richard Couet</p>
+                            <table class="striped" style="height: 20vh;">
+                                <thead>
+                                    <tr>
+                                        <th>Nom</th>
+                                        <th>Prenom</th>
+                                        <th>Promotion</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+                                    <tr>
+                                        <td>Alvin</td>
+                                        <td>Eclair</td>
+                                        <td>Ingésup B2</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Alan</td>
+                                        <td>Jellybean</td>
+                                        <td>Limart B2</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <p>Evaluation du projet : ***</p>
+                            <a class="waves-effect waves-light btn right modal-trigger" style="position: initial!important;">Modifier la ficher technique</a>
                         </div>
                     </div>
                 </div>
                 <div class="col s12">
+                    <h3 class="flow-text">Rapports</h3>
+                    <ul class="collapsible popout" data-collapsible="accordion">
+                        <li>
+                            <div class="collapsible-header"><i class="material-icons">filter_drama</i>Projet concerné</div>
+                            <div class="collapsible-body">
+                                <ul class="collapsible" data-collapsible="accordion">
+                                    <li>
+                                        <div class="collapsible-header">
+                                            <i class="material-icons">place</i>
+                                            Date du rapport
+                                        </div>
+                                        <div class="collapsible-body">
+                                             <form action="#">
+                                                <div class="file-field input-field">
+                                                    <div class="btn">
+                                                        <span>File</span>
+                                                        <input type="file" multiple>
+                                                    </div>
+                                                    <div class="file-path-wrapper">
+                                                        <input class="file-path validate" type="text" placeholder="Upload one or more files">
+                                                    </div>
+                                                </div>
+                                            </form>
+                                            <a class="btn halfway-fab waves-effect waves-light blue lighten-2"><i class="material-icons">file_download</i></a>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="collapsible-header">
+                                            <i class="material-icons">place</i>
+                                            Date du rapport
+                                        </div>
+                                        <div class="collapsible-body">
+                                            <a class="btn halfway-fab waves-effect waves-light blue lighten-2"><i class="material-icons">file_download</i></a>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="collapsible-header">
+                                            <i class="material-icons">place</i>
+                                            Date du rapport
+                                        </div>
+                                        <div class="collapsible-body">
+                                            <a class="btn halfway-fab waves-effect waves-light blue lighten-2"><i class="material-icons">file_download</i></a>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="collapsible-header"><i class="material-icons">place</i>Projet concerné</div>
+                            <div class="collapsible-body">
+                                <ul class="collapsible" data-collapsible="accordion">
+                                    <li>
+                                        <div class="collapsible-header"><i class="material-icons">filter_drama</i>Date du rapport</div>
+                                        <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
+                                    </li>
+                                    <li>
+                                        <div class="collapsible-header"><i class="material-icons">place</i>Date du rapport</div>
+                                        <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
+                                    </li>
+                                    <li>
+                                        <div class="collapsible-header"><i class="material-icons">whatshot</i>Date du rapport</div>
+                                        <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="collapsible-header"><i class="material-icons">whatshot</i>Projet concerné</div>
+                            <div class="collapsible-body">
+                                <ul class="collapsible" data-collapsible="accordion">
+                                    <li>
+                                        <div class="collapsible-header"><i class="material-icons">filter_drama</i>Date du rapport</div>
+                                        <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
+                                    </li>
+                                    <li>
+                                        <div class="collapsible-header"><i class="material-icons">place</i>Date du rapport</div>
+                                        <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
+                                    </li>
+                                    <li>
+                                        <div class="collapsible-header"><i class="material-icons">whatshot</i>Date du rapport</div>
+                                        <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col s12">
+                    <h3 class="flow-text">Commentaires</h3>
                     <ul class="collapsible popout" data-collapsible="accordion">
                         <li>
                             <div class="collapsible-header"><i class="material-icons">filter_drama</i>Priorité haute</div>
@@ -210,14 +321,6 @@
     }
     .side-nav .user-view .background{
         position: relative!important;
-    }
-    @media (min-width: 992px) {
-        .card .card-image{
-            position: relative!important;
-        }
-        .card{
-            position: relative!important;
-        }
     }
 </style>
 {% endblock %}

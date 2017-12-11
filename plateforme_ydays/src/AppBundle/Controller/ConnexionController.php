@@ -6,18 +6,13 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
-use Symfony\Component\Form\Extension\Core\Type\DateType;
-use Symfony\Component\Form\Extension\Core\Type\FormType;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
-use Symfony\Component\Form\Extension\Core\Type\TextareaType;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Doctrine\ORM\EntityRepository;
+use Symfony\Component\Security\Core\SecurityContext;
 
 class ConnexionController extends Controller
 {
     /**
-     * @Route("/lol", name="connexion")
+     * @Route("/", name="connexion")
      */
     public function indexAction(Request $request)
     {
@@ -29,48 +24,25 @@ class ConnexionController extends Controller
     }
 
     /**
-     * @Route("/verif", name="test")
+     * @Route("/login", name="connexion")
      */
-     public function verifAction()
+    /*public function loginAction(Request $request)
     {
+        // Si le visiteur est déjà identifié, on le redirige vers l'accueil
+        if ($this->get('security.context')->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
+          return $this->redirectToRoute('dashboard');
+        }
 
-        /*{{ render(controller('AppBundle:Connexion:verif')) }}*/
 
-        
-        /*// On crée un objet Advert
-        $advert = new Response();
+        // Le service authentication_utils permet de récupérer le nom d'utilisateur
+        // et l'erreur dans le cas où le formulaire a déjà été soumis mais était invalide
+        // (mauvais mot de passe par exemple)
+        $authenticationUtils = $this->get('security.authentication_utils');
 
-        // On crée le FormBuilder grâce au service form factory
-        $formBuilder = $this->get('form.factory')->createBuilder(FormType::class, $advert);
+        return $this->render('OCUserBundle:Security:login.html.twig', array(
+          'last_username' => $authenticationUtils->getLastUsername(),
+          'error'         => $authenticationUtils->getLastAuthenticationError(),
+        ));
+    }*/
 
-        // On ajoute les champs de l'entité que l'on veut à notre formulaire
-        $formBuilder
-          ->add('date',      DateType::class)
-          ->add('title',     TextType::class)
-          ->add('content',   TextareaType::class)
-          ->add('author',    TextType::class)
-          ->add('published', CheckboxType::class)
-          ->add('save',      SubmitType::class)
-        ;
-        // Pour l'instant, pas de candidatures, catégories, etc., on les gérera plus tard
-
-        // À partir du formBuilder, on génère le formulaire
-        $form = $formBuilder->getForm();
-
-        // On passe la méthode createView() du formulaire à la vue
-        // afin qu'elle puisse afficher le formulaire toute seule
-        return $this->render('connexion/add.html.twig', array(
-          'form' => $form->createView(),
-        ));*/
-
-        /*$identifiant = $form->get('identifiant')->getData();
-        return $identifiant;
-
-        $rawSql = "SELECT * FROM plateforme.test";
-
-        $stmt = $this->getEntityManager()->getConnection()->prepare($rawSql);
-        $stmt->execute([]);
-
-        return $stmt->fetchAll();*/
-    }
 }
