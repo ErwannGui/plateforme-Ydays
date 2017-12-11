@@ -30,7 +30,7 @@ class ConnexionController extends Controller
     {
         // Si le visiteur est déjà identifié, on le redirige vers l'accueil
         if ($this->get('security.context')->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
-          return $this->redirectToRoute('dashboard');
+          return $this->redirectToRoute('connexion');
         }
 
 
@@ -44,5 +44,4 @@ class ConnexionController extends Controller
           'error'         => $authenticationUtils->getLastAuthenticationError(),
         ));
     }*/
-
 }
