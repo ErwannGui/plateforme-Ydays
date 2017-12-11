@@ -26,10 +26,21 @@ class DashboardController extends Controller
 
         if ($statut == 'adm') {        
             // replace this example code with whatever you need
-            return $this->render('dashboard/projet.html.twig', [
+            return $this->render('dashboard/index.html.twig', [
                 'base_dir' => realpath($this->getParameter('kernel.project_dir')).DIRECTORY_SEPARATOR, array('statut' => $statut),
             ]);
         }
+    }
+
+    /**
+     * @Route("/dashboard/projet", name="projet")
+     */
+    public function projetAction(Request $request)
+    {      
+        // replace this example code with whatever you need
+        return $this->render('dashboard/projet.html.twig', [
+            'base_dir' => realpath($this->getParameter('kernel.project_dir')).DIRECTORY_SEPARATOR,
+        ]);
     }
 
     /**

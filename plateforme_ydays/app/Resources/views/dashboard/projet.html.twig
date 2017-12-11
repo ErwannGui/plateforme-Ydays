@@ -83,7 +83,7 @@
                         <div class="card-content">
                             <span class="card-title">Nom du projet</span>
                             <p>Description du projet: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras convallis enim et orci ultrices, eget lobortis ante sollicitudin. Donec non magna vitae est tristique commodo eget sed mi.</p>
-                            <a class="waves-effect waves-light btn right hide-on-large-only">Modifier la ficher technique</a>
+                            <a class="waves-effect waves-light btn right hide-on-large-only modal-trigger" style="position: initial!important;">Modifier la ficher technique</a>
                         </div>
                     </div>
                 </div>
@@ -119,7 +119,7 @@
                                 </tbody>
                             </table>
                             <p>Evaluation du projet : ***</p>
-                            <a class="waves-effect waves-light btn right">Modifier la ficher technique</a>
+                            <a class="waves-effect waves-light btn right modal-trigger" style="position: initial!important;">Modifier la ficher technique</a>
                         </div>
                     </div>
                 </div>
@@ -136,7 +136,18 @@
                                             Date du rapport
                                         </div>
                                         <div class="collapsible-body">
-                                            <a class="btn halfway-fab waves-effect waves-light blue lighten-2"><i class="material-icons">edit</i></a>
+                                             <form action="#">
+                                                <div class="file-field input-field">
+                                                    <div class="btn">
+                                                        <span>File</span>
+                                                        <input type="file" multiple>
+                                                    </div>
+                                                    <div class="file-path-wrapper">
+                                                        <input class="file-path validate" type="text" placeholder="Upload one or more files">
+                                                    </div>
+                                                </div>
+                                            </form>
+                                            <a class="btn halfway-fab waves-effect waves-light blue lighten-2"><i class="material-icons">file_download</i></a>
                                         </div>
                                     </li>
                                     <li>
@@ -145,7 +156,7 @@
                                             Date du rapport
                                         </div>
                                         <div class="collapsible-body">
-                                            <a class="btn halfway-fab waves-effect waves-light blue lighten-2"><i class="material-icons">edit</i></a>
+                                            <a class="btn halfway-fab waves-effect waves-light blue lighten-2"><i class="material-icons">file_download</i></a>
                                         </div>
                                     </li>
                                     <li>
@@ -154,7 +165,7 @@
                                             Date du rapport
                                         </div>
                                         <div class="collapsible-body">
-                                            <a class="btn halfway-fab waves-effect waves-light blue lighten-2"><i class="material-icons">edit</i></a>
+                                            <a class="btn halfway-fab waves-effect waves-light blue lighten-2"><i class="material-icons">file_download</i></a>
                                         </div>
                                     </li>
                                 </ul>
