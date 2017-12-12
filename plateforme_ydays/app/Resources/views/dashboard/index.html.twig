@@ -21,7 +21,7 @@
                         <i class="material-icons">close</i>
                     </div>
                 </form> -->
-                <a href="#" class="hide-on-med-and-down right">Déconnexion<i class="material-icons right">exit_to_app</i></a>
+                <a href="{{ path('fos_user_security_logout') }}" class="hide-on-med-and-down right">Déconnexion<i class="material-icons right">exit_to_app</i></a>
                 <!--Boutton d'ouverture du menu utilisateur à droite sous format desktop-->
                 <a href="#" class="hide-on-med-and-down right left_header-logo" data-activates="slide-out"><i class="material-icons">person</i></a>
                 <!--Contenu du menu utilisateur-->
@@ -50,7 +50,7 @@
                         <li><a href="#!"><i class="material-icons">note</i>Les projets</a></li>
                         <li><a href="#!"><i class="material-icons">folder</i>Mes projets</a></li>
                         <li><a href="#!"><i class="material-icons">person</i>Mon profil</a></li>
-                        <li><a href="#!"><i class="material-icons">exit_to_app</i>Déconnexion</a></li>
+                        <li><a href="{{ path('fos_user_security_logout') }}"><i class="material-icons">exit_to_app</i>Déconnexion</a></li>
                     </div>
                     <li id="side-nav_footer">
                         <div class="grey darken-3 side-menu_footer center-align">
