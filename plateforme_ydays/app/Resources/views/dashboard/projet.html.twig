@@ -1,0 +1,332 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    Dashboard
+{% endblock %}
+
+{% block body %}
+    <header>
+        <nav>
+            <!--Barre de navigation responsive et custom avec materialize-->
+            <div class="nav-wrapper teal accent-4">
+                <!--Partie de la barre horizontale en haut de page-->
+                <a href="" class="brand-logo"><img class="hide-on-med-and-down" src="{{ asset('ynov.png') }}" alt="Img logo" id="header_logo"/>Dashboard</a>
+                <!--Boutton d'ouvertue du menu hamburger à gauche apparaissant sous petite résolution-->
+                <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+                <!-- <form class="hide-on-med-and-down right">
+                    Formulaire de recherche positionné à droite
+                    <div class="input-field">
+                        <input id="search" type="search" required>
+                        <label class="label-icon" for="search"><i class="material-icons">search</i></label>
+                        <i class="material-icons">close</i>
+                    </div>
+                </form> -->
+                <a href="{{ path('fos_user_security_logout') }}" class="hide-on-med-and-down right">Déconnexion<i class="material-icons right">exit_to_app</i></a>
+                <!--Boutton d'ouverture du menu utilisateur à droite sous format desktop-->
+                <a href="#" class="hide-on-med-and-down right left_header-logo" data-activates="slide-out"><i class="material-icons">person</i></a>
+                <!--Contenu du menu utilisateur-->
+                <ul id="slide-out" class="side-nav">
+                    <li>
+                        <div class="user-view">
+                            <div class="background">
+                                <img src="{{ asset('ynov.png') }}">
+                            </div>
+                            <a href="#!name"><i class="material-icons large left">person</i><span class="name">Richard COUET</span></a>
+                            <a href="#!email"><span class="email">richard.couet@ynov.com</span></a>
+                        </div>
+                    </li>
+                    <li><a href="#!"><i class="material-icons">settings</i>Paramètres du compte</a></li>
+                    <li><a href="#!">Informations pratiques</a></li>
+                    <li><div class="divider"></div></li>
+                </ul>
+                <!--Contenu du menu hamburger-->
+                <ul class="side-nav" id="mobile-demo">
+                    <li id="side-nav_header">
+                        <div class=" pink side-menu_header valign-wrapper">
+                            <h2 class="user_name">Richard COUET</h2>
+                        </div>
+                    </li>
+                    <div id="side-nav_main">
+                        <li><a href="{{ path('list_projet') }}"><i class="material-icons">note</i>Les projets</a></li>
+                        <li><a href="{{ path('dashboard') }}"><i class="material-icons">folder</i>Mes projets</a></li>
+                        {% if is_granted("ROLE_ETUDIANT") %}
+                        <li><a href="{{ path('list_utilisateur') }}"><i class="material-icons">people</i>Les utilisateurs</a></li>
+                        {% endif %}
+                        {% if is_granted("ROLE_HELPER") %}
+                        <li><a href="{{ path('list_entreprise') }}"><i class="material-icons">account_balance</i>Les entreprises</a></li>
+                        {% endif %}
+                        <li><a href="{{ path('fos_user_profile_show') }}"><i class="material-icons">person</i>Mon profil</a></li>
+                        <li><a href="{{ path('fos_user_security_logout') }}"><i class="material-icons">exit_to_app</i>Déconnexion</a></li>
+                    </div>
+                    <li id="side-nav_footer">
+                        <div class="grey darken-4 side-menu_footer center-align">
+                            <a href=""><i class="material-icons">info</i></a>
+                            <a href=""><i class="material-icons">help</i></a>
+                            <a href=""><i class="material-icons">settings</i></a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <!--Barre latérale affichée sous format desktop-->
+        <nav class="vertical-menu hide-on-med-and-down pink">
+            <ul class="vertical-bar center-align">
+                <li><a class="vertical-link" href="{{ path('list_projet') }}"><i class="material-icons">note</i>Les projets</a></li>
+                <li><a class="vertical-link" href="{{ path('dashboard') }}"><i class="material-icons">folder</i>Mes projets</a></li>
+                {% if is_granted("ROLE_ETUDIANT") %}
+                <li><a class="vertical-link" href="{{ path('list_utilisateur') }}"><i class="material-icons">people</i>Les utilisateurs</a></li>
+                {% endif %}
+                {% if is_granted("ROLE_HELPER") %}
+                <li><a class="vertical-link" href="{{ path('list_entreprise') }}"><i class="material-icons">account_balance</i>Les entreprises</a></li>
+                {% endif %}
+                <li><a class="vertical-link" href="{{ path('fos_user_profile_show') }}"><i class="material-icons">person</i>Mon profil</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main class="main-content row">
+        <section style="padding-top: 10px" class="col s12 l12"> 
+            <div class="row">
+                <div class="col s12  l6">
+                    <div class="card">
+                        <div class="card-image">
+                            <img src="{{ asset('image1projet.jpg') }}"></a>
+                        </div>
+                        <div class="card-content">
+                            <span class="card-title">{{ projet.nom }}</span>
+                            <p>Description du projet : {{ projet.description }}</p>
+                            <a class="waves-effect waves-light btn right hide-on-large-only modal-trigger" href="{{ path('projet_edit', { 'id': projet.id }) }}" style="position: initial!important;">Modifier la ficher technique</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col s12 l6 hide-on-med-and-down">
+                    <div class="card">
+                        <div class="card-content">
+                            <span class="card-title">{{ projet.nom }}</span>
+                            <p class="truncate">Description du projet : {{ projet.description }}</p>
+                            <p>Type de projet : {{ projet.type }}</p>
+                            {% if projet.perso == 0 %}
+                                <p>Projet Perso</p>
+                            {% endif %}
+                            <p>Chef de projet : Machin Chose</p>
+                            <p>Reférent helper : Richard Couet</p>
+                            <table class="striped" style="height: 20vh;">
+                                <thead>
+                                    <tr>
+                                        <th>Nom</th>
+                                        <th>Prenom</th>
+                                        <th>Promotion</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+                                    <tr>
+                                        <td>Alvin</td>
+                                        <td>Eclair</td>
+                                        <td>Ingésup B2</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Alan</td>
+                                        <td>Jellybean</td>
+                                        <td>Limart B2</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <p>Evaluation du projet : ***</p>
+                            <a class="waves-effect waves-light btn right modal-trigger" href="{{ path('projet_edit', { 'id': projet.id }) }}" style="position: initial!important;">Modifier la ficher technique</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- <div id="edit_projet" class="modal">
+                    <form method="post" action="{{ path('projet_edit', { 'id': projet.id }) }}" enctype="multipart/form-data">
+                        <div class="modal-content row">
+                            <h4>Modification du projet</h4>
+                            <div class="row">
+                                <div class="input-field col s12">
+                                    <input id="nom" name="nom" type="text" class="validate" value="{{ projet.nom }}">
+                                    <label for="nom">Nom</label>
+                                </div>
+                                <div class="input-field col s12">
+                                    <textarea id="description" class="materialize-textarea" value="{{ projet.description }}"></textarea>
+                                    <label for="description">Description</label>
+                                </div>
+                                <div class="input-field col s6">
+                                    <input id="prenom" name="prenom" type="text" class="validate">
+                                    <label for="prenom">Chef de projet</label>
+                                </div>
+                                <div class="input-field col s6">
+                                    <i class="material-icons prefix">person</i>
+                                    <input id="pseudo" name="pseudo" type="text" class="validate">
+                                    <label for="pseudo">Référent helper</label>
+                                </div>
+                                <div class="input-field col s6">
+                                    <select>
+                                        <option value="" disabled selected>Choose your option</option>
+                                        <option value="1">Interne</option>
+                                        <option value="2">Externe</option>
+                                    </select>
+                                    <label>Type de projet</label>
+                                </div>
+                                <div class="col s6">
+                                    {% if projet.perso == 1 %}
+                                    <p>
+                                        <input type="checkbox" class="filled-in" id="filled-in-box" name="perso" checked="checked" />
+                                        <label for="filled-in-box">Projet personnel</label>
+                                    </p>
+                                    {% endif %}
+                                    {% if projet.perso == 0 %}
+                                    <p>
+                                        <input type="checkbox" class="" id="filled-in-box" name="perso" checked="checked" />
+                                        <label for="filled-in-box">Projet personnel</label>
+                                    </p>
+                                    {% endif %}
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="submit" name="inscrire" class="modal-action waves-effect waves-green btn-flat">Valider</button>
+                            </div>
+                        </div>
+                    </form>
+                </div> -->
+                <div class="col s12">
+                    <h3 class="flow-text">Commentaires</h3>
+                    <!-- Les liaisons entre les tables n'ayant pas été faites, par manque de temps, nous avons le système mais pas l'affichage -->
+                    {% for commentaire in commentaires %}
+                    <ul class="collapsible popout" data-collapsible="accordion">
+                        {% if commentaire.priorite == 'haute' %}
+                        <li>
+                            <div class="collapsible-header"><i class="material-icons">filter_drama</i>Priorité haute</div>
+                            <div class="collapsible-body">
+                                <ul class="collapsible" data-collapsible="accordion">
+                                    <li>
+                                        <div class="collapsible-header"><i class="material-icons">filter_drama</i>Erwann Guillevic</div>
+                                        <div class="collapsible-body"><span>{{ commentaire.contenu }}</span></div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                        {% endif %}
+                        {% if commentaire.priorite == 'moyenne' %}
+                        <li>
+                            <div class="collapsible-header"><i class="material-icons">filter_drama</i>Priorité moyenne</div>
+                            <div class="collapsible-body">
+                                <ul class="collapsible" data-collapsible="accordion">
+                                    <li>
+                                        <div class="collapsible-header"><i class="material-icons">filter_drama</i>Quentin Dijoux</div>
+                                        <div class="collapsible-body"><span>{{ commentaire.contenu }}</span></div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                        {% endif %}
+                        {% if commentaire.priorite == 'basse' %}
+                        <li>
+                            <div class="collapsible-header"><i class="material-icons">filter_drama</i>Priorité basse</div>
+                            <div class="collapsible-body">
+                                <ul class="collapsible" data-collapsible="accordion">
+                                    <li>
+                                        <div class="collapsible-header"><i class="material-icons">filter_drama</i>Fabian Drapeau</div>
+                                        <div class="collapsible-body"><span>{{ commentaire.contenu }}</span></div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                        {% endif %}
+                    </ul>
+                    {% endfor %}
+                </div>
+                <div class="col s12">
+                    <h3 class="flow-text">Rapports</h3>
+                    <form action="#">
+                        <div class="file-field input-field">
+                            <div class="btn">
+                                <span>File</span>
+                                <input type="file" multiple>
+                            </div>
+                            <div class="file-path-wrapper">
+                                <input class="file-path validate" type="text" placeholder="Importez votre ou vos rapport(s)">
+                            </div>
+                        </div>
+                    </form>
+                    <ul class="collapsible popout" data-collapsible="accordion">
+                        {% for rapport in rapports %}
+                        <li>
+                            <div class="collapsible-header">
+                                <i class="material-icons">place</i>
+                                11/12/2017
+                            </div>
+                            <div class="collapsible-body">
+                                <a class="btn halfway-fab waves-effect waves-light blue lighten-2"><i class="material-icons">file_download</i></a>
+                                <div class="card-panel grey lighten-2">
+                                    <span class="">{{ rapport.contenu }}</span>
+                                </div>
+                            </div>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <!-- A voir si footer nécessaire-->
+    </footer>
+{% endblock %}
+
+{% block stylesheets %}
+<style>
+    body { background: #F5F5F5; font: 18px/1.5 sans-serif; width: 0; }
+    h1, h2 { line-height: 1.2; margin: 0 0 .5em; }
+    h1 { font-size: 36px; }
+    h2 { font-size: 21px; margin-bottom: 1em; }
+    p { margin: 0 0 1em 0; }
+    a { color: #0000F0; }
+    a:hover { text-decoration: none; }
+    code { background: #F5F5F5; max-width: 100px; padding: 2px 6px; word-wrap: break-word; }
+    #wrapper { background: #FFF; margin: 1em auto; max-width: 800px; width: 95%; }
+    #container { padding: 2em; }
+    #welcome, #status { margin-bottom: 2em; }
+    #welcome h1 span { display: block; font-size: 75%; }
+    #icon-status, #icon-book { float: left; height: 64px; margin-right: 1em; margin-top: -4px; width: 64px; }
+    #icon-book { display: none; }
+
+    @media (min-width: 768px) {
+        #wrapper { width: 80%; margin: 2em auto; }
+        #icon-book { display: inline-block; }
+        #status a, #next a { display: block; }
+
+        @-webkit-keyframes fade-in { 0% { opacity: 0; } 100% { opacity: 1; } }
+        @keyframes fade-in { 0% { opacity: 0; } 100% { opacity: 1; } }
+        .sf-toolbar { opacity: 0; -webkit-animation: fade-in 1s .2s forwards; animation: fade-in 1s .2s forwards;}
+    }
+    .card .card-image img{
+        position: initial!important;
+    }
+    .card .card-image{
+        position: initial!important;
+    }
+    .card{
+        position: initial!important;
+    }
+    .background img {
+        width: 100%!important;
+    }
+    .side-nav .user-view .background{
+        position: relative!important;
+    }
+</style>
+{% endblock %}
+
+{% block javascripts %}
+    <script>
+        $( document ).ready(function(){
+            /*Initialisation du sideNav*/
+            $(".button-collapse").sideNav({
+                menuWidth: 548, // Default is 300
+            });
+            $(".left_header-logo").sideNav({
+                menuWidth: 300, // Default is 300
+                edge: 'right'
+            });
+        })
+    </script>
+{% endblock %}

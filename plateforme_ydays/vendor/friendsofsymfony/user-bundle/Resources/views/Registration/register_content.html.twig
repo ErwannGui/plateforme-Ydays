@@ -1,0 +1,63 @@
+{% trans_default_domain 'FOSUserBundle' %}
+
+
+<div class="row">
+    <div id="inscription" class="card col s8 offset-s2">
+		{{ form_start(form, {'method': 'post', 'action': path('fos_user_registration_register'), 'attr': {'class': 'fos_user_registration_register'}}) }}
+		    {{ form_widget(form) }}
+		    <div>
+		        <input type="submit" value="{{ 'registration.submit'|trans }}" />
+		    </div>
+		{{ form_end(form) }}
+    </div>
+</div>
+        <!-- <div class="card-content row">
+            <h4>Création d'un nouvel utilisateur</h4>
+            <div class="row">
+                <div class="input-field col s6">
+                    <input id="nom" name="nom" type="text" class="validate">
+                    <label for="nom">Nom</label>
+                </div>
+                <div class="input-field col s6">
+                    <input id="prenom" name="prenom" type="text" class="validate">
+                    <label for="prenom">Prénom</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12">
+                    <i class="material-icons prefix">person</i>
+                    <input id="pseudo" name="username" type="text" class="validate">
+                    <label for="pseudo">Pseudonyme</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12">
+                    <i class="material-icons prefix">fingerprint</i>
+                    <input id="new_password" type="password" name="password" class="validate">
+                    <label for="new_password">Mot de passe</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12">
+                    <i class="material-icons prefix">fingerprint</i>
+                    <input id="conf_password" type="password" name="password_confirmation" class="validate">
+                    <label for="conf_password">Confirmez votre mot de passe</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s6">
+                    <i class="material-icons prefix">edit</i>
+                    <input id="pseudo" name="email" type="email" class="validate">
+                    <label for="pseudo">Email</label>
+                </div>
+                <div class="input-field col s6">
+                    <i class="material-icons prefix">edit</i>
+                    <input id="pseudo" name="tel" type="text" class="validate">
+                    <label for="pseudo">Portable</label>
+                </div>
+            </div>
+        </div>
+        <div class="card-footer">
+            <button type="submit" value="{{ 'registration.submit'|trans }}" class="modal-action waves-effect waves-green btn-flat right">Valider</button>
+        </div> -->
+

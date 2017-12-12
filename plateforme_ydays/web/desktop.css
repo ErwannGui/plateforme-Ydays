@@ -1,0 +1,246 @@
+/**
+* Feuille de style CSS pour le fichier dashboard
+*
+* @author Erwann Guillevic <erwann.guillevic@ynov.com>
+* @copyright 2017 Erwann Guillevic
+* @level Ingesup B2
+*/
+
+body{
+    overflow-x: hidden;
+}
+
+/*Barres de navigation*/
+
+nav{
+    position: fixed!important;
+}
+
+#header_logo{
+    height: 64px;
+    width: auto;
+    margin-right: 2vw;
+}
+
+.user_name{
+    margin: 0;
+    font-size: 2.56rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    padding-left: 0.5rem;
+}
+
+#side-nav_header{
+    margin-bottom: 1.5vh;
+}
+
+.brand-logo #header_logo{
+    vertical-align: top;
+}
+
+.left_header-logo{
+    font-size: 24px!important;
+    padding-right: 12px;
+}
+
+/*Menu hamburger*/
+
+.side-nav{
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+    /*width: 548px!important;*/
+}
+
+#side-nav_main{
+    flex: 1 0 auto;
+}
+
+.side-menu_header{
+    height: 100px;
+}
+
+.side-menu_footer{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    padding-top: 0.5vh;
+    padding-bottom: 0.5vh;
+}
+
+.user_name{
+    padding-left: 10px;
+}
+
+/*Menu vertical en grand écran*/
+
+.vertical-menu{
+    top: 0;
+    z-index: -1;
+    width: 100px;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    padding-top: 80px;
+    transition-duration: 1s;
+}
+
+.vertical-menu .vertical-bar i{
+    font-size: 48px!important;
+}
+
+.vertical-link{
+    line-height: 25px!important;
+    width: 100px;
+    padding-bottom: 1vh;
+}
+
+/*Contenu scrollable de la page*/
+
+.main-content{
+    width: calc(100vw - 100px);
+    margin-left: 100px!important;
+    padding-top: 64px!important;
+    overflow-y: auto;
+}
+
+.main-content h2:first-child{
+    display: none;
+    font-size: 1.6rem;
+}
+
+.main-content h3{
+    font-size: 1.2rem;
+}
+
+canvas{
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+.urgent{
+    padding: 0!important;
+    margin-left: 2.5%!important;
+    width: 95%;
+    height: 200px;
+    border-radius: 4px!important;
+    /*display: flex;
+    flex-direction: row;*/
+}
+
+.urgent div:not(:first-child), .urgent h3, .urgent span{
+    display: inline-block; /*obligé de reprendre la méthode inline car les flex cassaient l'alignement*/
+    vertical-align: top;
+}
+
+.choice{
+    width: 20%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 200px;
+}
+
+.choice a{
+    width: 100%;
+    height: 50%;
+}
+
+.choice a:first-child{
+    border-top-left-radius: 4px;
+}
+
+.choice a:last-child{
+    border-bottom-left-radius: 4px;
+}
+
+.choice i{
+    font-size: 88px;
+    padding-top: 6px;
+}
+
+.card-panel h3{
+    padding-left: 10px;
+    font-weight: bold;
+    margin-top: 10px!important;
+}
+
+#sidenav-overlay{
+    width: 0!important;/*Suppression de l'overlay généré par l'apparition du menu hamburger*/
+}
+
+.card-panel p{
+    padding-left: 21.5%!important;
+}
+
+.collapsible{
+    width: 95%!important;
+    margin-left: 2.5%!important;
+}
+
+.modal-trigger{
+    font-size: 0.8rem!important;
+    padding-left: 15px!important;
+    padding-right: 15px!important;
+}
+
+.user-view a{
+    color: blue!important;
+}
+
+.background img{
+    width: 300px;
+    height: auto;
+}
+
+@media only screen and (max-width: 992px) {
+    
+    /*Complément de responsive sur la page*/
+    
+    .nav-wrapper{
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-align-items: center;
+          -ms-flex-align: center;
+              align-items: center;
+    }
+    .main-content{
+        width: 100vw;
+        padding-top: 100px!important;
+        margin: 0!important;
+        overflow-y: scroll!important;
+    }
+    .main-content h2{
+        display: block!important;
+        font-size: 1.6rem;
+    }
+    .side-nav li>a{
+        font-size: 32px!important;
+    }
+    #side-nav_main li{
+        padding-bottom: 20px!important;
+        padding-top: 10px!important;
+    }
+    .side-nav h2{
+        font-size: 3.8rem!important;
+    }
+    .brand-logo{
+        font-size: 3.8rem!important;
+    }
+    nav{
+        height: 100px!important;
+    }
+    i{
+        font-size: 48px!important;
+    }
+    .choice i{
+        font-size: 100px!important;
+    }
+    .collapsible-header i{
+        font-size: 1.6rem!important;
+    }
+    .modal-trigger i{
+        font-size: 1.6rem!important;
+    }
+}
