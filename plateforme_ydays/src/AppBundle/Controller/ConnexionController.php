@@ -23,7 +23,7 @@ class ConnexionController extends Controller
     public function indexAction(Request $request)
     {
 
-        // replace this example code with whatever you need
+        // Renvoie une vue connexion
         return $this->render('connexion/connexion.html.twig', [
             'base_dir' => realpath($this->getParameter('kernel.project_dir')).DIRECTORY_SEPARATOR,
         ]);
