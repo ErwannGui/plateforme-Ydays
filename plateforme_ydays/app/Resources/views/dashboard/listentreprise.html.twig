@@ -9,80 +9,88 @@
         <table id ="listprojets" class="display" cellspacing="0" width="90%"> 
             <thead> 
                 <tr>
-                    <th>Nom</th> 
-                    <th>Description</th> 
-                    <th>Type</th> 
-                    <th>perso</th> 
-                    <th>Chef</th> 
-                    <th>Helper</th>
-                    <th>Statut eval</th>
-                    <th>Entreprise</th>
+                    <th>nom</th> 
+                    <th>numero_voie</th>
+                    <th>voie</th> 
+                    <th>cp</th> 
+                    <th>ville</th> 
+                    <th>siret</th>
+                    <th>type</th>
+                    <th>domaine</th>
+                    <th>secteur</th>
                     <th></th>
                  </tr> 
             </thead>
             <tbody>
             {% for projet in projets %}
             <tr>
-                <td>{{ projet.nom }}</td>
-                <td>{{ projet.description }}</td>
-                <td>{{ projet.type }}</td>
-                <td>{% if projet.perso %}Yes{% else %}No{% endif %}</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
+                <td>{{ entreprise.nom }}</td>
+                <td>{{ entreprise.numéro_voie }}</td>
+                <td>{{ entreprise.voie }}</td>
+                <td>{{ entreprise.cp }}</td>
+                <td>{{ entreprise.ville }}</td>
+                <td>{{ entreprise.siret }}</td>
+                <td>{{ entreprise.type }}</td>
+                <td>{{ entreprise.domaine }}</td>
+                <td>{{ entreprise.secteur }}</td>
                 <td> 
                     <a class="btn modal-trigger tooltipped grey lighten-1" href="#projet" data-delay="50"><i class="material-icons right">arrow_drop_down</i></a>
                 </td>
             </tr>  
                 <div id="projet" class="modal">
-                        <form method="post" action="{{ path('projet_edit', { 'id': projet.id }) }}" enctype="multipart/form-data">
+                        <form method="post" action="{{ path('entreprise_edit', { 'id': entreprise.id }) }}" enctype="multipart/form-data">
                             <div class="modal-content row">
                                 <h4>Modification du projet</h4>
                                 <div class="row">
                                     <div class="input-field col s6">
-                                        <input id="nom" name="nom" type="text" class="validate" value="{{ projet.nom }}" >
+                                        <input id="nom" name="nom" type="text" class="validate" value="{{ entreprise.nom }}" >
                                         <label for="nom">Nom</label>
                                     </div>
                                      <div class="row">
                                     <div class="input-field col s6">
-                                        <input id="type" name="Type" type="text" class="validate" value="{{ projet.type }}">
+                                        <input id="numero_voie" name="numero_voie" type="text" class="validate" value="{{ entreprise.numero_voie }}">
+                                        <label for="numero_voie">Numero_voie</label>
+                                    </div>
+                                <div class="row">
+                                    <div class="input-field col s12">
+                                        <input id="Voie" type="text" name="voie" class="validate" value="{{ entreprise.voie }}">
+                                        <label for="Voie">Voie</label>
+                                    </div>
+                                </div
+                                <div class="row">
+                                    <div class="input-field col s12">
+                                        <input id="Code Postal" type="text" name="Code Postal" class="validate" value="{{ entreprise.cp }}">
+                                        <label for="Code Postal">Code Postal</label>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="input-field col s12">
+                                        <input id="ville" type="text" name="ville" class="validate" value="{{ entreprise.ville }}">
+                                        <label for="ville">Ville</label>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="input-field col s12">
+                                        <input id="siret" name="siret" type="text" class="validate" required value="{{ entreprise.siret }}">
+                                        <label for="siret">Siret</label>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="input-field col s12">
+                                        <input id="type" name="type" type="text" class="validate" required value="{{ entreprise.type }}">
                                         <label for="type">Type</label>
                                     </div>
                                 </div>
+                                <div class="row">
                                     <div class="input-field col s12">
-                                        <textarea id="description" name="Description" type="textarea" class="materialize-textarea" value="{{ projet.description }}"></textarea>
-                                        <label for="description">Description</label>
+                                        <input id="domaine" name="domaine" type="text" class="validate" required value="{{ entreprise.domaine }}">
+                                        <label for="domaine">Domaine</label>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="input-field col s12">
-                                        <input id="perso" type="text" name="perso" class="validate" value="{% if projet.perso %}Yes{% else %}No{% endif %}">
-                                        <label for="perso">Perso</label>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="input-field col s12">
-                                        <input id="chef" type="text" name="chef" class="validate" value="{{ projet.nom }}">
-                                        <label for="chef">Chef de projet</label>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="input-field col s12">
-                                        <input id="helper" name="helper" type="text" class="validate" required value="{{ projet.nom }}">
-                                        <label for="helper">Référent Helper</label>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="input-field col s12">
-                                        <input id="statut_eval" name="statut_eval" type="text" class="validate" required value="{{ projet.nom }}">
-                                        <label for="statut_eval">Statut éval</label>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="input-field col s12">
-                                        <input id="entreprise" name="entreprise" type="text" class="validate" required value="{{ projet.nom }}">
-                                        <label for="entreprise">Entreprise</label>
+                                        <input id="secteur" name="secteur" type="text" class="validate" required value="{{ entreprise.secteur }}">
+                                        <label for="secteur">Secteur</label>
                                     </div>
                                 </div>
                             </div>
@@ -94,14 +102,15 @@
             </tbody>    
             <tfoot> 
                 <tr> 
-                    <th>Nom</th> 
-                    <th>Description</th> 
-                    <th>Type</th> 
-                    <th>perso</th> 
-                    <th>Chef</th> 
-                    <th>Helper</th>
-                    <th>Statut eval</th>
-                    <th>Entreprise</th>
+                    <th>nom</th> 
+                    <th>numero_voie</th>
+                    <th>voie</th> 
+                    <th>cp</th> 
+                    <th>ville</th> 
+                    <th>siret</th>
+                    <th>type</th>
+                    <th>domaine</th>
+                    <th>secteur</th>
                     <th></th>
                 </tr> 
             </tfoot> 
@@ -153,4 +162,5 @@
         });
     </script>
 {% endblock %}
+    
     

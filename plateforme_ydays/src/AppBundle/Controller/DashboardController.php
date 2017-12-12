@@ -37,10 +37,20 @@ class DashboardController extends Controller
      */
     public function List(Request $request){
     // replace this example code with whatever you need
-        return $this->render('listprojet/listprojet.html.twig', [
+        return $this->render('dashboard/listprojet.html.twig', [
             'base_dir' => realpath($this->getParameter('kernel.project_dir')).DIRECTORY_SEPARATOR,
         ]);
     }  
+
+    /**
+     * @Route("/dashboard/listentreprise", name="listentreprise")
+     */
+    public function Listentreprise(Request $request){
+    // replace this example code with whatever you need
+        return $this->render('dashboard/listentreprise.html.twig', [
+            'base_dir' => realpath($this->getParameter('kernel.project_dir')).DIRECTORY_SEPARATOR,
+        ]);
+    } 
 
     /**
      * @Route("/dashboard/projet", name="projet")

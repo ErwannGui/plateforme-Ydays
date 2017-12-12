@@ -9,80 +9,80 @@
         <table id ="listprojets" class="display" cellspacing="0" width="90%"> 
             <thead> 
                 <tr>
-                    <th>Nom</th> 
-                    <th>Description</th> 
-                    <th>Type</th> 
-                    <th>perso</th> 
-                    <th>Chef</th> 
-                    <th>Helper</th>
-                    <th>Statut eval</th>
-                    <th>Entreprise</th>
+                    <th>nom</th> 
+                    <th>prenom</th>
+                    <th>role</th> 
+                    <th>mail</th> 
+                    <th>password</th> 
+                    <th>tel</th>
+                    <th>slack</th>
+                    <th></th>
                     <th></th>
                  </tr> 
             </thead>
             <tbody>
             {% for projet in projets %}
             <tr>
-                <td>{{ projet.nom }}</td>
-                <td>{{ projet.description }}</td>
-                <td>{{ projet.type }}</td>
-                <td>{% if projet.perso %}Yes{% else %}No{% endif %}</td>
-                <td></td>
-                <td></td>
-                <td></td>
+                <td>{{ utilisateur.nom }}</td>
+                <td>{{ utilisateur.prenom }}</td>
+                <td>{{ utilisateur.role }}</td>
+                <td>{{ utilisateur.mail }}</td>
+                <td>{{ utilisateur.password }}</td>
+                <td>{{ utilisateur.tel }}</td>
+                <td>{{ utilisateur.slack }}</td>
                 <td></td>
                 <td> 
                     <a class="btn modal-trigger tooltipped grey lighten-1" href="#projet" data-delay="50"><i class="material-icons right">arrow_drop_down</i></a>
                 </td>
             </tr>  
                 <div id="projet" class="modal">
-                        <form method="post" action="{{ path('projet_edit', { 'id': projet.id }) }}" enctype="multipart/form-data">
+                        <form method="post" action="{{ path('utilisateur_edit', { 'id': utilisateur.id }) }}" enctype="multipart/form-data">
                             <div class="modal-content row">
                                 <h4>Modification du projet</h4>
                                 <div class="row">
                                     <div class="input-field col s6">
-                                        <input id="nom" name="nom" type="text" class="validate" value="{{ projet.nom }}" >
+                                        <input id="nom" name="nom" type="text" class="validate" value="{{ utilisateur.nom }}" >
                                         <label for="nom">Nom</label>
                                     </div>
                                      <div class="row">
                                     <div class="input-field col s6">
-                                        <input id="type" name="Type" type="text" class="validate" value="{{ projet.type }}">
-                                        <label for="type">Type</label>
+                                        <input id="prenom" name="prenom" type="text" class="validate" value="{{ utilisateur.prenom }}">
+                                        <label for="prenom">Numero_voie</label>
                                     </div>
-                                </div>
+                                <div class="row">
                                     <div class="input-field col s12">
-                                        <textarea id="description" name="Description" type="textarea" class="materialize-textarea" value="{{ projet.description }}"></textarea>
-                                        <label for="description">Description</label>
+                                        <input id="role" type="text" name="role" class="validate" value="{{ utilisateur.role }}">
+                                        <label for="role">Voie</label>
+                                    </div>
+                                </div
+                                <div class="row">
+                                    <div class="input-field col s12">
+                                        <input id="mail" type="text" name="mail" class="validate" value="{{{ utilisateur.mail }}">
+                                        <label for="mail">Code Postal</label>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="input-field col s12">
-                                        <input id="perso" type="text" name="perso" class="validate" value="{% if projet.perso %}Yes{% else %}No{% endif %}">
-                                        <label for="perso">Perso</label>
+                                        <input id="password" type="text" name="password" class="validate" value="{{ utilisateur.password }}">
+                                        <label for="password">Ville</label>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="input-field col s12">
-                                        <input id="chef" type="text" name="chef" class="validate" value="{{ projet.nom }}">
-                                        <label for="chef">Chef de projet</label>
+                                        <input id="tel" name="tel" type="text" class="validate" required value="{{ utilisateur.tel }}">
+                                        <label for="tel">Siret</label>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="input-field col s12">
-                                        <input id="helper" name="helper" type="text" class="validate" required value="{{ projet.nom }}">
-                                        <label for="helper">Référent Helper</label>
+                                        <input id="slack" name="slack" type="text" class="validate" required value="{{ utilisateur.slack }}">
+                                        <label for="slack">Type</label>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="input-field col s12">
-                                        <input id="statut_eval" name="statut_eval" type="text" class="validate" required value="{{ projet.nom }}">
-                                        <label for="statut_eval">Statut éval</label>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="input-field col s12">
-                                        <input id="entreprise" name="entreprise" type="text" class="validate" required value="{{ projet.nom }}">
-                                        <label for="entreprise">Entreprise</label>
+                                        <input id="domaine" name="domaine" type="text" class="validate" required value="{{ entreprise.domaine }}">
+                                        <label for="domaine">Domaine</label>
                                     </div>
                                 </div>
                             </div>
@@ -94,14 +94,14 @@
             </tbody>    
             <tfoot> 
                 <tr> 
-                    <th>Nom</th> 
-                    <th>Description</th> 
-                    <th>Type</th> 
-                    <th>perso</th> 
-                    <th>Chef</th> 
-                    <th>Helper</th>
-                    <th>Statut eval</th>
-                    <th>Entreprise</th>
+                    <th>nom</th> 
+                    <th>prenom</th>
+                    <th>role</th> 
+                    <th>mail</th> 
+                    <th>password</th> 
+                    <th>tel</th>
+                    <th>slack</th>
+                    <th></th>
                     <th></th>
                 </tr> 
             </tfoot> 
