@@ -407,4 +407,6 @@ class DashboardController extends Controller
         ;
     }
 
+    /* Nous avons modifié les vues pour la connexion et l'enregistrement dans FOSUserBundle, ainsi que le formulaire type pour l'enregistrement */
+
 }
