@@ -5,117 +5,188 @@
 {% endblock %}
 
 {% block body %}
-    <main>
-        <table id ="listprojets" class="display" cellspacing="0" width="90%"> 
-            <thead> 
+    <header>
+        <nav>
+            <!--Barre de navigation responsive et custom avec materialize-->
+            <div class="nav-wrapper teal accent-4">
+                <!--Partie de la barre horizontale en haut de page-->
+                <a href="" class="brand-logo"><img class="hide-on-med-and-down" src="{{ asset('ynov.png') }}" alt="Img logo" id="header_logo"/>Mes projets</a>
+                <!--Boutton d'ouvertue du menu hamburger à gauche apparaissant sous petite résolution-->
+                <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+                <!-- <form class="hide-on-med-and-down right">
+                    Formulaire de recherche positionné à droite
+                    <div class="input-field">
+                        <input id="search" type="search" required>
+                        <label class="label-icon" for="search"><i class="material-icons">search</i></label>
+                        <i class="material-icons">close</i>
+                    </div>
+                </form> -->
+                <a href="{{ path('fos_user_security_logout') }}" class="hide-on-med-and-down right">Déconnexion<i class="material-icons right">exit_to_app</i></a>
+                <!--Boutton d'ouverture du menu utilisateur à droite sous format desktop-->
+                <a href="#" class="hide-on-med-and-down right left_header-logo" data-activates="slide-out"><i class="material-icons">person</i></a>
+                <!--Contenu du menu utilisateur-->
+                <ul id="slide-out" class="side-nav">
+                    <li>
+                        <div class="user-view">
+                            <div class="background">
+                                <img src="{{ asset('ynov.png') }}">
+                            </div>
+                            <a href="#!name"><i class="material-icons large left">person</i><span class="name">Richard COUET</span></a>
+                            <a href="#!email"><span class="email">richard.couet@ynov.com</span></a>
+                        </div>
+                    </li>
+                    <li><a href="#!"><i class="material-icons">settings</i>Paramètres du compte</a></li>
+                    <li><a href="#!">Informations pratiques</a></li>
+                    <li><div class="divider"></div></li>
+                </ul>
+                <!--Contenu du menu hamburger-->
+                <ul class="side-nav" id="mobile-demo">
+                    <li id="side-nav_header">
+                        <div class=" pink side-menu_header valign-wrapper">
+                            <h2 class="user_name">Richard COUET</h2>
+                        </div>
+                    </li>
+                    <div id="side-nav_main">
+                        <li><a href="{{ path('list_projet') }}"><i class="material-icons">note</i>Les projets</a></li>
+                        <li><a href="{{ path('list_utilisateur') }}"><i class="material-icons">group</i>Les utilisateurs</a></li>
+                        <li><a href="{{ path('list_entreprise') }}"><i class="material-icons">domain</i>Les entreprises</a></li>
+                        <li><a href="{{ path('dashboard') }}"><i class="material-icons">folder</i>Mes projets</a></li>
+                        <li><a href="#!"><i class="material-icons">person</i>Mon profil</a></li>
+                        <li><a href="{{ path('fos_user_security_logout') }}"><i class="material-icons">exit_to_app</i>Déconnexion</a></li>
+                    </div>
+                    <li id="side-nav_footer">
+                        <div class="grey darken-4 side-menu_footer center-align">
+                            <a href=""><i class="material-icons">info</i></a>
+                            <a href=""><i class="material-icons">help</i></a>
+                            <a href=""><i class="material-icons">settings</i></a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <!--Barre latérale affichée sous format desktop-->
+        <nav class="vertical-menu hide-on-med-and-down pink">
+            <ul class="vertical-bar center-align">
+                <li><a class="vertical-link" href="{{ path('list_projet') }}"><i class="material-icons">note</i>Les projets</a></li>
+                <li><a class="vertical-link" href="{{ path('list_utilisateur') }}"><i class="material-icons">group</i>Les utilisateurs</a></li>
+                <li><a class="vertical-link" href="{{ path('list_entreprise') }}"><i class="material-icons">domain</i>Les entreprises</a></li>
+                <li><a class="vertical-link" href="{{ path('dashboard') }}"><i class="material-icons">folder</i>Mes projets</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main class="row">
+        <div class="col s10 offset-s1" style="margin-top: 70px">
+            <table id ="listprojets" class="display" cellspacing="0"> 
+                <thead> 
+                    <tr>
+                        <th>nom</th> 
+                        <th>numero_voie</th>
+                        <th>voie</th> 
+                        <th>cp</th> 
+                        <th>ville</th> 
+                        <th>siret</th>
+                        <th>type</th>
+                        <th>domaine</th>
+                        <th>secteur</th>
+                        <th></th>
+                    </tr> 
+                </thead>
+                <tbody>
+                {% for entreprise in entreprises %}
                 <tr>
-                    <th>nom</th> 
-                    <th>numero_voie</th>
-                    <th>voie</th> 
-                    <th>cp</th> 
-                    <th>ville</th> 
-                    <th>siret</th>
-                    <th>type</th>
-                    <th>domaine</th>
-                    <th>secteur</th>
-                    <th></th>
-                 </tr> 
-            </thead>
-            <tbody>
-            {% for entreprise in entreprises %}
-            <tr>
-                <td>{{ entreprise.nom }}</td>
-                <td>{{ entreprise.numeroVoie }}</td>
-                <td>{{ entreprise.voie }}</td>
-                <td>{{ entreprise.cp }}</td>
-                <td>{{ entreprise.ville }}</td>
-                <td>{{ entreprise.siret }}</td>
-                <td>{{ entreprise.type }}</td>
-                <td>{{ entreprise.domaine }}</td>
-                <td>{{ entreprise.secteur }}</td>
-                <td> 
-                    <a class="btn modal-trigger" href="{{ path('entreprise_edit', { 'id': entreprise.id }) }}"  data-delay="50"><i class="material-icons right">edit</i></a>
-                </td>
-            </tr>  
-                <div id="projet" class="modal">
-                        <form method="post" action="{{ path('entreprise_edit', { 'id': entreprise.id }) }}" enctype="multipart/form-data">
-                            <div class="modal-content row">
-                                <h4>Modification du projet</h4>
-                                <div class="row">
-                                    <div class="input-field col s6">
-                                        <input id="nom" name="nom" type="text" class="validate" value="{{ entreprise.nom }}" >
-                                        <label for="nom">Nom</label>
+                    <td>{{ entreprise.nom }}</td>
+                    <td>{{ entreprise.numeroVoie }}</td>
+                    <td>{{ entreprise.voie }}</td>
+                    <td>{{ entreprise.cp }}</td>
+                    <td>{{ entreprise.ville }}</td>
+                    <td>{{ entreprise.siret }}</td>
+                    <td>{{ entreprise.type }}</td>
+                    <td>{{ entreprise.domaine }}</td>
+                    <td>{{ entreprise.secteur }}</td>
+                    <td> 
+                        <a class="btn modal-trigger" href="{{ path('entreprise_edit', { 'id': entreprise.id }) }}"  data-delay="50"><i class="material-icons right">edit</i></a>
+                    </td>
+                </tr>  
+                    <div id="projet" class="modal">
+                            <form method="post" action="{{ path('entreprise_edit', { 'id': entreprise.id }) }}" enctype="multipart/form-data">
+                                <div class="modal-content row">
+                                    <h4>Modification du projet</h4>
+                                    <div class="row">
+                                        <div class="input-field col s6">
+                                            <input id="nom" name="nom" type="text" class="validate" value="{{ entreprise.nom }}" >
+                                            <label for="nom">Nom</label>
+                                        </div>
+                                        <div class="row">
+                                        <div class="input-field col s6">
+                                            <input id="numero_voie" name="numero_voie" type="text" class="validate" value="{{ entreprise.numeroVoie }}">
+                                            <label for="numero_voie">Numero_voie</label>
+                                        </div>
+                                    <div class="row">
+                                        <div class="input-field col s12">
+                                            <input id="Voie" type="text" name="voie" class="validate" value="{{ entreprise.voie }}">
+                                            <label for="Voie">Voie</label>
+                                        </div>
+                                    </div
+                                    <div class="row">
+                                        <div class="input-field col s12">
+                                            <input id="Code Postal" type="text" name="Code Postal" class="validate" value="{{ entreprise.cp }}">
+                                            <label for="Code Postal">Code Postal</label>
+                                        </div>
                                     </div>
-                                     <div class="row">
-                                    <div class="input-field col s6">
-                                        <input id="numero_voie" name="numero_voie" type="text" class="validate" value="{{ entreprise.numeroVoie }}">
-                                        <label for="numero_voie">Numero_voie</label>
+                                    <div class="row">
+                                        <div class="input-field col s12">
+                                            <input id="ville" type="text" name="ville" class="validate" value="{{ entreprise.ville }}">
+                                            <label for="ville">Ville</label>
+                                        </div>
                                     </div>
-                                <div class="row">
-                                    <div class="input-field col s12">
-                                        <input id="Voie" type="text" name="voie" class="validate" value="{{ entreprise.voie }}">
-                                        <label for="Voie">Voie</label>
+                                    <div class="row">
+                                        <div class="input-field col s12">
+                                            <input id="siret" name="siret" type="text" class="validate" required value="{{ entreprise.siret }}">
+                                            <label for="siret">Siret</label>
+                                        </div>
                                     </div>
-                                </div
-                                <div class="row">
-                                    <div class="input-field col s12">
-                                        <input id="Code Postal" type="text" name="Code Postal" class="validate" value="{{ entreprise.cp }}">
-                                        <label for="Code Postal">Code Postal</label>
+                                    <div class="row">
+                                        <div class="input-field col s12">
+                                            <input id="type" name="type" type="text" class="validate" required value="{{ entreprise.type }}">
+                                            <label for="type">Type</label>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="row">
-                                    <div class="input-field col s12">
-                                        <input id="ville" type="text" name="ville" class="validate" value="{{ entreprise.ville }}">
-                                        <label for="ville">Ville</label>
+                                    <div class="row">
+                                        <div class="input-field col s12">
+                                            <input id="domaine" name="domaine" type="text" class="validate" required value="{{ entreprise.domaine }}">
+                                            <label for="domaine">Domaine</label>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="row">
-                                    <div class="input-field col s12">
-                                        <input id="siret" name="siret" type="text" class="validate" required value="{{ entreprise.siret }}">
-                                        <label for="siret">Siret</label>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="input-field col s12">
-                                        <input id="type" name="type" type="text" class="validate" required value="{{ entreprise.type }}">
-                                        <label for="type">Type</label>
+                                    <div class="row">
+                                        <div class="input-field col s12">
+                                            <input id="secteur" name="secteur" type="text" class="validate" required value="{{ entreprise.secteur }}">
+                                            <label for="secteur">Secteur</label>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="row">
-                                    <div class="input-field col s12">
-                                        <input id="domaine" name="domaine" type="text" class="validate" required value="{{ entreprise.domaine }}">
-                                        <label for="domaine">Domaine</label>
-                                    </div>
+                                <div class="modal-footer">
+                                    <button type="submit" name="valider" class="modal-action waves-effect waves-green btn-flat">Valider</button>
                                 </div>
-                                <div class="row">
-                                    <div class="input-field col s12">
-                                        <input id="secteur" name="secteur" type="text" class="validate" required value="{{ entreprise.secteur }}">
-                                        <label for="secteur">Secteur</label>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="submit" name="valider" class="modal-action waves-effect waves-green btn-flat">Valider</button>
-                            </div>
-                        </form>
-                    </div> 
-                    {% endfor %}
-            </tbody>    
-            <tfoot> 
-                <tr> 
-                    <th>nom</th> 
-                    <th>numero_voie</th>
-                    <th>voie</th> 
-                    <th>cp</th> 
-                    <th>ville</th> 
-                    <th>siret</th>
-                    <th>type</th>
-                    <th>domaine</th>
-                    <th>secteur</th>
-                    <th></th>
-                </tr> 
-            </tfoot> 
-        </table>
+                            </form>
+                        </div> 
+                        {% endfor %}
+                </tbody>    
+                <tfoot> 
+                    <tr> 
+                        <th>nom</th> 
+                        <th>numero_voie</th>
+                        <th>voie</th> 
+                        <th>cp</th> 
+                        <th>ville</th> 
+                        <th>siret</th>
+                        <th>type</th>
+                        <th>domaine</th>
+                        <th>secteur</th>
+                        <th></th>
+                    </tr> 
+                </tfoot> 
+            </table>
+        </div>
     </main>
 {% endblock %}
 
@@ -123,6 +194,7 @@
 {% block stylesheets %}
     <style>
     body { background: #F5F5F5; font: 18px/1.5 sans-serif; }
+    main { height: 0; }
     h1, h2 { line-height: 1.2; margin: 0 0 .5em; }
     h1 { font-size: 36px; }
     h2 { font-size: 21px; margin-bottom: 1em; }

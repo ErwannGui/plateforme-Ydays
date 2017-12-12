@@ -8,7 +8,7 @@
     <header>
         <nav>
             <!--Barre de navigation responsive et custom avec materialize-->
-            <div class="nav-wrapper blue darken-3">
+            <div class="nav-wrapper teal accent-4">
                 <!--Partie de la barre horizontale en haut de page-->
                 <a href="" class="brand-logo"><img class="hide-on-med-and-down" src="{{ asset('ynov.png') }}" alt="Img logo" id="header_logo"/>Mes projets</a>
                 <!--Boutton d'ouvertue du menu hamburger à gauche apparaissant sous petite résolution-->
@@ -42,18 +42,20 @@
                 <!--Contenu du menu hamburger-->
                 <ul class="side-nav" id="mobile-demo">
                     <li id="side-nav_header">
-                        <div class=" blue darken-1 side-menu_header valign-wrapper">
+                        <div class=" pink side-menu_header valign-wrapper">
                             <h2 class="user_name">Richard COUET</h2>
                         </div>
                     </li>
                     <div id="side-nav_main">
-                        <li><a href="#!"><i class="material-icons">note</i>Les projets</a></li>
-                        <li><a href="#!"><i class="material-icons">folder</i>Mes projets</a></li>
+                        <li><a href="{{ path('list_projet') }}"><i class="material-icons">note</i>Les projets</a></li>
+                        <li><a href="{{ path('list_utilisateur') }}"><i class="material-icons">group</i>Les utilisateurs</a></li>
+                        <li><a href="{{ path('list_entreprise') }}"><i class="material-icons">domain</i>Les entreprises</a></li>
+                        <li><a href="{{ path('dashboard') }}"><i class="material-icons">folder</i>Mes projets</a></li>
                         <li><a href="#!"><i class="material-icons">person</i>Mon profil</a></li>
                         <li><a href="{{ path('fos_user_security_logout') }}"><i class="material-icons">exit_to_app</i>Déconnexion</a></li>
                     </div>
                     <li id="side-nav_footer">
-                        <div class="grey darken-3 side-menu_footer center-align">
+                        <div class="grey darken-4 side-menu_footer center-align">
                             <a href=""><i class="material-icons">info</i></a>
                             <a href=""><i class="material-icons">help</i></a>
                             <a href=""><i class="material-icons">settings</i></a>
@@ -63,12 +65,12 @@
             </div>
         </nav>
         <!--Barre latérale affichée sous format desktop-->
-        <nav class="vertical-menu hide-on-med-and-down blue lighten-2">
+        <nav class="vertical-menu hide-on-med-and-down pink">
             <ul class="vertical-bar center-align">
-                <li><a class="vertical-link" href="#"><i class="material-icons">note</i>Les projets</a></li>
-                <li><a class="vertical-link" href="#"><i class="material-icons">folder</i>Mes projets</a></li>
-                <li><a class="vertical-link" href="#"><i class="material-icons">person</i>Mon profil</a></li>
-                <li><a class="vertical-link" href="#"><i class="material-icons">exit_to_app</i>Quitter</a></li>
+                <li><a class="vertical-link" href="{{ path('list_projet') }}"><i class="material-icons">note</i>Les projets</a></li>
+                <li><a class="vertical-link" href="{{ path('list_utilisateur') }}"><i class="material-icons">group</i>Les utilisateurs</a></li>
+                <li><a class="vertical-link" href="{{ path('list_entreprise') }}"><i class="material-icons">domain</i>Les entreprises</a></li>
+                <li><a class="vertical-link" href="{{ path('dashboard') }}"><i class="material-icons">folder</i>Mes projets</a></li>
             </ul>
         </nav>
     </header>
@@ -84,7 +86,7 @@
                                     <div class="card-image">
                                         <img src="{{ asset('image1projet.jpg') }}">
                                     </div>
-                                    <div class="card-content">
+                                    <div class="card-content grey-text text-darken-4">
                                         <span class="card-title">{{ projet.nom }}</span>
                                         <p class="truncate">{{ projet.description }}</p>
                                     </div>
@@ -104,7 +106,7 @@
 
 {% block stylesheets %}
 <style>
-    body { background: #F5F5F5; font: 18px/1.5 sans-serif; }
+    body { background: #ffffff; font: 18px/1.5 sans-serif; width: 0;}
     h1, h2 { line-height: 1.2; margin: 0 0 .5em; }
     h1 { font-size: 36px; }
     h2 { font-size: 21px; margin-bottom: 1em; }
