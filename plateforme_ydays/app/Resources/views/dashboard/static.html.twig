@@ -1,0 +1,66 @@
+<header>
+    <nav>
+        <!--Barre de navigation responsive et custom avec materialize-->
+        <div class="nav-wrapper blue darken-3">
+            <!--Partie de la barre horizontale en haut de page-->
+            <a href="" class="brand-logo"><img class="hide-on-med-and-down" src="{{ asset('ynov.png') }}" alt="Img logo" id="header_logo"/>Dashboard</a>
+            <!--Boutton d'ouvertue du menu hamburger à gauche apparaissant sous petite résolution-->
+            <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+            <!-- <form class="hide-on-med-and-down right">
+                Formulaire de recherche positionné à droite
+                <div class="input-field">
+                    <input id="search" type="search" required>
+                    <label class="label-icon" for="search"><i class="material-icons">search</i></label>
+                    <i class="material-icons">close</i>
+                </div>
+            </form> -->
+            <a href="{{ path('fos_user_security_logout') }}" class="hide-on-med-and-down right">Déconnexion<i class="material-icons right">exit_to_app</i></a>
+            <!--Boutton d'ouverture du menu utilisateur à droite sous format desktop-->
+            <a href="#" class="hide-on-med-and-down right left_header-logo" data-activates="slide-out"><i class="material-icons">person</i></a>
+            <!--Contenu du menu utilisateur-->
+            <ul id="slide-out" class="side-nav">
+                <li>
+                    <div class="user-view">
+                        <div class="background">
+                            <img src="{{ asset('ynov.png') }}">
+                        </div>
+                        <a href="#!name"><i class="material-icons large left">person</i><span class="name">{{ user.prenom }} {{ user.nom }}</span></a>
+                        <a href="#!email"><span class="email">{{ user.email }}</span></a>
+                    </div>
+                </li>
+                <li><a href="#!"><i class="material-icons">settings</i>Paramètres du compte</a></li>
+                <li><a href="#!">Informations pratiques</a></li>
+                <li><div class="divider"></div></li>
+            </ul>
+            <!--Contenu du menu hamburger-->
+            <ul class="side-nav" id="mobile-demo">
+                <li id="side-nav_header">
+                    <div class=" blue darken-1 side-menu_header valign-wrapper">
+                        <h2 class="user_name">{{ user.prenom }} {{ user.nom }}</h2>
+                    </div>
+                </li>
+                <div id="side-nav_main">
+                    <li><a href="{{ path('list_projet') }}"><i class="material-icons">note</i>Les projets</a></li>
+                    <li><a href="{{ path('dashboard') }}"><i class="material-icons">folder</i>Mes projets</a></li>
+                    <li><a href="{{ path('profile') }}"><i class="material-icons">person</i>Mon profil</a></li>
+                    <li><a href="{{ path('fos_user_security_logout') }}"><i class="material-icons">exit_to_app</i>Déconnexion</a></li>
+                </div>
+                <li id="side-nav_footer">
+                    <div class="grey darken-3 side-menu_footer center-align">
+                        <a href=""><i class="material-icons">info</i></a>
+                        <a href=""><i class="material-icons">help</i></a>
+                        <a href=""><i class="material-icons">settings</i></a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <!--Barre latérale affichée sous format desktop-->
+    <nav class="vertical-menu hide-on-med-and-down blue lighten-2">
+        <ul class="vertical-bar center-align">
+            <li><a class="vertical-link" href="{{ path('list_projet') }}"><i class="material-icons">note</i>Les projets</a></li>
+            <li><a class="vertical-link" href="{{ path('dashboard') }}"><i class="material-icons">folder</i>Mes projets</a></li>
+            <li><a class="vertical-link" href="{{ path('profile') }}"><i class="material-icons">person</i>Mon profil</a></li>
+        </ul>
+    </nav>
+</header>

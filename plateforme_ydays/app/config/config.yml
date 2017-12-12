@@ -8,9 +8,11 @@ imports:
 parameters:
     locale: en
 
+# Configuration du framework
 framework:
     #esi: ~
     #translator: { fallbacks: ['%locale%'] }
+    translator: ~
     secret: '%secret%'
     router:
         resource: '%kernel.project_dir%/app/config/routing.yml'
@@ -30,6 +32,8 @@ framework:
     assets: ~
     php_errors:
         log: true
+    templating:
+        engines: ['twig'] # ajout du moteur de template dans la configuration
 
 # Twig Configuration
 twig:
@@ -38,6 +42,7 @@ twig:
 
 # Doctrine Configuration
 doctrine:
+    # récupération des parametres configurés au préalable dans parameters.yml
     dbal:
         driver: pdo_mysql
         host: '%database_host%'
@@ -65,3 +70,30 @@ swiftmailer:
     username: '%mailer_user%'
     password: '%mailer_password%'
     spool: { type: memory }
+
+# Configuration de FOSUserBundle
+fos_user:
+    db_driver: orm # other valid values are 'mongodb', 'couchdb' and 'propel'
+    firewall_name: main
+    user_class: AppBundle\Entity\Utilisateur # Classe utilisée pour la connexion
+    from_email:
+        address: erwann.guillevic@ynov.com
+        sender_name: Erwann Guillevic
+
+# Configuration des filtres et chemins d'enregistrement pour le fichier de log
+monolog:
+    handlers:
+        filter_for_errors:
+            type: fingers_crossed
+            action_level:  error
+            handler: file_log
+            channels: [security,console,doctrine,event,request]
+
+       
+        file_log:
+            type: stream
+            path: '%kernel.logs_dir%/error.log'
+
+        syslog_handler:
+            type: syslog
+            level: error

@@ -1,24 +1,40 @@
 # To get started with security, check out the documentation:
 # https://symfony.com/doc/current/security.html
 security:
+    encoders:
+        FOS\UserBundle\Model\UserInterface: bcrypt # encodage des données dans la table
+
+    # création des différents roles pour attribuer des droits au utilisateurs
+    role_hierarchy:
+        ROLE_ETUDIANT:      ROLE_USER
+        ROLE_CHEF:      [ROLE_ETUDIANT, ROLE_USER]
+        ROLE_HELPER:        ROLE_HELPER
+        ROLE_ADMIN:       [ROLE_HELPER, ROLE_CHEF]
+        ROLE_SUPER_ADMIN: [ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]
+
 
     # https://symfony.com/doc/current/security.html#b-configuring-how-users-are-loaded
     providers:
-        in_memory:
-            memory: ~
+        fos_userbundle:
+            id: fos_user.user_provider.username
 
     firewalls:
-        # disables authentication for assets and the profiler, adapt it according to your needs
-        dev:
-            pattern: ^/(_(profiler|wdt)|css|images|js)/
-            security: false
+            main:
+                pattern: ^/
+                form_login:
+                    provider: fos_userbundle
+                    csrf_token_generator: security.csrf.token_manager
+                    login_path: /
+                logout: true
+                anonymous:    true
 
-        main:
-            anonymous: ~
-            # activate different ways to authenticate
 
-            # https://symfony.com/doc/current/security.html#a-configuring-how-your-users-will-authenticate
-            #http_basic: ~
+    # url dédié, demandant certains droits
+    access_control:
+        - { path: ^/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/register, role: ROLE_SUPER_ADMIN }
+        - { path: ^/resetting, role: ROLE_HELPER }
+        - { path: ^/admin, role: ROLE_ADMIN }
+        - { path: ^/dashboard, role: ROLE_USER }
 
-            # https://symfony.com/doc/current/security/form_login_setup.html
-            #form_login: ~
+

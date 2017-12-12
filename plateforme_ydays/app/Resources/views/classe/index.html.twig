@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Classes list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nom</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for classe in classes %}
+            <tr>
+                <td><a href="{{ path('classe_show', { 'id': classe.id }) }}">{{ classe.id }}</a></td>
+                <td>{{ classe.nom }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('classe_show', { 'id': classe.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('classe_edit', { 'id': classe.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('classe_new') }}">Create a new classe</a>
+        </li>
+    </ul>
+{% endblock %}

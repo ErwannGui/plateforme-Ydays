@@ -1,0 +1,214 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    Liste d'utilisateur
+{% endblock %}
+
+{% block body %}
+    <header>
+        <nav>
+            <!--Barre de navigation responsive et custom avec materialize-->
+            <div class="nav-wrapper teal accent-4">
+                <!--Partie de la barre horizontale en haut de page-->
+                <a href="" class="brand-logo"><img class="hide-on-med-and-down" src="{{ asset('ynov.png') }}" alt="Img logo" id="header_logo"/>Liste des utilisateurs</a>
+                <!--Boutton d'ouvertue du menu hamburger à gauche apparaissant sous petite résolution-->
+                <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+                <!-- <form class="hide-on-med-and-down right">
+                    Formulaire de recherche positionné à droite
+                    <div class="input-field">
+                        <input id="search" type="search" required>
+                        <label class="label-icon" for="search"><i class="material-icons">search</i></label>
+                        <i class="material-icons">close</i>
+                    </div>
+                </form> -->
+                <a href="{{ path('fos_user_security_logout') }}" class="hide-on-med-and-down right">Déconnexion<i class="material-icons right">exit_to_app</i></a>
+                <!--Boutton d'ouverture du menu utilisateur à droite sous format desktop-->
+                <a href="#" class="hide-on-med-and-down right left_header-logo" data-activates="slide-out"><i class="material-icons">person</i></a>
+                <!--Contenu du menu utilisateur-->
+                <ul id="slide-out" class="side-nav">
+                    <li>
+                        <div class="user-view">
+                            <div class="background">
+                                <img src="{{ asset('ynov.png') }}">
+                            </div>
+                            <a href="#!name"><i class="material-icons large left">person</i><span class="name">Richard COUET</span></a>
+                            <a href="#!email"><span class="email">richard.couet@ynov.com</span></a>
+                        </div>
+                    </li>
+                    <li><a href="#!"><i class="material-icons">settings</i>Paramètres du compte</a></li>
+                    <li><a href="#!">Informations pratiques</a></li>
+                    <li><div class="divider"></div></li>
+                </ul>
+                <!--Contenu du menu hamburger-->
+                <ul class="side-nav" id="mobile-demo">
+                    <li id="side-nav_header">
+                        <div class=" pink side-menu_header valign-wrapper">
+                            <h2 class="user_name">Richard COUET</h2>
+                        </div>
+                    </li>
+                    <div id="side-nav_main">
+                        <li><a href="{{ path('list_projet') }}"><i class="material-icons">note</i>Les projets</a></li>
+                        <li><a href="{{ path('list_utilisateur') }}"><i class="material-icons">group</i>Les utilisateurs</a></li>
+                        <li><a href="{{ path('list_entreprise') }}"><i class="material-icons">domain</i>Les entreprises</a></li>
+                        <li><a href="{{ path('dashboard') }}"><i class="material-icons">folder</i>Mes projets</a></li>
+                        <li><a href="#!"><i class="material-icons">person</i>Mon profil</a></li>
+                        <li><a href="{{ path('fos_user_security_logout') }}"><i class="material-icons">exit_to_app</i>Déconnexion</a></li>
+                    </div>
+                    <li id="side-nav_footer">
+                        <div class="grey darken-4 side-menu_footer center-align">
+                            <a href=""><i class="material-icons">info</i></a>
+                            <a href=""><i class="material-icons">help</i></a>
+                            <a href=""><i class="material-icons">settings</i></a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <!--Barre latérale affichée sous format desktop-->
+        <nav class="vertical-menu hide-on-med-and-down pink">
+            <ul class="vertical-bar center-align">
+                <li><a class="vertical-link" href="{{ path('list_projet') }}"><i class="material-icons">note</i>Les projets</a></li>
+                <li><a class="vertical-link" href="{{ path('list_utilisateur') }}"><i class="material-icons">group</i>Les utilisateurs</a></li>
+                <li><a class="vertical-link" href="{{ path('list_entreprise') }}"><i class="material-icons">domain</i>Les entreprises</a></li>
+                <li><a class="vertical-link" href="{{ path('dashboard') }}"><i class="material-icons">folder</i>Mes projets</a></li>
+            </ul>
+        </nav>
+    </header>
+    <!--Contenu de la page-->
+    <main class="row">
+        <div class="col s10 offset-s1" style="margin-top: 70px">
+            <!--Table contenant la liste de l'integralité projets-->
+            <table id ="listprojets" class="display" cellspacing="0"> 
+                <thead> 
+                    <tr>
+                        <th>nom</th> 
+                        <th>prenom</th>
+                        <th>statut</th> 
+                        <th>mail</th> 
+                        <th>tel</th>
+                        <th>slack</th>
+                        <th></th>
+                    </tr> 
+                </thead>
+                <tbody>
+                <!--Integration de la table-->
+                {% for utilisateur in utilisateurs %}
+                <tr>
+                    <td>{{ utilisateur.nom }}</td>
+                    <td>{{ utilisateur.prenom }}</td>
+                    <td>membre</td>
+                    <td>{{ utilisateur.email }}</td>
+                    <td>{{ utilisateur.tel }}</td>
+                    <td>{{ utilisateur.slack }}</td>
+                    <td> 
+                        <a class="btn modal-trigger" href="{{ path('utilisateur_edit', { 'id': utilisateur.id }) }}" data-delay="50"><i class="material-icons right">edit</i></a>
+                    </td>
+                </tr>  
+                    <div id="projet" class="modal">
+                            <form method="post" action="{{ path('utilisateur_edit', { 'id': utilisateur.id }) }}" enctype="multipart/form-data">
+                                <div class="modal-content row">
+                                    <h4>Modification du projet</h4>
+                                    <div class="row">
+                                        <div class="input-field col s6">
+                                            <input id="nom" name="nom" type="text" class="validate" value="{{ utilisateur.nom }}" >
+                                            <label for="nom">Nom</label>
+                                        </div>
+                                        <div class="row">
+                                        <div class="input-field col s6">
+                                            <input id="prenom" name="prenom" type="text" class="validate" value="{{ utilisateur.prenom }}">
+                                            <label for="prenom">Numero_voie</label>
+                                        </div>
+                                    <div class="row">
+                                        <div class="input-field col s12">
+                                            <input id="mail" type="text" name="mail" class="validate" value="{{ utilisateur.email }}">
+                                            <label for="mail">Code Postal</label>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="input-field col s12">
+                                            <input id="tel" name="tel" type="text" class="validate" required value="{{ utilisateur.tel }}">
+                                            <label for="tel">Siret</label>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="input-field col s12">
+                                            <input id="slack" name="slack" type="text" class="validate" required value="{{ utilisateur.slack }}">
+                                            <label for="slack">Type</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="submit" name="valider" class="modal-action waves-effect waves-green btn-flat">Valider</button>
+                                </div>
+                            </form>
+                        </div>
+                        {% endfor %}
+                </tbody>
+                <tfoot> 
+                    <tr> 
+                        <th>nom</th> 
+                        <th>prenom</th>
+                        <th>statut</th> 
+                        <th>mail</th> 
+                        <th>tel</th>
+                        <th>slack</th>
+                        <th></th>
+                    </tr> 
+                </tfoot> 
+            </table>
+        </div>
+    </main>
+{% endblock %}
+
+    
+{% block stylesheets %}
+ <!--Génération automatique du css-->
+    <style>
+        body { background: #F5F5F5; font: 18px/1.5 sans-serif; margin-top: 70px; }
+        table { margin-top: 70px; }
+        main { height: 0; }
+        h1, h2 { line-height: 1.2; margin: 0 0 .5em; }
+        h1 { font-size: 36px; }
+        h2 { font-size: 21px; margin-bottom: 1em; }
+        p { margin: 0 0 1em 0; }
+        a { color: #0000F0; }
+        a:hover { text-decoration: none; }
+        code { background: #F5F5F5; max-width: 100px; padding: 2px 6px; word-wrap: break-word; }
+        #wrapper { background: #FFF; margin: 1em auto; max-width: 800px; width: 95%; }
+        #container { padding: 2em; }
+        #welcome, #status { margin-bottom: 2em; }
+        #welcome h1 span { display: block; font-size: 75%; }
+        #icon-status, #icon-book { float: left; height: 64px; margin-right: 1em; margin-top: -4px; width: 64px; }
+        #icon-book { display: none; }
+        
+
+        @media (min-width: 768px) {
+            #wrapper { width: 80%; margin: 2em auto; }
+            #icon-book { display: inline-block; }
+            #status a, #next a { display: block; }
+
+            @-webkit-keyframes fade-in { 0% { opacity: 0; } 100% { opacity: 1; } }
+            @keyframes fade-in { 0% { opacity: 0; } 100% { opacity: 1; } }
+            .sf-toolbar { opacity: 0; -webkit-animation: fade-in 1s .2s forwards; animation: fade-in 1s .2s forwards;}
+        }
+</style>
+{% endblock %}
+
+{% block javascripts %}
+<script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.16/datatables.min.js"></script><!-- script datatable -->
+<script type="text/javascript">
+    $(document).ready(function(){
+        $(".button-collapse").sideNav({
+            menuWidth: 548, // Default is 300
+        }); // menu hamburger
+        $(".left_header-logo").sideNav({
+            menuWidth: 300, // Default is 300
+            edge: 'right'
+        }); // menu slide sur la droite
+        $('.tooltipped').tooltip({delay: 50});
+        $('.modal').modal();
+        $('#listprojets').DataTable();
+    });
+</script>
+{% endblock %}
+    
