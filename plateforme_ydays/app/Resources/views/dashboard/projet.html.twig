@@ -21,7 +21,7 @@
                         <i class="material-icons">close</i>
                     </div>
                 </form> -->
-                <a href="#" class="hide-on-med-and-down right">Déconnexion<i class="material-icons right">exit_to_app</i></a>
+                <a href="{{ path('fos_user_security_logout') }}" class="hide-on-med-and-down right">Déconnexion<i class="material-icons right">exit_to_app</i></a>
                 <!--Boutton d'ouverture du menu utilisateur à droite sous format desktop-->
                 <a href="#" class="hide-on-med-and-down right left_header-logo" data-activates="slide-out"><i class="material-icons">person</i></a>
                 <!--Contenu du menu utilisateur-->
@@ -50,7 +50,7 @@
                         <li><a href="#!"><i class="material-icons">note</i>Les projets</a></li>
                         <li><a href="#!"><i class="material-icons">folder</i>Mes projets</a></li>
                         <li><a href="#!"><i class="material-icons">person</i>Mon profil</a></li>
-                        <li><a href="#!"><i class="material-icons">exit_to_app</i>Déconnexion</a></li>
+                        <li><a href="{{ path('fos_user_security_logout') }}"><i class="material-icons">exit_to_app</i>Déconnexion</a></li>
                     </div>
                     <li id="side-nav_footer">
                         <div class="grey darken-3 side-menu_footer center-align">
@@ -81,8 +81,8 @@
                             <img src="{{ asset('image1projet.jpg') }}"></a>
                         </div>
                         <div class="card-content">
-                            <span class="card-title">Nom du projet</span>
-                            <p>Description du projet: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras convallis enim et orci ultrices, eget lobortis ante sollicitudin. Donec non magna vitae est tristique commodo eget sed mi.</p>
+                            <span class="card-title">{{ projet.nom }}</span>
+                            <p>Description du projet : {{ projet.description }}</p>
                             <a class="waves-effect waves-light btn right hide-on-large-only modal-trigger" style="position: initial!important;">Modifier la ficher technique</a>
                         </div>
                     </div>
@@ -90,10 +90,12 @@
                 <div class="col s12 l6 hide-on-med-and-down">
                     <div class="card">
                         <div class="card-content">
-                            <span class="card-title">Nom du projet</span>
-                            <p class="truncate">Description du projet: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras convallis enim et orci ultrices, eget lobortis ante sollicitudin. Donec non magna vitae est tristique commodo eget sed mi.</p>
-                            <p>Type de projet: Interne</p>
-                            <p>Projet Perso</p>
+                            <span class="card-title">{{ projet.nom }}</span>
+                            <p class="truncate">Description du projet : {{ projet.description }}</p>
+                            <p>Type de projet : {{ projet.type }}</p>
+                            {% if projet.perso == 0 %}
+                                <p>Projet Perso</p>
+                            {% endif %}
                             <p>Chef de projet : Machin Chose</p>
                             <p>Reférent helper : Richard Couet</p>
                             <table class="striped" style="height: 20vh;">
@@ -119,158 +121,136 @@
                                 </tbody>
                             </table>
                             <p>Evaluation du projet : ***</p>
-                            <a class="waves-effect waves-light btn right modal-trigger" style="position: initial!important;">Modifier la ficher technique</a>
+                            <a class="waves-effect waves-light btn right modal-trigger" href="#edit_projet" style="position: initial!important;">Modifier la ficher technique</a>
                         </div>
                     </div>
                 </div>
-                <div class="col s12">
-                    <h3 class="flow-text">Rapports</h3>
-                    <ul class="collapsible popout" data-collapsible="accordion">
-                        <li>
-                            <div class="collapsible-header"><i class="material-icons">filter_drama</i>Projet concerné</div>
-                            <div class="collapsible-body">
-                                <ul class="collapsible" data-collapsible="accordion">
-                                    <li>
-                                        <div class="collapsible-header">
-                                            <i class="material-icons">place</i>
-                                            Date du rapport
-                                        </div>
-                                        <div class="collapsible-body">
-                                             <form action="#">
-                                                <div class="file-field input-field">
-                                                    <div class="btn">
-                                                        <span>File</span>
-                                                        <input type="file" multiple>
-                                                    </div>
-                                                    <div class="file-path-wrapper">
-                                                        <input class="file-path validate" type="text" placeholder="Upload one or more files">
-                                                    </div>
-                                                </div>
-                                            </form>
-                                            <a class="btn halfway-fab waves-effect waves-light blue lighten-2"><i class="material-icons">file_download</i></a>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="collapsible-header">
-                                            <i class="material-icons">place</i>
-                                            Date du rapport
-                                        </div>
-                                        <div class="collapsible-body">
-                                            <a class="btn halfway-fab waves-effect waves-light blue lighten-2"><i class="material-icons">file_download</i></a>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="collapsible-header">
-                                            <i class="material-icons">place</i>
-                                            Date du rapport
-                                        </div>
-                                        <div class="collapsible-body">
-                                            <a class="btn halfway-fab waves-effect waves-light blue lighten-2"><i class="material-icons">file_download</i></a>
-                                        </div>
-                                    </li>
-                                </ul>
+                <div id="edit_projet" class="modal">
+                    <form method="post" action="{{ path('projet_edit', { 'id': projet.id }) }}" enctype="multipart/form-data">
+                        <div class="modal-content row">
+                            <h4>Modification du projet</h4>
+                            <div class="row">
+                                <div class="input-field col s12">
+                                    <input id="nom" name="nom" type="text" class="validate" value="{{ projet.nom }}">
+                                    <label for="nom">Nom</label>
+                                </div>
+                                <div class="input-field col s12">
+                                    <textarea id="description" class="materialize-textarea" value="{{ projet.description }}"></textarea>
+                                    <label for="description">Description</label>
+                                </div>
+                                <div class="input-field col s6">
+                                    <input id="prenom" name="prenom" type="text" class="validate">
+                                    <label for="prenom">Chef de projet</label>
+                                </div>
+                                <div class="input-field col s6">
+                                    <i class="material-icons prefix">person</i>
+                                    <input id="pseudo" name="pseudo" type="text" class="validate">
+                                    <label for="pseudo">Référent helper</label>
+                                </div>
+                                <div class="input-field col s6">
+                                    <select>
+                                        <option value="" disabled selected>Choose your option</option>
+                                        <option value="1">Interne</option>
+                                        <option value="2">Externe</option>
+                                    </select>
+                                    <label>Type de projet</label>
+                                </div>
+                                <div class="col s6">
+                                    {% if projet.perso == 1 %}
+                                    <p>
+                                        <input type="checkbox" class="filled-in" id="filled-in-box" name="perso" checked="checked" />
+                                        <label for="filled-in-box">Projet personnel</label>
+                                    </p>
+                                    {% endif %}
+                                    {% if projet.perso == 0 %}
+                                    <p>
+                                        <input type="checkbox" class="" id="filled-in-box" name="perso" checked="checked" />
+                                        <label for="filled-in-box">Projet personnel</label>
+                                    </p>
+                                    {% endif %}
+                                </div>
                             </div>
-                        </li>
-                        <li>
-                            <div class="collapsible-header"><i class="material-icons">place</i>Projet concerné</div>
-                            <div class="collapsible-body">
-                                <ul class="collapsible" data-collapsible="accordion">
-                                    <li>
-                                        <div class="collapsible-header"><i class="material-icons">filter_drama</i>Date du rapport</div>
-                                        <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
-                                    </li>
-                                    <li>
-                                        <div class="collapsible-header"><i class="material-icons">place</i>Date du rapport</div>
-                                        <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
-                                    </li>
-                                    <li>
-                                        <div class="collapsible-header"><i class="material-icons">whatshot</i>Date du rapport</div>
-                                        <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
-                                    </li>
-                                </ul>
+                            <div class="modal-footer">
+                                <button type="submit" name="inscrire" class="modal-action waves-effect waves-green btn-flat">Valider</button>
                             </div>
-                        </li>
-                        <li>
-                            <div class="collapsible-header"><i class="material-icons">whatshot</i>Projet concerné</div>
-                            <div class="collapsible-body">
-                                <ul class="collapsible" data-collapsible="accordion">
-                                    <li>
-                                        <div class="collapsible-header"><i class="material-icons">filter_drama</i>Date du rapport</div>
-                                        <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
-                                    </li>
-                                    <li>
-                                        <div class="collapsible-header"><i class="material-icons">place</i>Date du rapport</div>
-                                        <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
-                                    </li>
-                                    <li>
-                                        <div class="collapsible-header"><i class="material-icons">whatshot</i>Date du rapport</div>
-                                        <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
-                                    </li>
-                                </ul>
-                            </div>
-                        </li>
-                    </ul>
+                        </div>
+                    </form>
                 </div>
                 <div class="col s12">
                     <h3 class="flow-text">Commentaires</h3>
+                    <!-- Les liaisons entre les tables n'ayant pas été faites, par manque de temps, nous avons le système mais pas l'affichage -->
+                    {% for commentaire in commentaires %}
                     <ul class="collapsible popout" data-collapsible="accordion">
+                        {% if commentaire.priorite == 'haute' %}
                         <li>
                             <div class="collapsible-header"><i class="material-icons">filter_drama</i>Priorité haute</div>
                             <div class="collapsible-body">
                                 <ul class="collapsible" data-collapsible="accordion">
                                     <li>
-                                        <div class="collapsible-header"><i class="material-icons">filter_drama</i>Projet concerné</div>
-                                        <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
-                                    </li>
-                                    <li>
-                                        <div class="collapsible-header"><i class="material-icons">place</i>Projet concerné</div>
-                                        <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
-                                    </li>
-                                    <li>
-                                        <div class="collapsible-header"><i class="material-icons">whatshot</i>Projet concerné</div>
-                                        <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
+                                        <div class="collapsible-header"><i class="material-icons">filter_drama</i>Erwann Guillevic</div>
+                                        <div class="collapsible-body"><span>{{ commentaire.contenu }}</span></div>
                                     </li>
                                 </ul>
                             </div>
                         </li>
+                        {% endif %}
+                        {% if commentaire.priorite == 'moyenne' %}
                         <li>
-                            <div class="collapsible-header"><i class="material-icons">place</i>Priorité haute</div>
+                            <div class="collapsible-header"><i class="material-icons">filter_drama</i>Priorité moyenne</div>
                             <div class="collapsible-body">
                                 <ul class="collapsible" data-collapsible="accordion">
                                     <li>
-                                        <div class="collapsible-header"><i class="material-icons">filter_drama</i>Projet concerné</div>
-                                        <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
-                                    </li>
-                                    <li>
-                                        <div class="collapsible-header"><i class="material-icons">place</i>Projet concerné</div>
-                                        <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
-                                    </li>
-                                    <li>
-                                        <div class="collapsible-header"><i class="material-icons">whatshot</i>Projet concerné</div>
-                                        <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
+                                        <div class="collapsible-header"><i class="material-icons">filter_drama</i>Quentin Dijoux</div>
+                                        <div class="collapsible-body"><span>{{ commentaire.contenu }}</span></div>
                                     </li>
                                 </ul>
                             </div>
                         </li>
+                        {% endif %}
+                        {% if commentaire.priorite == 'basse' %}
                         <li>
-                            <div class="collapsible-header"><i class="material-icons">whatshot</i>Priorité basse</div>
+                            <div class="collapsible-header"><i class="material-icons">filter_drama</i>Priorité basse</div>
                             <div class="collapsible-body">
                                 <ul class="collapsible" data-collapsible="accordion">
                                     <li>
-                                        <div class="collapsible-header"><i class="material-icons">filter_drama</i>Projet concerné</div>
-                                        <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
-                                    </li>
-                                    <li>
-                                        <div class="collapsible-header"><i class="material-icons">place</i>Projet concerné</div>
-                                        <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
-                                    </li>
-                                    <li>
-                                        <div class="collapsible-header"><i class="material-icons">whatshot</i>Projet concerné</div>
-                                        <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
+                                        <div class="collapsible-header"><i class="material-icons">filter_drama</i>Fabian Drapeau</div>
+                                        <div class="collapsible-body"><span>{{ commentaire.contenu }}</span></div>
                                     </li>
                                 </ul>
                             </div>
                         </li>
+                        {% endif %}
+                    </ul>
+                    {% endfor %}
+                </div>
+                <div class="col s12">
+                    <h3 class="flow-text">Rapports</h3>
+                    <form action="#">
+                        <div class="file-field input-field">
+                            <div class="btn">
+                                <span>File</span>
+                                <input type="file" multiple>
+                            </div>
+                            <div class="file-path-wrapper">
+                                <input class="file-path validate" type="text" placeholder="Importez votre ou vos rapport(s)">
+                            </div>
+                        </div>
+                    </form>
+                    <ul class="collapsible popout" data-collapsible="accordion">
+                        {% for rapport in rapports %}
+                        <li>
+                            <div class="collapsible-header">
+                                <i class="material-icons">place</i>
+                                11/12/2017
+                            </div>
+                            <div class="collapsible-body">
+                                <a class="btn halfway-fab waves-effect waves-light blue lighten-2"><i class="material-icons">file_download</i></a>
+                                <div class="card-panel grey lighten-2">
+                                    <span class="">{{ rapport.contenu }}</span>
+                                </div>
+                            </div>
+                        </li>
+                        {% endfor %}
                     </ul>
                 </div>
             </div>
@@ -337,9 +317,6 @@
                 menuWidth: 300, // Default is 300
                 edge: 'right'
             });
-            /*Initialisation des accordéons et modal*/
-            $('.collapsible').collapsible();
-            $('.modal').modal();
         })
     </script>
 {% endblock %}

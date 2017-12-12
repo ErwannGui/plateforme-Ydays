@@ -21,7 +21,7 @@
                         <i class="material-icons">close</i>
                     </div>
                 </form> -->
-                <a href="#" class="hide-on-med-and-down right">Déconnexion<i class="material-icons right">exit_to_app</i></a>
+                <a href="{{ path('fos_user_security_logout') }}" class="hide-on-med-and-down right">Déconnexion<i class="material-icons right">exit_to_app</i></a>
                 <!--Boutton d'ouverture du menu utilisateur à droite sous format desktop-->
                 <a href="#" class="hide-on-med-and-down right left_header-logo" data-activates="slide-out"><i class="material-icons">person</i></a>
                 <!--Contenu du menu utilisateur-->
@@ -50,7 +50,7 @@
                         <li><a href="#!"><i class="material-icons">note</i>Les projets</a></li>
                         <li><a href="#!"><i class="material-icons">folder</i>Mes projets</a></li>
                         <li><a href="#!"><i class="material-icons">person</i>Mon profil</a></li>
-                        <li><a href="#!"><i class="material-icons">exit_to_app</i>Déconnexion</a></li>
+                        <li><a href="{{ path('fos_user_security_logout') }}"><i class="material-icons">exit_to_app</i>Déconnexion</a></li>
                     </div>
                     <li id="side-nav_footer">
                         <div class="grey darken-3 side-menu_footer center-align">
@@ -74,80 +74,26 @@
     </header>
     <main class="main-content row">
         <section style="padding-top: 10px" class="col s12 l12">
-            <div style="" class="col s12 m4 l3">
-                <div class="row">
-                <div class="col s12">
-                  <div class="card hoverable">
-                    <div class="card-image">
-                      <img src="{{ asset('image1projet.jpg') }}">
+            <div class="row">
+                {% for projet in projets %}
+                <div style="" class="col s12 m4">
+                    <div class="row">
+                        <div class="col s12">
+                            <a href="{{ path('projet', { 'id': projet.id }) }}">
+                                <div class="card hoverable">
+                                    <div class="card-image">
+                                        <img src="{{ asset('image1projet.jpg') }}">
+                                    </div>
+                                    <div class="card-content">
+                                        <span class="card-title">{{ projet.nom }}</span>
+                                        <p class="truncate">{{ projet.description }}</p>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
                     </div>
-                    <div class="card-content">
-                        <span class="card-title">Nom du projet: blabla</span>
-                        <p class="truncate">Description du projet: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras convallis enim et orci ultrices, eget lobortis ante sollicitudin. Donec non magna vitae est tristique commodo eget sed mi.</p>
-                    </div>
-                  </div>
                 </div>
-              </div>
-            </div>
-            <div style="" class="col s12 m4 l3">
-                <div class="row">
-                <div class="col s12">
-                  <div class="card hoverable">
-                    <div class="card-image">
-                      <img src="{{ asset('image2projet.jpg') }}">
-                    </div>
-                    <div class="card-content">
-                        <span class="card-title">Nom du projet: blabla</span>
-                        <p class="truncate">Description du projet: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras convallis enim et orci ultrices, eget lobortis ante sollicitudin. Donec non magna vitae est tristique commodo eget sed mi.</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div style="" class="col s12 m4 l3">
-                <div class="row">
-                <div class="col s12">
-                  <div class="card hoverable">
-                    <div class="card-image">
-                      <img src="{{ asset('image3projet.jpg') }}">
-                    </div>
-                    <div class="card-content">
-                        <span class="card-title">Nom du projet: blabla</span>
-                        <p class="truncate">Description du projet: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras convallis enim et orci ultrices, eget lobortis ante sollicitudin. Donec non magna vitae est tristique commodo eget sed mi.</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div style="" class="col s12 m4 l3">
-                <div class="row">
-                <div class="col s12">
-                  <div class="card hoverable">
-                    <div class="card-image">
-                      <img src="{{ asset('image2projet.jpg') }}">
-                    </div>
-                    <div class="card-content">
-                        <span class="card-title">Nom du projet: blabla</span>
-                        <p class="truncate">Description du projet: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras convallis enim et orci ultrices, eget lobortis ante sollicitudin. Donec non magna vitae est tristique commodo eget sed mi.</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div style="" class="col s12 m4 l3">
-                <div class="row">
-                <div class="col s12">
-                  <div class="card hoverable">
-                    <div class="card-image">
-                      <img src="{{ asset('image1projet.jpg') }}">
-                    </div>
-                    <div class="card-content">
-                        <span class="card-title">Nom du projet: blabla</span>
-                        <p class="truncate">Description du projet: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras convallis enim et orci ultrices, eget lobortis ante sollicitudin. Donec non magna vitae est tristique commodo eget sed mi.</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
+                {% endfor %}
             </div>
         </section>
     </main>

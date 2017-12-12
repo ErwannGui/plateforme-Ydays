@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * projet
  *
  * @ORM\Table(name="projet")
- * @ORM\Entity(repositoryClass="AppBundle\Repository\ProjetRepository")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\projetRepository")
  */
 class Projet
 {
@@ -29,61 +29,25 @@ class Projet
     private $nom;
 
     /**
-     * @var bool
+     * @var string
      *
-     * @ORM\Column(name="projet_ext_ou_int", type="boolean")
+     * @ORM\Column(name="description", type="text")
      */
-    private $projetExtOuInt;
+    private $description;
 
     /**
-     * @var bool
+     * @var string
      *
-     * @ORM\Column(name="ydays_perso", type="boolean")
+     * @ORM\Column(name="type", type="string", length=255)
      */
-    private $ydaysPerso;
+    private $type;
 
     /**
-     * @var int
+     * @var boolean
      *
-     * @ORM\Column(name="status_evaluations", type="integer")
-     * @ORM\OneToOne(targetEntity="AppBundle\Entity\StatusEvaluation", cascade={"persist"})
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\Column(name="perso", type="boolean")
      */
-    private $statusEvaluations;
-
-    /**
-     * @var bool
-     *
-     * @ORM\Column(name="archiver", type="boolean")
-     */
-    private $archiver;
-
-    /**
-     * @var int
-     * 
-     * @ORM\Column(name="id_utilisateur", type="integer")
-     * @ORM\OneToOne(targetEntity="AppBundle\Entity\Utilisateur", cascade={"persist"})
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $idUtilisateurs;
-
-    /**
-     * @var int
-     *
-     * @ORM\Column(name="id_utilisateur1", type="integer")
-     * @ORM\OneToOne(targetEntity="AppBundle\Entity\Utilisateur", cascade={"persist"})
-     * @ORM\JoinColumn(nullable=true)
-     */
-    private $idUtilisateurs1;
-
-    /**
-     * @var int
-     *
-     * @ORM\Column(name="id_entreprise", type="integer", nullable=true)
-     * @ORM\OneToOne(targetEntity="AppBundle\Entity\Utilisateur", cascade={"persist"})
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $idEntreprises;
+    private $perso;
 
 
     /**
@@ -121,171 +85,74 @@ class Projet
     }
 
     /**
-     * Set projetExtOuInt
+     * Set description
      *
-     * @param boolean $projetExtOuInt
+     * @param string $description
      *
      * @return projet
      */
-    public function setProjetExtOuInt($projetExtOuInt)
+    public function setDescription($description)
     {
-        $this->projetExtOuInt = $projetExtOuInt;
+        $this->description = $description;
 
         return $this;
     }
 
     /**
-     * Get projetExtOuInt
-     *
-     * @return bool
-     */
-    public function getProjetExtOuInt()
-    {
-        return $this->projetExtOuInt;
-    }
-
-    /**
-     * Set ydaysPerso
-     *
-     * @param boolean $ydaysPerso
-     *
-     * @return projet
-     */
-    public function setYdaysPerso($ydaysPerso)
-    {
-        $this->ydaysPerso = $ydaysPerso;
-
-        return $this;
-    }
-
-    /**
-     * Get ydaysPerso
-     *
-     * @return bool
-     */
-    public function getYdaysPerso()
-    {
-        return $this->ydaysPerso;
-    }
-
-    /**
-     * Set statusEvaluations
-     *
-     * @param string $statusEvaluations
-     *
-     * @return projet
-     */
-    public function setStatusEvaluations($statusEvaluations)
-    {
-        $this->statusEvaluations = $statusEvaluations;
-
-        return $this;
-    }
-
-    /**
-     * Get statusEvaluations
+     * Get description
      *
      * @return string
      */
-    public function getStatusEvaluations()
+    public function getDescription()
     {
-        return $this->statusEvaluations;
+        return $this->description;
     }
 
     /**
-     * Set archiver
+     * Set type
      *
-     * @param boolean $archiver
+     * @param string $type
      *
      * @return projet
      */
-    public function setArchiver($archiver)
+    public function setType($type)
     {
-        $this->archiver = $archiver;
+        $this->type = $type;
 
         return $this;
     }
 
     /**
-     * Get archiver
+     * Get type
      *
-     * @return bool
+     * @return string
      */
-    public function getArchiver()
+    public function getType()
     {
-        return $this->archiver;
+        return $this->type;
     }
 
     /**
-     * Set idUtilisateurs
+     * Set perso
      *
-     * @param integer $idUtilisateurs
+     * @param integer $perso
      *
      * @return projet
      */
-    public function setIdUtilisateurs($idUtilisateurs)
+    public function setPerso($perso)
     {
-        $this->idUtilisateurs = $idUtilisateurs;
+        $this->perso = $perso;
 
         return $this;
     }
 
     /**
-     * Get idUtilisateurs
+     * Get perso
      *
      * @return int
      */
-    public function getIdUtilisateurs()
+    public function getPerso()
     {
-        return $this->idUtilisateurs;
-    }
-
-    /**
-     * Set idUtilisateurs1
-     *
-     * @param integer $idUtilisateurs1
-     *
-     * @return projet
-     */
-    public function setIdUtilisateurs1($idUtilisateurs1)
-    {
-        $this->idUtilisateurs1 = $idUtilisateurs1;
-
-        return $this;
-    }
-
-    /**
-     * Get idUtilisateurs1
-     *
-     * @return int
-     */
-    public function getIdUtilisateurs1()
-    {
-        return $this->idUtilisateurs1;
-    }
-
-    /**
-     * Set idEntreprises
-     *
-     * @param integer $idEntreprises
-     *
-     * @return projet
-     */
-    public function setIdEntreprises($idEntreprises)
-    {
-        $this->idEntreprises = $idEntreprises;
-
-        return $this;
-    }
-
-    /**
-     * Get idEntreprises
-     *
-     * @return int
-     */
-    public function getIdEntreprises()
-    {
-        return $this->idEntreprises;
+        return $this->perso;
     }
 }
-

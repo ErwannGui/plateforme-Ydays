@@ -5,10 +5,10 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Commentaire
+ * commentaire
  *
  * @ORM\Table(name="commentaire")
- * @ORM\Entity(repositoryClass="AppBundle\Repository\CommentaireRepository")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\commentaireRepository")
  */
 class Commentaire
 {
@@ -22,44 +22,27 @@ class Commentaire
     private $id;
 
     /**
-     * @var int
-     *
-     * @ORM\Column(name="auteur", type="integer")
-     */
-    private $auteur;
-
-    /**
      * @var string
      *
-     * @ORM\Column(name="contenu", type="string", length=255)
+     * @ORM\Column(name="contenu", type="text")
      */
     private $contenu;
 
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="date_commentaire", type="date")
+     * @ORM\Column(name="date", type="date")
      */
-    private $dateCommentaire;
+    private $date;
 
     /**
-     * @var int
+     * @var string
      *
-     * @ORM\Column(name="priorite", type="integer")
-     * @ORM\OneToOne(targetEntity="AppBundle\Entity\Priorite", cascade={"persist"})
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\Column(name="priorite", type="string", length=255)
      */
     private $priorite;
 
-    
-    /**
-     * @var int
-     *
-     * @ORM\Column(name="id_projet", type="integer")
-     * @ORM\OneToOne(targetEntity="AppBundle\Entity\Projet", cascade={"persist"})
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $idProjet;
+
     /**
      * Get id
      *
@@ -71,35 +54,11 @@ class Commentaire
     }
 
     /**
-     * Set auteur
-     *
-     * @param integer $auteur
-     *
-     * @return Commentaire
-     */
-    public function setAuteur($auteur)
-    {
-        $this->auteur = $auteur;
-
-        return $this;
-    }
-
-    /**
-     * Get auteur
-     *
-     * @return int
-     */
-    public function getAuteur()
-    {
-        return $this->auteur;
-    }
-
-    /**
      * Set contenu
      *
      * @param string $contenu
      *
-     * @return Commentaire
+     * @return commentaire
      */
     public function setContenu($contenu)
     {
@@ -119,35 +78,35 @@ class Commentaire
     }
 
     /**
-     * Set dateCommentaire
+     * Set date
      *
-     * @param \DateTime $dateCommentaire
+     * @param \DateTime $date
      *
-     * @return Commentaire
+     * @return commentaire
      */
-    public function setDateCommentaire($dateCommentaire)
+    public function setDate($date)
     {
-        $this->dateCommentaire = $dateCommentaire;
+        $this->date = $date;
 
         return $this;
     }
 
     /**
-     * Get dateCommentaire
+     * Get date
      *
      * @return \DateTime
      */
-    public function getDateCommentaire()
+    public function getDate()
     {
-        return $this->dateCommentaire;
+        return $this->date;
     }
 
     /**
      * Set priorite
      *
-     * @param integer $priorite
+     * @param string $priorite
      *
-     * @return Commentaire
+     * @return commentaire
      */
     public function setPriorite($priorite)
     {
@@ -159,7 +118,7 @@ class Commentaire
     /**
      * Get priorite
      *
-     * @return int
+     * @return string
      */
     public function getPriorite()
     {

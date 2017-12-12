@@ -74,5 +74,5 @@ fos_user:
     firewall_name: main
     user_class: AppBundle\Entity\Utilisateur
     from_email:
-        address: "%mailer_user%"
-        sender_name: "%mailer_user%"
+        address: erwann.guillevic@ynov.com
+        sender_name: Erwann Guillevic

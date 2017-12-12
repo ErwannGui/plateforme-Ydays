@@ -1,0 +1,156 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    Dashboard
+{% endblock %}
+
+{% block body %}
+    <main>
+        <table id ="listprojets" class="display" cellspacing="0" width="90%"> 
+            <thead> 
+                <tr>
+                    <th>Nom</th> 
+                    <th>Description</th> 
+                    <th>Type</th> 
+                    <th>perso</th> 
+                    <th>Chef</th> 
+                    <th>Helper</th>
+                    <th>Statut eval</th>
+                    <th>Entreprise</th>
+                    <th></th>
+                 </tr> 
+            </thead>
+            <tbody>
+            {% for projet in projets %}
+            <tr>
+                <td>{{ projet.nom }}</td>
+                <td>{{ projet.description }}</td>
+                <td>{{ projet.type }}</td>
+                <td>{% if projet.perso %}Yes{% else %}No{% endif %}</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td> 
+                    <a class="btn modal-trigger tooltipped grey lighten-1" href="#projet" data-delay="50"><i class="material-icons right">arrow_drop_down</i></a>
+                </td>
+            </tr>  
+                <div id="projet" class="modal">
+                        <form method="post" action="{{ path('projet_edit', { 'id': projet.id }) }}" enctype="multipart/form-data">
+                            <div class="modal-content row">
+                                <h4>Modification du projet</h4>
+                                <div class="row">
+                                    <div class="input-field col s6">
+                                        <input id="nom" name="nom" type="text" class="validate" value="{{ projet.nom }}" >
+                                        <label for="nom">Nom</label>
+                                    </div>
+                                     <div class="row">
+                                    <div class="input-field col s6">
+                                        <input id="type" name="Type" type="text" class="validate" value="{{ projet.type }}">
+                                        <label for="type">Type</label>
+                                    </div>
+                                </div>
+                                    <div class="input-field col s12">
+                                        <textarea id="description" name="Description" type="textarea" class="materialize-textarea" value="{{ projet.description }}"></textarea>
+                                        <label for="description">Description</label>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="input-field col s12">
+                                        <input id="perso" type="text" name="perso" class="validate" value="{% if projet.perso %}Yes{% else %}No{% endif %}">
+                                        <label for="perso">Perso</label>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="input-field col s12">
+                                        <input id="chef" type="text" name="chef" class="validate" value="{{ projet.nom }}">
+                                        <label for="chef">Chef de projet</label>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="input-field col s12">
+                                        <input id="helper" name="helper" type="text" class="validate" required value="{{ projet.nom }}">
+                                        <label for="helper">Référent Helper</label>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="input-field col s12">
+                                        <input id="statut_eval" name="statut_eval" type="text" class="validate" required value="{{ projet.nom }}">
+                                        <label for="statut_eval">Statut éval</label>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="input-field col s12">
+                                        <input id="entreprise" name="entreprise" type="text" class="validate" required value="{{ projet.nom }}">
+                                        <label for="entreprise">Entreprise</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="submit" name="valider" class="modal-action waves-effect waves-green btn-flat">Valider</button>
+                            </div>
+                        </form>
+                    </div>  
+            </tbody>    
+            <tfoot> 
+                <tr> 
+                    <th>Nom</th> 
+                    <th>Description</th> 
+                    <th>Type</th> 
+                    <th>perso</th> 
+                    <th>Chef</th> 
+                    <th>Helper</th>
+                    <th>Statut eval</th>
+                    <th>Entreprise</th>
+                    <th></th>
+                </tr> 
+            </tfoot> 
+        </table>
+    </main>
+{% endblock %}
+
+    
+{% block stylesheets %}
+    <style>
+    body { background: #F5F5F5; font: 18px/1.5 sans-serif; }
+    h1, h2 { line-height: 1.2; margin: 0 0 .5em; }
+    h1 { font-size: 36px; }
+    h2 { font-size: 21px; margin-bottom: 1em; }
+    p { margin: 0 0 1em 0; }
+    a { color: #0000F0; }
+    a:hover { text-decoration: none; }
+    code { background: #F5F5F5; max-width: 100px; padding: 2px 6px; word-wrap: break-word; }
+    #wrapper { background: #FFF; margin: 1em auto; max-width: 800px; width: 95%; }
+    #container { padding: 2em; }
+    #welcome, #status { margin-bottom: 2em; }
+    #welcome h1 span { display: block; font-size: 75%; }
+    #icon-status, #icon-book { float: left; height: 64px; margin-right: 1em; margin-top: -4px; width: 64px; }
+    #icon-book { display: none; }
+    
+
+    @media (min-width: 768px) {
+        #wrapper { width: 80%; margin: 2em auto; }
+        #icon-book { display: inline-block; }
+        #status a, #next a { display: block; }
+
+        @-webkit-keyframes fade-in { 0% { opacity: 0; } 100% { opacity: 1; } }
+        @keyframes fade-in { 0% { opacity: 0; } 100% { opacity: 1; } }
+        .sf-toolbar { opacity: 0; -webkit-animation: fade-in 1s .2s forwards; animation: fade-in 1s .2s forwards;}
+    }
+</style>
+{% endblock %}
+{% block javascripts %}
+ <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.16/datatables.min.js"></script>
+    <script>
+        $(document).ready(function() {
+        $('#listprojets').DataTable();
+        } );
+    </script>
+<script type="text/javascript">
+        $(document).ready(function(){
+            $('.tooltipped').tooltip({delay: 50});
+            $('.modal').modal();
+        });
+    </script>
+{% endblock %}
+    
