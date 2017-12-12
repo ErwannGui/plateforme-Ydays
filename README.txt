@@ -1,0 +1,1 @@
+Modifier le fichier parameters.yml en renseignant les paramètres de database correspondant a votre cas.
