@@ -5,6 +5,7 @@ namespace AppBundle\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -26,6 +27,10 @@ class DashboardController extends Controller
      */
     public function indexAction(Request $request)
     {
+        $user = $this->getUser()->getId();
+
+        $em_u = $this->getDoctrine()->getManager();
+        $users = $em_u->getRepository('AppBundle:Utilisateur')->find($user);
 
         if ($this->container->get('security.authorization_checker')->isGranted('ROLE_ADMIN')) {
 
@@ -36,7 +41,7 @@ class DashboardController extends Controller
             $rapports = $em_r->getRepository('AppBundle:Rapport')->findAll();
 
             return $this->render('dashboard/admin.html.twig', [
-                    'base_dir' => realpath($this->getParameter('kernel.project_dir')).DIRECTORY_SEPARATOR, 'projets' => $projets, 'commentaires' => $commentaires, 'rapports' => $rapports, 'statut' => $statut,
+                    'base_dir' => realpath($this->getParameter('kernel.project_dir')).DIRECTORY_SEPARATOR, 'projets' => $projets, 'commentaires' => $commentaires, 'rapports' => $rapports, 'users' => $users,
             ]);
             // Sinon on déclenche une exception « Accès interdit »
             throw new AccessDeniedException('Accès autorisé uniquement pour les administrateurs.');
@@ -54,7 +59,7 @@ class DashboardController extends Controller
             $rapports = $em_r->getRepository('AppBundle:Rapport')->findAll();
 
             return $this->render('dashboard/index.html.twig', [
-                    'base_dir' => realpath($this->getParameter('kernel.project_dir')).DIRECTORY_SEPARATOR, 'projets' => $projets, 'commentaires' => $commentaires, 'rapports' => $rapports,
+                    'base_dir' => realpath($this->getParameter('kernel.project_dir')).DIRECTORY_SEPARATOR, 'projets' => $projets, 'commentaires' => $commentaires, 'rapports' => $rapports, 'users' => $users,
             ]);
         }
     }
@@ -63,8 +68,13 @@ class DashboardController extends Controller
      * @Route("/projet/{id}", name="projet")
      */
     public function projetAction(Request $request, Projet $projet)
-    {      
+    {
         
+        $user = $this->getUser();
+
+        $em_u = $this->getDoctrine()->getManager();
+        $users = $em_u->getRepository('AppBundle:Utilisateur')->find($user);
+
         $em_p = $this->getDoctrine()->getManager();
         $data_projet = $em_p->getRepository('AppBundle:Projet')->find($projet);
 
@@ -75,12 +85,12 @@ class DashboardController extends Controller
         $rapports = $em_r->getRepository('AppBundle:Rapport')->findAll();
 
         return $this->render('dashboard/projet.html.twig', [
-            'base_dir' => realpath($this->getParameter('kernel.project_dir')).DIRECTORY_SEPARATOR, 'projet' => $data_projet, 'commentaires' => $commentaires, 'rapports' => $rapports,
+            'base_dir' => realpath($this->getParameter('kernel.project_dir')).DIRECTORY_SEPARATOR, 'projet' => $data_projet, 'commentaires' => $commentaires, 'rapports' => $rapports, 'user' => $user,
         ]);
     }
 
 	/**
-     * @Route("/listprojet", name="list_projet")
+     * @Route("/listProjet", name="list_projet")
      */
     public function listProjetAction(Request $request){
 
@@ -93,17 +103,8 @@ class DashboardController extends Controller
     }
 
     /**
-     * @Route("/dashboard/listentreprise", name="listentreprise")
-     */
-    public function Listentreprise(Request $request){
-    // replace this example code with whatever you need
-        return $this->render('dashboard/listentreprise.html.twig', [
-            'base_dir' => realpath($this->getParameter('kernel.project_dir')).DIRECTORY_SEPARATOR,
-        ]);
-    } 
-
-    /**
-     * @Route("/listentreprise", name="list_entreprise")
+     * @Route("/listEntreprise", name="list_entreprise")
+     * @Security("has_role('ROLE_HELPER')")
      */
     public function listEntrepriseAction(Request $request){
 
@@ -116,7 +117,7 @@ class DashboardController extends Controller
     }
 
     /**
-     * @Route("/listutilisateur", name="list_utilisateur")
+     * @Route("/listUtilisateur", name="list_utilisateur")
      */
     public function listUtilisateurAction(Request $request){
 
@@ -209,8 +210,9 @@ class DashboardController extends Controller
     /**
      * Displays a form to edit an existing projet entity.
      *
-     * @Route("/listprojet/edit/{id}", name="projet_edit")
+     * @Route("/listProjet/edit/{id}", name="projet_edit")
      * @Method({"GET", "POST"})
+     * @Security("has_role('ROLE_CHEF')")
      */
     public function editProjetAction(Request $request, Projet $projet)
     {
@@ -234,7 +236,7 @@ class DashboardController extends Controller
     /**
      * Displays a form to edit an existing entreprise entity.
      *
-     * @Route("/listentreprise/admin/edit/{id}", name="entreprise_edit")
+     * @Route("/admin/listEntreprise/edit/{id}", name="entreprise_edit")
      * @Method({"GET", "POST"})
      */
     public function editEntrepriseAction(Request $request, Entreprise $entreprise)
@@ -259,7 +261,7 @@ class DashboardController extends Controller
     /**
      * Displays a form to edit an existing utilisateur entity.
      *
-     * @Route("/listutilisateur/admin/edit/{id}", name="utilisateur_edit")
+     * @Route("/admin/listUtilisateur/edit/{id}", name="utilisateur_edit")
      * @Method({"GET", "POST"})
      */
     public function editUtiisateurAction(Request $request, Utilisateur $utilisateur)
@@ -284,7 +286,7 @@ class DashboardController extends Controller
     /**
      * Deletes a projet entity.
      *
-     * @Route("/listprojet/admin/delete/{id}", name="projet_delete")
+     * @Route("/admin/listProjet/delete/{id}", name="projet_delete")
      * @Method("DELETE")
      */
     public function deleteProjetAction(Request $request, Projet $projet)
@@ -304,7 +306,7 @@ class DashboardController extends Controller
     /**
      * Deletes a entreprise entity.
      *
-     * @Route("/listentreprise/admin/delete/{id}", name="entreprise_delete")
+     * @Route("/admin/listEntreprise/delete/{id}", name="entreprise_delete")
      * @Method("DELETE")
      */
     public function deleteEntrepriseAction(Request $request, Entreprise $entreprise)
@@ -324,7 +326,7 @@ class DashboardController extends Controller
     /**
      * Deletes a utilisateur entity.
      *
-     * @Route("/listutilisateur/admin/delete/{id}", name="utilisateur_delete")
+     * @Route("/admin/listUtilisateur/delete/{id}", name="utilisateur_delete")
      * @Method("DELETE")
      */
     public function deleteUtilisateurAction(Request $request, Utilisateur $utilisateur)
