@@ -4,9 +4,11 @@ namespace AppBundle\Controller;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Doctrine\ORM\EntityRepository;
+use AppBundle\Entity\Utilisateur;
 use Symfony\Component\Security\Core\SecurityContext;
 
 class ConnexionController extends Controller
@@ -24,25 +26,43 @@ class ConnexionController extends Controller
     }
 
     /**
-     * @Route("/login", name="connexion")
+     * @Route("/verif", name="authentification")
      */
-    /*public function loginAction(Request $request)
+    public function verifAction(Request $request)
     {
-        // Si le visiteur est déjà identifié, on le redirige vers l'accueil
-        if ($this->get('security.context')->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
-          return $this->redirectToRoute('dashboard');
+        $username = "Erwann";
+
+        $em = $this->getDoctrine()->getManager();
+        $user = $em->getRepository('AppBundle:Utilisateur')->find($username);
+
+        $response = $this->forward('AppBundle:Dashboard:index', array(
+        'user'  => $user,
+        ));
+
+        return $response;
+    }
+
+    /**
+     * @Route("/inscription", name="inscription")
+     */
+    public function inscriptionAction(Request $request)
+    {
+        $utilisateur = new Utilisateur();
+        $form = $this->createForm('AppBundle\Form\UtilisateurType', $utilisateur);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($utilisateur);
+            $em->flush();
+
+            return $this->redirectToRoute('connexion', array('id' => $utilisateur->getId()));
         }
 
-
-        // Le service authentication_utils permet de récupérer le nom d'utilisateur
-        // et l'erreur dans le cas où le formulaire a déjà été soumis mais était invalide
-        // (mauvais mot de passe par exemple)
-        $authenticationUtils = $this->get('security.authentication_utils');
-
-        return $this->render('OCUserBundle:Security:login.html.twig', array(
-          'last_username' => $authenticationUtils->getLastUsername(),
-          'error'         => $authenticationUtils->getLastAuthenticationError(),
+        return $this->render('utilisateur/new.html.twig', array(
+            'utilisateur' => $utilisateur,
+            'form' => $form->createView(),
         ));
-    }*/
+    }
 
 }
