@@ -46,6 +46,7 @@
                             <h2 class="user_name">Richard COUET</h2>
                         </div>
                     </li>
+                    <!--Lien vers les autres views-->
                     <div id="side-nav_main">
                         <li><a href="{{ path('list_projet') }}"><i class="material-icons">note</i>Les projets</a></li>
                         <li><a href="{{ path('list_utilisateur') }}"><i class="material-icons">group</i>Les utilisateurs</a></li>
@@ -74,8 +75,10 @@
             </ul>
         </nav>
     </header>
+    <!--Contenu de la page-->
     <main class="row">
         <div class="col s10 offset-s1" style="margin-top: 70px">
+            <!--Table contenant la liste de l'integralité projets-->
             <table id ="listprojets" class="display" cellspacing="0"> 
                 <thead> 
                     <tr>
@@ -91,6 +94,7 @@
                         <th></th>
                     </tr> 
                 </thead>
+                <!--Integration de la table-->
                 <tbody>
                 {% for entreprise in entreprises %}
                 <tr>
@@ -192,6 +196,7 @@
 
     
 {% block stylesheets %}
+    <!--Génération automatique du css-->
     <style>
     body { background: #F5F5F5; font: 18px/1.5 sans-serif; }
     main { height: 0; }

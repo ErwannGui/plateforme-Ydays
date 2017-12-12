@@ -83,6 +83,7 @@
             </ul>
         </nav>
     </header>
+    <!--Contenu de la page-->
     <main class="main-content row">
         <section style="padding-top: 10px" class="col s12 l12"> 
             <div class="row">
@@ -98,6 +99,7 @@
                         </div>
                     </div>
                 </div>
+                <!--Carte des projets-->
                 <div class="col s12 l6 hide-on-med-and-down">
                     <div class="card">
                         <div class="card-content">
@@ -192,6 +194,7 @@
                     <!-- Les liaisons entre les tables n'ayant pas été faites, par manque de temps, nous avons le système mais pas l'affichage -->
                     {% for commentaire in commentaires %}
                     <ul class="collapsible popout" data-collapsible="accordion">
+                        <!--Onglets des priorité-->
                         {% if commentaire.priorite == 'haute' %}
                         <li>
                             <div class="collapsible-header"><i class="material-icons">filter_drama</i>Priorité haute</div>
@@ -273,6 +276,7 @@
 {% endblock %}
 
 {% block stylesheets %}
+<!--Génération automatique du css-->
 <style>
     body { background: #F5F5F5; font: 18px/1.5 sans-serif; width: 0; }
     h1, h2 { line-height: 1.2; margin: 0 0 .5em; }

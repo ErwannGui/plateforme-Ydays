@@ -83,11 +83,14 @@
             </ul>
         </nav>
     </header>
+    <!--Contenu de la page-->
     <main class="main-content row">
         <section style="padding-top: 10px" class="col s12 l12"> 
             <div class="row">
                 <div class="col s12">
+                    <!--Liste des projets en fonction de leur priorités-->
                     <ul class="collapsible popout" data-collapsible="accordion">
+                        <!--Priorité haute-->
                         <li>
                             <div class="collapsible-header"><i class="material-icons">filter_drama</i>Priorité haute</div>
                             <div class="collapsible-body">
@@ -107,6 +110,7 @@
                                 </ul>
                             </div>
                         </li>
+                        <!--Priorité moyenne-->
                         <li>
                             <div class="collapsible-header"><i class="material-icons">place</i>Priorité haute</div>
                             <div class="collapsible-body">
@@ -126,6 +130,7 @@
                                 </ul>
                             </div>
                         </li>
+                        <!--Priorité basse-->
                         <li>
                             <div class="collapsible-header"><i class="material-icons">whatshot</i>Priorité basse</div>
                             <div class="collapsible-body">
@@ -156,6 +161,7 @@
 {% endblock %}
 
 {% block stylesheets %}
+<!--Génération automatique du css-->
 <style>
     body { background: #F5F5F5; font: 18px/1.5 sans-serif; }
     h1, h2 { line-height: 1.2; margin: 0 0 .5em; }
