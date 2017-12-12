@@ -11,28 +11,24 @@
                 <tr>
                     <th>nom</th> 
                     <th>prenom</th>
-                    <th>role</th> 
+                    <th>statut</th> 
                     <th>mail</th> 
-                    <th>password</th> 
                     <th>tel</th>
                     <th>slack</th>
-                    <th></th>
                     <th></th>
                  </tr> 
             </thead>
             <tbody>
-            {% for projet in projets %}
+            {% for utilisateur in utilisateurs %}
             <tr>
                 <td>{{ utilisateur.nom }}</td>
                 <td>{{ utilisateur.prenom }}</td>
-                <td>{{ utilisateur.role }}</td>
-                <td>{{ utilisateur.mail }}</td>
-                <td>{{ utilisateur.password }}</td>
+                <td>membre</td>
+                <td>{{ utilisateur.email }}</td>
                 <td>{{ utilisateur.tel }}</td>
                 <td>{{ utilisateur.slack }}</td>
-                <td></td>
                 <td> 
-                    <a class="btn modal-trigger tooltipped grey lighten-1" href="#projet" data-delay="50"><i class="material-icons right">arrow_drop_down</i></a>
+                    <a class="btn modal-trigger" href="{{ path('utilisateur_edit', { 'id': utilisateur.id }) }}" data-delay="50"><i class="material-icons right">edit</i></a>
                 </td>
             </tr>  
                 <div id="projet" class="modal">
@@ -51,20 +47,8 @@
                                     </div>
                                 <div class="row">
                                     <div class="input-field col s12">
-                                        <input id="role" type="text" name="role" class="validate" value="{{ utilisateur.role }}">
-                                        <label for="role">Voie</label>
-                                    </div>
-                                </div
-                                <div class="row">
-                                    <div class="input-field col s12">
-                                        <input id="mail" type="text" name="mail" class="validate" value="{{{ utilisateur.mail }}">
+                                        <input id="mail" type="text" name="mail" class="validate" value="{{ utilisateur.email }}">
                                         <label for="mail">Code Postal</label>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="input-field col s12">
-                                        <input id="password" type="text" name="password" class="validate" value="{{ utilisateur.password }}">
-                                        <label for="password">Ville</label>
                                     </div>
                                 </div>
                                 <div class="row">
@@ -79,29 +63,22 @@
                                         <label for="slack">Type</label>
                                     </div>
                                 </div>
-                                <div class="row">
-                                    <div class="input-field col s12">
-                                        <input id="domaine" name="domaine" type="text" class="validate" required value="{{ entreprise.domaine }}">
-                                        <label for="domaine">Domaine</label>
-                                    </div>
-                                </div>
                             </div>
                             <div class="modal-footer">
                                 <button type="submit" name="valider" class="modal-action waves-effect waves-green btn-flat">Valider</button>
                             </div>
                         </form>
-                    </div>  
-            </tbody>    
+                    </div>
+                    {% endfor %}
+            </tbody>
             <tfoot> 
                 <tr> 
                     <th>nom</th> 
                     <th>prenom</th>
-                    <th>role</th> 
+                    <th>statut</th> 
                     <th>mail</th> 
-                    <th>password</th> 
                     <th>tel</th>
                     <th>slack</th>
-                    <th></th>
                     <th></th>
                 </tr> 
             </tfoot> 

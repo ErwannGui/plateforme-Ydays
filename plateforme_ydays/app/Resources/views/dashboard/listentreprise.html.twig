@@ -22,10 +22,10 @@
                  </tr> 
             </thead>
             <tbody>
-            {% for projet in projets %}
+            {% for entreprise in entreprises %}
             <tr>
                 <td>{{ entreprise.nom }}</td>
-                <td>{{ entreprise.numéro_voie }}</td>
+                <td>{{ entreprise.numeroVoie }}</td>
                 <td>{{ entreprise.voie }}</td>
                 <td>{{ entreprise.cp }}</td>
                 <td>{{ entreprise.ville }}</td>
@@ -34,7 +34,7 @@
                 <td>{{ entreprise.domaine }}</td>
                 <td>{{ entreprise.secteur }}</td>
                 <td> 
-                    <a class="btn modal-trigger tooltipped grey lighten-1" href="#projet" data-delay="50"><i class="material-icons right">arrow_drop_down</i></a>
+                    <a class="btn modal-trigger" href="{{ path('entreprise_edit', { 'id': entreprise.id }) }}"  data-delay="50"><i class="material-icons right">edit</i></a>
                 </td>
             </tr>  
                 <div id="projet" class="modal">
@@ -48,7 +48,7 @@
                                     </div>
                                      <div class="row">
                                     <div class="input-field col s6">
-                                        <input id="numero_voie" name="numero_voie" type="text" class="validate" value="{{ entreprise.numero_voie }}">
+                                        <input id="numero_voie" name="numero_voie" type="text" class="validate" value="{{ entreprise.numeroVoie }}">
                                         <label for="numero_voie">Numero_voie</label>
                                     </div>
                                 <div class="row">
@@ -98,7 +98,8 @@
                                 <button type="submit" name="valider" class="modal-action waves-effect waves-green btn-flat">Valider</button>
                             </div>
                         </form>
-                    </div>  
+                    </div> 
+                    {% endfor %}
             </tbody>    
             <tfoot> 
                 <tr> 

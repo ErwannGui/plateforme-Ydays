@@ -13,10 +13,6 @@
                     <th>Description</th> 
                     <th>Type</th> 
                     <th>perso</th> 
-                    <th>Chef</th> 
-                    <th>Helper</th>
-                    <th>Statut eval</th>
-                    <th>Entreprise</th>
                     <th></th>
                  </tr> 
             </thead>
@@ -27,12 +23,8 @@
                 <td>{{ projet.description }}</td>
                 <td>{{ projet.type }}</td>
                 <td>{% if projet.perso %}Yes{% else %}No{% endif %}</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
                 <td> 
-                    <a class="btn modal-trigger tooltipped grey lighten-1" href="#projet" data-delay="50"><i class="material-icons right">arrow_drop_down</i></a>
+                    <a class="btn modal-trigger" href="{{ path('projet_edit', { 'id': projet.id }) }}" data-delay="50"><i class="material-icons right">edit</i></a>
                 </td>
             </tr>  
                 <div id="projet" class="modal">
@@ -90,7 +82,8 @@
                                 <button type="submit" name="valider" class="modal-action waves-effect waves-green btn-flat">Valider</button>
                             </div>
                         </form>
-                    </div>  
+                    </div>
+                    {% endfor %}
             </tbody>    
             <tfoot> 
                 <tr> 
@@ -98,10 +91,6 @@
                     <th>Description</th> 
                     <th>Type</th> 
                     <th>perso</th> 
-                    <th>Chef</th> 
-                    <th>Helper</th>
-                    <th>Statut eval</th>
-                    <th>Entreprise</th>
                     <th></th>
                 </tr> 
             </tfoot> 

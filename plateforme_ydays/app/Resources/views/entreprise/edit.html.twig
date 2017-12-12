@@ -1,6 +1,8 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
+<div class="row">
+    <div class="card col s8 offset-s2">
     <h1>Entreprise edit</h1>
 
     {{ form_start(edit_form) }}
@@ -10,7 +12,7 @@
 
     <ul>
         <li>
-            <a href="{{ path('entreprise_index') }}">Back to the list</a>
+            <a href="{{ path('dashboard') }}">Retour à la liste de projets</a>
         </li>
         <li>
             {{ form_start(delete_form) }}
@@ -18,4 +20,6 @@
             {{ form_end(delete_form) }}
         </li>
     </ul>
+    </div>
+</div>
 {% endblock %}

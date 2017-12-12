@@ -93,16 +93,6 @@ class DashboardController extends Controller
     }
 
     /**
-     * @Route("/dashboard/listentreprise", name="listentreprise")
-     */
-    public function Listentreprise(Request $request){
-    // replace this example code with whatever you need
-        return $this->render('dashboard/listentreprise.html.twig', [
-            'base_dir' => realpath($this->getParameter('kernel.project_dir')).DIRECTORY_SEPARATOR,
-        ]);
-    } 
-
-    /**
      * @Route("/listentreprise", name="list_entreprise")
      */
     public function listEntrepriseAction(Request $request){
@@ -121,7 +111,7 @@ class DashboardController extends Controller
     public function listUtilisateurAction(Request $request){
 
         $em = $this->getDoctrine()->getManager();
-        $utilisateurs = $em->getRepository('AppBundle:Entreprise')->findAll();
+        $utilisateurs = $em->getRepository('AppBundle:Utilisateur')->findAll();
 
         return $this->render('dashboard/listutilisateur.html.twig', [
             'base_dir' => realpath($this->getParameter('kernel.project_dir')).DIRECTORY_SEPARATOR, 'utilisateurs' => $utilisateurs,
@@ -209,7 +199,7 @@ class DashboardController extends Controller
     /**
      * Displays a form to edit an existing projet entity.
      *
-     * @Route("/listprojet/edit/{id}", name="projet_edit")
+     * @Route("/listprojet/admin/edit/{id}", name="projet_edit")
      * @Method({"GET", "POST"})
      */
     public function editProjetAction(Request $request, Projet $projet)
@@ -259,7 +249,7 @@ class DashboardController extends Controller
     /**
      * Displays a form to edit an existing utilisateur entity.
      *
-     * @Route("/listutilisateur/admin/edit/{id}", name="utilisateur_edit")
+     * @Route("/listutilisateur/edit/{id}", name="utilisateur_edit")
      * @Method({"GET", "POST"})
      */
     public function editUtiisateurAction(Request $request, Utilisateur $utilisateur)
@@ -383,7 +373,7 @@ class DashboardController extends Controller
     private function createDeleteUsrForm(Utilisateur $utilisateur)
     {
         return $this->createFormBuilder()
-            ->setAction($this->generateUrl('utilisateur_delete', array('id' => $projet->getId())))
+            ->setAction($this->generateUrl('utilisateur_delete', array('id' => $utilisateur->getId())))
             ->setMethod('DELETE')
             ->getForm()
         ;
