@@ -82,12 +82,6 @@ class DashboardController extends Controller
 	/**
      * @Route("/listprojet", name="list_projet")
      */
-<<<<<<< HEAD
-    public function List(Request $request){
-    // replace this example code with whatever you need
-        return $this->render('dashboard/listprojet.html.twig', [
-            'base_dir' => realpath($this->getParameter('kernel.project_dir')).DIRECTORY_SEPARATOR,
-=======
     public function listProjetAction(Request $request){
 
         $em = $this->getDoctrine()->getManager();
@@ -95,12 +89,10 @@ class DashboardController extends Controller
 
         return $this->render('dashboard/listprojet.html.twig', [
             'base_dir' => realpath($this->getParameter('kernel.project_dir')).DIRECTORY_SEPARATOR, 'projets' => $projets,
->>>>>>> origin/dev
         ]);
     }
 
     /**
-<<<<<<< HEAD
      * @Route("/dashboard/listentreprise", name="listentreprise")
      */
     public function Listentreprise(Request $request){
@@ -111,10 +103,7 @@ class DashboardController extends Controller
     } 
 
     /**
-     * @Route("/dashboard/projet", name="projet")
-=======
      * @Route("/listentreprise", name="list_entreprise")
->>>>>>> origin/dev
      */
     public function listEntrepriseAction(Request $request){
 
