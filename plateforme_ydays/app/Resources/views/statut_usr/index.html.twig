@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Statut_usrs list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Intitule</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for statut_usr in statut_usrs %}
+            <tr>
+                <td><a href="{{ path('statut_usr_show', { 'id': statut_usr.id }) }}">{{ statut_usr.id }}</a></td>
+                <td>{{ statut_usr.intitule }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('statut_usr_show', { 'id': statut_usr.id }) }}">show</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    
+{% endblock %}

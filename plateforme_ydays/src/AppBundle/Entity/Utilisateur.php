@@ -2,24 +2,25 @@
 
 namespace AppBundle\Entity;
 
+use FOS\UserBundle\Model\User AS FosUser;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Utilisateur
+ * utilisateur
  *
  * @ORM\Table(name="utilisateur")
- * @ORM\Entity(repositoryClass="AppBundle\Repository\UtilisateurRepository")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\utilisateurRepository")
  */
-class Utilisateur
+class Utilisateur extends FosUser
 {
     /**
      * @var int
      *
-     * @ORM\Column(name="id_usr", type="integer")
+     * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $id;
+    protected $id;
 
     /**
      * @var string
@@ -38,27 +39,6 @@ class Utilisateur
     /**
      * @var int
      *
-     * @ORM\Column(name="#id_classe", type="integer")
-     */
-    private $classe;
-
-    /**
-     * @var int
-     *
-     * @ORM\Column(name="role", type="integer")
-     */
-    private $role;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="mail", type="string", length=255)
-     */
-    private $mail;
-
-    /**
-     * @var int
-     *
      * @ORM\Column(name="tel", type="integer")
      */
     private $tel;
@@ -66,18 +46,9 @@ class Utilisateur
     /**
      * @var string
      *
-     * @ORM\Column(name="slack", type="string", length=255, nullable=true)
+     * @ORM\Column(name="slack", type="text")
      */
-    private $nomSlack;
-
-    /**
-     * @var int
-     *
-     * @ORM\Column(name="id_projets", type="integer")
-     * @ORM\OneToOne(targetEntity="AppBundle\Entity\Projet", cascade={"persist"})
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $idProjets;
+    private $slack;
 
 
     /**
@@ -95,7 +66,7 @@ class Utilisateur
      *
      * @param string $nom
      *
-     * @return Utilisateur
+     * @return utilisateur
      */
     public function setNom($nom)
     {
@@ -119,7 +90,7 @@ class Utilisateur
      *
      * @param string $prenom
      *
-     * @return Utilisateur
+     * @return utilisateur
      */
     public function setPrenom($prenom)
     {
@@ -139,107 +110,11 @@ class Utilisateur
     }
 
     /**
-     * Set classe
-     *
-     * @param int $classe
-     *
-     * @return Utilisateur
-     */
-    public function setClasse($classe)
-    {
-        $this->classe = $classe;
-
-        return $this;
-    }
-
-    /**
-     * Get classe
-     *
-     * @return string
-     */
-    public function getClasse()
-    {
-        return $this->classe;
-    }
-
-    /**
-     * Set role
-     *
-     * @param int $role
-     *
-     * @return Utilisateur
-     */
-    public function setRole($role)
-    {
-        $this->role = $role;
-
-        return $this;
-    }
-
-    /**
-     * Get role
-     *
-     * @return string
-     */
-    public function getRole()
-    {
-        return $this->role;
-    }
-
-    /**
-     * Set projet
-     *
-     * @param integer $projet
-     *
-     * @return Utilisateur
-     */
-    public function setProjet($projet)
-    {
-        $this->projet = $projet;
-
-        return $this;
-    }
-
-    /**
-     * Get projet
-     *
-     * @return int
-     */
-    public function getProjet()
-    {
-        return $this->projet;
-    }
-
-    /**
-     * Set mail
-     *
-     * @param string $mail
-     *
-     * @return Utilisateur
-     */
-    public function setMail($mail)
-    {
-        $this->mail = $mail;
-
-        return $this;
-    }
-
-    /**
-     * Get mail
-     *
-     * @return string
-     */
-    public function getMail()
-    {
-        return $this->mail;
-    }
-
-    /**
      * Set tel
      *
      * @param integer $tel
      *
-     * @return Utilisateur
+     * @return utilisateur
      */
     public function setTel($tel)
     {
@@ -259,21 +134,21 @@ class Utilisateur
     }
 
     /**
-     * Set nomSlack
+     * Set slack
      *
      * @param string $slack
      *
-     * @return Utilisateur
+     * @return utilisateur
      */
     public function setSlack($slack)
     {
-        $this->nomSlack = $nomSlack;
+        $this->slack = $slack;
 
         return $this;
     }
 
     /**
-     * Get nomSlack
+     * Get slack
      *
      * @return string
      */
@@ -281,53 +156,4 @@ class Utilisateur
     {
         return $this->slack;
     }
-
-    /**
-     * Set idProjets
-     *
-     * @param integer $idProjets
-     *
-     * @return Utilisateur
-     */
-    public function setIdProjets($idProjets)
-    {
-        $this->idProjets = $idProjets;
-
-        return $this;
-    }
-
-    /**
-     * Get idProjets
-     *
-     * @return int
-     */
-    public function getIdProjets()
-    {
-        return $this->idProjets;
-    }
-
-    /**
-     * Set idEntreprise
-     *
-     * @param integer $idEntreprise
-     *
-     * @return Utilisateur
-     */
-    public function setIdEntreprise($idEntreprise)
-    {
-        $this->idEntreprise = $idEntreprise;
-
-        return $this;
-    }
-
-    /**
-     * Get idEntreprise
-     *
-     * @return int
-     */
-    public function getdEntreprise()
-    {
-        return $this->idEntreprise;
-    }
 }
-
