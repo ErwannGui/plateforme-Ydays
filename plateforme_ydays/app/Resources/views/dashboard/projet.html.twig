@@ -8,7 +8,7 @@
     <header>
         <nav>
             <!--Barre de navigation responsive et custom avec materialize-->
-            <div class="nav-wrapper blue darken-3">
+            <div class="nav-wrapper teal accent-4">
                 <!--Partie de la barre horizontale en haut de page-->
                 <a href="" class="brand-logo"><img class="hide-on-med-and-down" src="{{ asset('ynov.png') }}" alt="Img logo" id="header_logo"/>Dashboard</a>
                 <!--Boutton d'ouvertue du menu hamburger à gauche apparaissant sous petite résolution-->
@@ -31,8 +31,8 @@
                             <div class="background">
                                 <img src="{{ asset('ynov.png') }}">
                             </div>
-                            <a href="#!name"><i class="material-icons large left">person</i><span class="name">{{ user.prenom }} {{ user.nom }}</span></a>
-                            <a href="#!email"><span class="email">{{ user.email }}</span></a>
+                            <a href="#!name"><i class="material-icons large left">person</i><span class="name">Richard COUET</span></a>
+                            <a href="#!email"><span class="email">richard.couet@ynov.com</span></a>
                         </div>
                     </li>
                     <li><a href="#!"><i class="material-icons">settings</i>Paramètres du compte</a></li>
@@ -42,24 +42,24 @@
                 <!--Contenu du menu hamburger-->
                 <ul class="side-nav" id="mobile-demo">
                     <li id="side-nav_header">
-                        <div class=" blue darken-1 side-menu_header valign-wrapper">
-                            <h2 class="user_name">{{ user.prenom }} {{ user.nom }}</h2>
+                        <div class=" pink side-menu_header valign-wrapper">
+                            <h2 class="user_name">Richard COUET</h2>
                         </div>
                     </li>
                     <div id="side-nav_main">
                         <li><a href="{{ path('list_projet') }}"><i class="material-icons">note</i>Les projets</a></li>
                         <li><a href="{{ path('dashboard') }}"><i class="material-icons">folder</i>Mes projets</a></li>
                         {% if is_granted("ROLE_ETUDIANT") %}
-                        <li><a href="{{ path('list_utilisateur') }}"><i class="material-icons">people</i>Liste des utilisateurs</a></li>
+                        <li><a href="{{ path('list_utilisateur') }}"><i class="material-icons">people</i>Les utilisateurs</a></li>
                         {% endif %}
                         {% if is_granted("ROLE_HELPER") %}
-                        <li><a href="{{ path('list_entreprise') }}"><i class="material-icons">account_balance</i>Liste des entreprises</a></li>
+                        <li><a href="{{ path('list_entreprise') }}"><i class="material-icons">account_balance</i>Les entreprises</a></li>
                         {% endif %}
-                        <li><a href="{{ path('profile') }}"><i class="material-icons">person</i>Mon profil</a></li>
+                        <li><a href="{{ path('fos_user_profile_show') }}"><i class="material-icons">person</i>Mon profil</a></li>
                         <li><a href="{{ path('fos_user_security_logout') }}"><i class="material-icons">exit_to_app</i>Déconnexion</a></li>
                     </div>
                     <li id="side-nav_footer">
-                        <div class="grey darken-3 side-menu_footer center-align">
+                        <div class="grey darken-4 side-menu_footer center-align">
                             <a href=""><i class="material-icons">info</i></a>
                             <a href=""><i class="material-icons">help</i></a>
                             <a href=""><i class="material-icons">settings</i></a>
@@ -69,17 +69,17 @@
             </div>
         </nav>
         <!--Barre latérale affichée sous format desktop-->
-        <nav class="vertical-menu hide-on-med-and-down blue lighten-2">
+        <nav class="vertical-menu hide-on-med-and-down pink">
             <ul class="vertical-bar center-align">
                 <li><a class="vertical-link" href="{{ path('list_projet') }}"><i class="material-icons">note</i>Les projets</a></li>
                 <li><a class="vertical-link" href="{{ path('dashboard') }}"><i class="material-icons">folder</i>Mes projets</a></li>
                 {% if is_granted("ROLE_ETUDIANT") %}
-                <li><a class="vertical-link" href="{{ path('list_utilisateur') }}"><i class="material-icons">people</i>Liste des utilisateurs</a></li>
+                <li><a class="vertical-link" href="{{ path('list_utilisateur') }}"><i class="material-icons">people</i>Les utilisateurs</a></li>
                 {% endif %}
                 {% if is_granted("ROLE_HELPER") %}
-                <li><a class="vertical-link" href="{{ path('list_entreprise') }}"><i class="material-icons">account_balance</i>Liste des entreprises</a></li>
+                <li><a class="vertical-link" href="{{ path('list_entreprise') }}"><i class="material-icons">account_balance</i>Les entreprises</a></li>
                 {% endif %}
-                <li><a class="vertical-link" href="{{ path('profile') }}"><i class="material-icons">person</i>Mon profil</a></li>
+                <li><a class="vertical-link" href="{{ path('fos_user_profile_show') }}"><i class="material-icons">person</i>Mon profil</a></li>
             </ul>
         </nav>
     </header>
@@ -94,7 +94,7 @@
                         <div class="card-content">
                             <span class="card-title">{{ projet.nom }}</span>
                             <p>Description du projet : {{ projet.description }}</p>
-                            <a class="waves-effect waves-light btn right hide-on-large-only modal-trigger" style="position: initial!important;">Modifier la ficher technique</a>
+                            <a class="waves-effect waves-light btn right hide-on-large-only modal-trigger" href="{{ path('projet_edit', { 'id': projet.id }) }}" style="position: initial!important;">Modifier la ficher technique</a>
                         </div>
                     </div>
                 </div>
@@ -132,11 +132,11 @@
                                 </tbody>
                             </table>
                             <p>Evaluation du projet : ***</p>
-                            <a class="waves-effect waves-light btn right modal-trigger" href="#edit_projet" style="position: initial!important;">Modifier la ficher technique</a>
+                            <a class="waves-effect waves-light btn right modal-trigger" href="{{ path('projet_edit', { 'id': projet.id }) }}" style="position: initial!important;">Modifier la ficher technique</a>
                         </div>
                     </div>
                 </div>
-                <div id="edit_projet" class="modal">
+                <!-- <div id="edit_projet" class="modal">
                     <form method="post" action="{{ path('projet_edit', { 'id': projet.id }) }}" enctype="multipart/form-data">
                         <div class="modal-content row">
                             <h4>Modification du projet</h4>
@@ -186,7 +186,7 @@
                             </div>
                         </div>
                     </form>
-                </div>
+                </div> -->
                 <div class="col s12">
                     <h3 class="flow-text">Commentaires</h3>
                     <!-- Les liaisons entre les tables n'ayant pas été faites, par manque de temps, nous avons le système mais pas l'affichage -->
@@ -274,7 +274,7 @@
 
 {% block stylesheets %}
 <style>
-    body { background: #F5F5F5; font: 18px/1.5 sans-serif; }
+    body { background: #F5F5F5; font: 18px/1.5 sans-serif; width: 0; }
     h1, h2 { line-height: 1.2; margin: 0 0 .5em; }
     h1 { font-size: 36px; }
     h2 { font-size: 21px; margin-bottom: 1em; }

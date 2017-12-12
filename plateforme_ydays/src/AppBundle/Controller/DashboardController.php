@@ -122,7 +122,7 @@ class DashboardController extends Controller
     public function listUtilisateurAction(Request $request){
 
         $em = $this->getDoctrine()->getManager();
-        $utilisateurs = $em->getRepository('AppBundle:Entreprise')->findAll();
+        $utilisateurs = $em->getRepository('AppBundle:Utilisateur')->findAll();
 
         return $this->render('dashboard/listutilisateur.html.twig', [
             'base_dir' => realpath($this->getParameter('kernel.project_dir')).DIRECTORY_SEPARATOR, 'utilisateurs' => $utilisateurs,
@@ -210,7 +210,7 @@ class DashboardController extends Controller
     /**
      * Displays a form to edit an existing projet entity.
      *
-     * @Route("/listProjet/edit/{id}", name="projet_edit")
+     * @Route("/admin/listprojet/edit/{id}", name="projet_edit")
      * @Method({"GET", "POST"})
      * @Security("has_role('ROLE_CHEF')")
      */
@@ -385,7 +385,7 @@ class DashboardController extends Controller
     private function createDeleteUsrForm(Utilisateur $utilisateur)
     {
         return $this->createFormBuilder()
-            ->setAction($this->generateUrl('utilisateur_delete', array('id' => $projet->getId())))
+            ->setAction($this->generateUrl('utilisateur_delete', array('id' => $utilisateur->getId())))
             ->setMethod('DELETE')
             ->getForm()
         ;

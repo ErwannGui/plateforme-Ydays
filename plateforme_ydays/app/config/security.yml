@@ -7,8 +7,8 @@ security:
     role_hierarchy:
         ROLE_ETUDIANT:      ROLE_USER
         ROLE_CHEF:      [ROLE_ETUDIANT, ROLE_USER]
-        ROLE_HELPER:       ROLE_ADMIN
-        ROLE_ADMIN:       [ROLE_HELPER, ROLE_ETUDIANT]
+        ROLE_HELPER:        ROLE_HELPER
+        ROLE_ADMIN:       [ROLE_HELPER, ROLE_CHEF]
         ROLE_SUPER_ADMIN: [ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]
 
 
@@ -16,22 +16,6 @@ security:
     providers:
         fos_userbundle:
             id: fos_user.user_provider.username
-
-#    firewalls:
-#        # disables authentication for assets and the profiler, adapt it according to your needs
-#        dev:
-#            pattern: ^/(_(profiler|wdt)|css|images|js)/
-#            security: false
-#
-#        main:
-#            anonymous: ~
-#            # activate different ways to authenticate
-#
-#            # https://symfony.com/doc/current/security.html#a-configuring-how-your-users-will-authenticate
-#            #http_basic: ~
-#
-#            # https://symfony.com/doc/current/security/form_login_setup.html
-#            #form_login: ~
 
     firewalls:
             main:
@@ -46,9 +30,9 @@ security:
 
     access_control:
         - { path: ^/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
-        # - { path: ^/register, role: ROLE_SUPER_ADMIN }
-        - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/admin/, role: ROLE_ADMIN }
+        - { path: ^/register, role: ROLE_SUPER_ADMIN }
+        - { path: ^/resetting, role: ROLE_HELPER }
+        - { path: ^/admin, role: ROLE_ADMIN }
         - { path: ^/dashboard, role: ROLE_USER }
 
 
