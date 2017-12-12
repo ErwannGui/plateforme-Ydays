@@ -13,7 +13,6 @@ use AppBundle\Entity\Entreprise;
 use AppBundle\Entity\Utilisateur;
 use AppBundle\Entity\Commentaire;
 use AppBundle\Entity\Rapport;
-use AppBundle\Entity\Rapport;
 
 /**
  * Dashboard controller
@@ -28,7 +27,7 @@ class DashboardController extends Controller
     public function indexAction(Request $request)
     {
 
-        /*if ($this->getUser()->isGranted('ROLE_ADMIN')) {
+        if ($this->container->get('security.authorization_checker')->isGranted('ROLE_ADMIN')) {
 
             $em_c = $this->getDoctrine()->getManager();
             $commentaires = $em_c->getRepository('AppBundle:Commentaire')->findAll();
@@ -41,7 +40,9 @@ class DashboardController extends Controller
             ]);
             // Sinon on déclenche une exception « Accès interdit »
             throw new AccessDeniedException('Accès autorisé uniquement pour les administrateurs.');
-        }*/
+        }
+
+        if ($this->container->get('security.authorization_checker')->isGranted('ROLE_USER')) {
 
             $em_p = $this->getDoctrine()->getManager();
             $projets = $em_p->getRepository('AppBundle:Projet')->findAll();
@@ -55,6 +56,7 @@ class DashboardController extends Controller
             return $this->render('dashboard/index.html.twig', [
                     'base_dir' => realpath($this->getParameter('kernel.project_dir')).DIRECTORY_SEPARATOR, 'projets' => $projets, 'commentaires' => $commentaires, 'rapports' => $rapports,
             ]);
+        }
     }
 
     /**
