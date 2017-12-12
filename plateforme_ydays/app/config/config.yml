@@ -76,3 +76,20 @@ fos_user:
     from_email:
         address: erwann.guillevic@ynov.com
         sender_name: Erwann Guillevic
+
+monolog:
+    handlers:
+        filter_for_errors:
+            type: fingers_crossed
+            action_level:  error
+            handler: file_log
+            channels: [security,console,doctrine,event,request]
+
+       
+        file_log:
+            type: stream
+            path: '%kernel.logs_dir%/error.log'
+
+        syslog_handler:
+            type: syslog
+            level: error
