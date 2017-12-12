@@ -2,8 +2,9 @@
 # https://symfony.com/doc/current/security.html
 security:
     encoders:
-        FOS\UserBundle\Model\UserInterface: bcrypt
+        FOS\UserBundle\Model\UserInterface: bcrypt # encodage des données dans la table
 
+    # création des différents roles pour attribuer des droits au utilisateurs
     role_hierarchy:
         ROLE_ETUDIANT:      ROLE_USER
         ROLE_CHEF:      [ROLE_ETUDIANT, ROLE_USER]
@@ -28,6 +29,7 @@ security:
                 anonymous:    true
 
 
+    # url dédié, demandant certains droits
     access_control:
         - { path: ^/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/register, role: ROLE_SUPER_ADMIN }

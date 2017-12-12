@@ -2,6 +2,7 @@ app:
     resource: '@AppBundle/Controller/'
     type: annotation
 
+# Import de toutes les routes de FOSUserBundle
 fos_user_security:
     resource: "@FOSUserBundle/Resources/config/routing/all.xml"
 
