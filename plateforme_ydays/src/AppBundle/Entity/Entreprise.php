@@ -16,6 +16,8 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Entreprise
 {
+    //génération de la classe Entreprise et de ses guetters/setters ce qui permet de créer des objets entreprise et de les utiliser dans notre application
+    
     /**
      * @var int
      *

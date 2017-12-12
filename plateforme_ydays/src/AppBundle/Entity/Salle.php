@@ -16,6 +16,8 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Salle
 {
+    //génération de la classe Salle et de ses guetters/setters ce qui permet de créer des objets salles et de les utiliser dans notre application
+
     /**
      * @var int
      *

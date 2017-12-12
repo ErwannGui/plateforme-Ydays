@@ -16,7 +16,9 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Entity(repositoryClass="AppBundle\Repository\utilisateurRepository")
  */
 class Utilisateur extends FosUser
-{
+{   
+    //génération de la classe Utilisateur et de ses guetters/setters ce qui permet de créer des objets utilisateurs et de les utiliser dans notre application
+
     /**
      * @var int
      *

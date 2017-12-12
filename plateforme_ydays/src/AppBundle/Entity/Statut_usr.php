@@ -16,6 +16,8 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Statut_usr
 {
+    //génération de la classe Statut_usr et de ses guetters/setters ce qui permet de créer des objets Statut_usr et de les utiliser dans notre application
+
     /**
      * @var int
      *

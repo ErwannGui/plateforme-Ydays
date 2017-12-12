@@ -15,7 +15,9 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Entity(repositoryClass="AppBundle\Repository\classeRepository")
  */
 class Classe
-{
+{   
+    //génération de la classe Classe et de ses guetters/setters ce qui permet de créer des objets classe et de les utiliser dans notre application
+
     /**
      * @var int
      *
