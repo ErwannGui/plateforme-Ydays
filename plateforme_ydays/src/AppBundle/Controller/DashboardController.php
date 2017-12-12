@@ -5,12 +5,14 @@ namespace AppBundle\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
+use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use AppBundle\Entity\Projet;
 use AppBundle\Entity\Entreprise;
 use AppBundle\Entity\Utilisateur;
 use AppBundle\Entity\Commentaire;
+use AppBundle\Entity\Rapport;
 use AppBundle\Entity\Rapport;
 
 /**
@@ -25,13 +27,8 @@ class DashboardController extends Controller
      */
     public function indexAction(Request $request)
     {
-        if (isset($user)) {
-            return $user['nom'];
-        }
 
-        $statut = "user";
-
-        if ($statut == "su" || $statut == "adm") {
+        /*if ($this->getUser()->isGranted('ROLE_ADMIN')) {
 
             $em_c = $this->getDoctrine()->getManager();
             $commentaires = $em_c->getRepository('AppBundle:Commentaire')->findAll();
@@ -42,9 +39,9 @@ class DashboardController extends Controller
             return $this->render('dashboard/admin.html.twig', [
                     'base_dir' => realpath($this->getParameter('kernel.project_dir')).DIRECTORY_SEPARATOR, 'projets' => $projets, 'commentaires' => $commentaires, 'rapports' => $rapports, 'statut' => $statut,
             ]);
-        }
-
-        if ($statut == "helper" || $statut == "user" || $statut == "na_user") {
+            // Sinon on déclenche une exception « Accès interdit »
+            throw new AccessDeniedException('Accès autorisé uniquement pour les administrateurs.');
+        }*/
 
             $em_p = $this->getDoctrine()->getManager();
             $projets = $em_p->getRepository('AppBundle:Projet')->findAll();
@@ -56,9 +53,8 @@ class DashboardController extends Controller
             $rapports = $em_r->getRepository('AppBundle:Rapport')->findAll();
 
             return $this->render('dashboard/index.html.twig', [
-                    'base_dir' => realpath($this->getParameter('kernel.project_dir')).DIRECTORY_SEPARATOR, 'projets' => $projets, 'commentaires' => $commentaires, 'rapports' => $rapports, 'statut' => $statut,
+                    'base_dir' => realpath($this->getParameter('kernel.project_dir')).DIRECTORY_SEPARATOR, 'projets' => $projets, 'commentaires' => $commentaires, 'rapports' => $rapports,
             ]);
-        }
     }
 
     /**
