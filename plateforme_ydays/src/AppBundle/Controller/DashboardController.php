@@ -77,7 +77,7 @@ class DashboardController extends Controller
         $rapports = $em_r->getRepository('AppBundle:Rapport')->findAll();
 
         return $this->render('dashboard/projet.html.twig', [
-            'base_dir' => realpath($this->getParameter('kernel.project_dir')).DIRECTORY_SEPARATOR, 'projet' => $data_projet, 'commentaires' => $commentaires, 
+            'base_dir' => realpath($this->getParameter('kernel.project_dir')).DIRECTORY_SEPARATOR, 'projet' => $data_projet, 'commentaires' => $commentaires, 'rapports' => $rapports,
         ]);
     }
 
@@ -123,7 +123,7 @@ class DashboardController extends Controller
     /**
      * Creates a new projet entity.
      *
-     * @Route("/newProjet", name="projet_new")
+     * @Route("/admin/newProjet", name="projet_new")
      * @Method({"GET", "POST"})
      */
     public function newProjetAction(Request $request)
@@ -149,7 +149,7 @@ class DashboardController extends Controller
     /**
      * Creates a new entreprise entity.
      *
-     * @Route("/newEntreprise", name="entreprise_new")
+     * @Route("/admin/newEntreprise", name="entreprise_new")
      * @Method({"GET", "POST"})
      */
     public function newEntrepriseAction(Request $request)
@@ -175,7 +175,7 @@ class DashboardController extends Controller
     /**
      * Creates a new utilisateur entity.
      *
-     * @Route("/newUtilisateur", name="entreprise_new")
+     * @Route("/admin/newUtilisateur", name="entreprise_new")
      * @Method({"GET", "POST"})
      */
     public function newUtilisateurAction(Request $request)
@@ -226,7 +226,7 @@ class DashboardController extends Controller
     /**
      * Displays a form to edit an existing entreprise entity.
      *
-     * @Route("/listentreprise/edit/{id}", name="entreprise_edit")
+     * @Route("/listentreprise/admin/edit/{id}", name="entreprise_edit")
      * @Method({"GET", "POST"})
      */
     public function editEntrepriseAction(Request $request, Entreprise $entreprise)
@@ -251,7 +251,7 @@ class DashboardController extends Controller
     /**
      * Displays a form to edit an existing utilisateur entity.
      *
-     * @Route("/listutilisateur/edit/{id}", name="utilisateur_edit")
+     * @Route("/listutilisateur/admin/edit/{id}", name="utilisateur_edit")
      * @Method({"GET", "POST"})
      */
     public function editUtiisateurAction(Request $request, Utilisateur $utilisateur)
@@ -276,7 +276,7 @@ class DashboardController extends Controller
     /**
      * Deletes a projet entity.
      *
-     * @Route("/listprojet/delete/{id}", name="projet_delete")
+     * @Route("/listprojet/admin/delete/{id}", name="projet_delete")
      * @Method("DELETE")
      */
     public function deleteProjetAction(Request $request, Projet $projet)
@@ -296,7 +296,7 @@ class DashboardController extends Controller
     /**
      * Deletes a entreprise entity.
      *
-     * @Route("/listentreprise/delete/{id}", name="entreprise_delete")
+     * @Route("/listentreprise/admin/delete/{id}", name="entreprise_delete")
      * @Method("DELETE")
      */
     public function deleteEntrepriseAction(Request $request, Entreprise $entreprise)
@@ -316,7 +316,7 @@ class DashboardController extends Controller
     /**
      * Deletes a utilisateur entity.
      *
-     * @Route("/listutilisateur/delete/{id}", name="utilisateur_delete")
+     * @Route("/listutilisateur/admin/delete/{id}", name="utilisateur_delete")
      * @Method("DELETE")
      */
     public function deleteUtilisateurAction(Request $request, Utilisateur $utilisateur)
@@ -352,7 +352,7 @@ class DashboardController extends Controller
     /**
      * Creates a form to delete a projet entity.
      *
-     * @param Projet $projet The projet entity
+     * @param Entreprise $entreprise The projet entity
      *
      * @return \Symfony\Component\Form\Form The form
      */
@@ -368,7 +368,7 @@ class DashboardController extends Controller
     /**
      * Creates a form to delete a projet entity.
      *
-     * @param Projet $projet The projet entity
+     * @param Utilisateur $utilisateur The projet entity
      *
      * @return \Symfony\Component\Form\Form The form
      */

@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+use FOS\UserBundle\Model\User AS FosUser;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -10,7 +11,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="utilisateur")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\utilisateurRepository")
  */
-class Utilisateur
+class Utilisateur extends FosUser
 {
     /**
      * @var int
@@ -19,7 +20,7 @@ class Utilisateur
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $id;
+    protected $id;
 
     /**
      * @var string
@@ -36,20 +37,6 @@ class Utilisateur
     private $prenom;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="role", type="string", length=255)
-     */
-    private $role;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="mail", type="string", length=255)
-     */
-    private $mail;
-
-    /**
      * @var int
      *
      * @ORM\Column(name="tel", type="integer")
@@ -62,13 +49,6 @@ class Utilisateur
      * @ORM\Column(name="slack", type="text")
      */
     private $slack;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="password", type="text")
-     */
-    private $password;
 
 
     /**
@@ -130,54 +110,6 @@ class Utilisateur
     }
 
     /**
-     * Set role
-     *
-     * @param string $role
-     *
-     * @return utilisateur
-     */
-    public function setRole($role)
-    {
-        $this->role = $role;
-
-        return $this;
-    }
-
-    /**
-     * Get role
-     *
-     * @return string
-     */
-    public function getRole()
-    {
-        return $this->role;
-    }
-
-    /**
-     * Set mail
-     *
-     * @param string $mail
-     *
-     * @return utilisateur
-     */
-    public function setMail($mail)
-    {
-        $this->mail = $mail;
-
-        return $this;
-    }
-
-    /**
-     * Get mail
-     *
-     * @return string
-     */
-    public function getMail()
-    {
-        return $this->mail;
-    }
-
-    /**
      * Set tel
      *
      * @param integer $tel
@@ -224,29 +156,4 @@ class Utilisateur
     {
         return $this->slack;
     }
-
-    /**
-     * Set password
-     *
-     * @param string $password
-     *
-     * @return utilisateur
-     */
-    public function setPassword($password)
-    {
-        $this->password = $password;
-
-        return $this;
-    }
-
-    /**
-     * Get password
-     *
-     * @return string
-     */
-    public function getPassword()
-    {
-        return $this->password;
-    }
 }
-
