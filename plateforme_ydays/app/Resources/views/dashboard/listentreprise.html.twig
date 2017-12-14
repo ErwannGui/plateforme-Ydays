@@ -46,13 +46,16 @@
                             <h2 class="user_name">Richard COUET</h2>
                         </div>
                     </li>
-                    <!--Lien vers les autres views-->
                     <div id="side-nav_main">
                         <li><a href="{{ path('list_projet') }}"><i class="material-icons">note</i>Les projets</a></li>
-                        <li><a href="{{ path('list_utilisateur') }}"><i class="material-icons">group</i>Les utilisateurs</a></li>
-                        <li><a href="{{ path('list_entreprise') }}"><i class="material-icons">domain</i>Les entreprises</a></li>
                         <li><a href="{{ path('dashboard') }}"><i class="material-icons">folder</i>Mes projets</a></li>
-                        <li><a href="#!"><i class="material-icons">person</i>Mon profil</a></li>
+                        {% if is_granted("ROLE_ETUDIANT") %}
+                        <li><a href="{{ path('list_utilisateur') }}"><i class="material-icons">people</i>Les utilisateurs</a></li>
+                        {% endif %}
+                        {% if is_granted("ROLE_HELPER") %}
+                        <li><a href="{{ path('list_entreprise') }}"><i class="material-icons">account_balance</i>Les entreprises</a></li>
+                        {% endif %}
+                        <li><a href="{{ path('fos_user_profile_show') }}"><i class="material-icons">person</i>Mon profil</a></li>
                         <li><a href="{{ path('fos_user_security_logout') }}"><i class="material-icons">exit_to_app</i>Déconnexion</a></li>
                     </div>
                     <li id="side-nav_footer">
@@ -69,9 +72,14 @@
         <nav class="vertical-menu hide-on-med-and-down pink">
             <ul class="vertical-bar center-align">
                 <li><a class="vertical-link" href="{{ path('list_projet') }}"><i class="material-icons">note</i>Les projets</a></li>
-                <li><a class="vertical-link" href="{{ path('list_utilisateur') }}"><i class="material-icons">group</i>Les utilisateurs</a></li>
-                <li><a class="vertical-link" href="{{ path('list_entreprise') }}"><i class="material-icons">domain</i>Les entreprises</a></li>
                 <li><a class="vertical-link" href="{{ path('dashboard') }}"><i class="material-icons">folder</i>Mes projets</a></li>
+                {% if is_granted("ROLE_ETUDIANT") %}
+                <li><a class="vertical-link" href="{{ path('list_utilisateur') }}"><i class="material-icons">people</i>Les utilisateurs</a></li>
+                {% endif %}
+                {% if is_granted("ROLE_HELPER") %}
+                <li><a class="vertical-link" href="{{ path('list_entreprise') }}"><i class="material-icons">account_balance</i>Les entreprises</a></li>
+                {% endif %}
+                <li><a class="vertical-link" href="{{ path('fos_user_profile_show') }}"><i class="material-icons">person</i>Mon profil</a></li>
             </ul>
         </nav>
     </header>
@@ -223,6 +231,25 @@
         @-webkit-keyframes fade-in { 0% { opacity: 0; } 100% { opacity: 1; } }
         @keyframes fade-in { 0% { opacity: 0; } 100% { opacity: 1; } }
         .sf-toolbar { opacity: 0; -webkit-animation: fade-in 1s .2s forwards; animation: fade-in 1s .2s forwards;}
+    }
+
+    .card .card-image img{
+        position: initial!important;
+    }
+    .card .card-image{
+        position: initial!important;
+    }
+    .card{
+        position: initial!important;
+    }
+    .background img {
+        width: 100%!important;
+    }
+    .side-nav .user-view .background{
+        position: relative!important;
+    }
+    .dataTables_wrapper{
+        position: initial!important;
     }
 </style>
 {% endblock %}
