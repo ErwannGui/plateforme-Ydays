@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Client :  127.0.0.1
--- Généré le :  Mar 12 Décembre 2017 à 12:01
+-- Généré le :  Jeu 14 Décembre 2017 à 09:42
 -- Version du serveur :  5.7.14
 -- Version de PHP :  5.6.25
 
@@ -176,8 +176,9 @@ CREATE TABLE `utilisateur` (
 --
 
 INSERT INTO `utilisateur` (`id`, `nom`, `prenom`, `tel`, `slack`, `username`, `username_canonical`, `email`, `email_canonical`, `enabled`, `salt`, `password`, `last_login`, `confirmation_token`, `password_requested_at`, `roles`) VALUES
-(1, NULL, NULL, NULL, NULL, 'Erwann', 'erwann', 'erwann.guillevic@ynov.com', 'erwann.guillevic@ynov.com', 1, NULL, '$2y$13$Oxep6a3sI6NZ6/OQEI.NqOoQ6fioLlgLQgMxQTxfjEZts8e7KFlfG', '2017-12-12 10:02:44', NULL, NULL, 'a:0:{}'),
-(3, 'Guillevic', 'Erwann', 688996897, NULL, 'ErwannDerBuild', 'erwannderbuild', 'erwann44110@gmail.com', 'erwann44110@gmail.com', 1, NULL, '$2y$13$gmgdTJOBjMtU0b.MsQmBSuYD7v.8CGdEmtQogf6ooGwEANKWf8dfe', '2017-12-12 11:22:52', NULL, NULL, 'a:0:{}');
+(1, 'Guillevic', 'Erwann', 123456789, 'slack', 'Erwann', 'erwann', 'erwann.guillevic@ynov.com', 'erwann.guillevic@ynov.com', 1, NULL, '$2y$13$Oxep6a3sI6NZ6/OQEI.NqOoQ6fioLlgLQgMxQTxfjEZts8e7KFlfG', '2017-12-13 18:36:20', NULL, NULL, 'a:1:{i:0;s:9:"ROLE_CHEF";}'),
+(3, 'Guillevic', 'Erwann', 688996897, 'slack', 'ErwannDerBuild', 'erwannderbuild', 'erwann44110@gmail.com', 'erwann44110@gmail.com', 1, NULL, '$2y$13$gmgdTJOBjMtU0b.MsQmBSuYD7v.8CGdEmtQogf6ooGwEANKWf8dfe', '2017-12-14 09:22:27', NULL, NULL, 'a:0:{}'),
+(4, 'Guillevic', 'Erwann', 123456789, 'admin', 'admin', 'admin', 'admin.admin@email.com', 'admin.admin@email.com', 1, NULL, '$2y$13$XUgUKqHXnRPc/jfuRUErOu5fjwzSfPKekrmL.HRLiQPmwuKTm8h0y', '2017-12-14 09:31:09', NULL, NULL, 'a:1:{i:0;s:16:"ROLE_SUPER_ADMIN";}');
 
 --
 -- Index pour les tables exportées
@@ -277,7 +278,7 @@ ALTER TABLE `statut_usr`
 -- AUTO_INCREMENT pour la table `utilisateur`
 --
 ALTER TABLE `utilisateur`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
