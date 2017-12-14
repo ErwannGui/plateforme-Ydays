@@ -48,7 +48,6 @@
                     </li>
                     <div id="side-nav_main">
                         <li><a href="{{ path('list_projet') }}"><i class="material-icons">note</i>Les projets</a></li>
-                        <li><a href="{{ path('dashboard') }}"><i class="material-icons">folder</i>Mes projets</a></li>
                         {% if is_granted("ROLE_ETUDIANT") %}
                         <li><a href="{{ path('list_utilisateur') }}"><i class="material-icons">people</i>Liste des utilisateurs</a></li>
                         {% endif %}
@@ -72,7 +71,6 @@
         <nav class="vertical-menu hide-on-med-and-down blue lighten-2">
             <ul class="vertical-bar center-align">
                 <li><a class="vertical-link" href="{{ path('list_projet') }}"><i class="material-icons">note</i>Les projets</a></li>
-                <li><a class="vertical-link" href="{{ path('dashboard') }}"><i class="material-icons">folder</i>Mes projets</a></li>
                 {% if is_granted("ROLE_ETUDIANT") %}
                 <li><a class="vertical-link" href="{{ path('list_utilisateur') }}"><i class="material-icons">people</i>Liste des utilisateurs</a></li>
                 {% endif %}
