@@ -99,7 +99,7 @@ class DashboardController extends Controller
     /** Le reste des fonctions est selon moi aussez implicite **/
 
 	/**
-     * @Route("/listprojet", name="list_projet")
+     * @Route("/listProjet", name="list_projet")
      */
     public function listProjetAction(Request $request){
 
@@ -223,8 +223,9 @@ class DashboardController extends Controller
     /**
      * Displays a form to edit an existing projet entity.
      *
-     * @Route("/listprojet/edit/{id}", name="projet_edit")
+     * @Route("/admin/listprojet/edit/{id}", name="projet_edit")
      * @Method({"GET", "POST"})
+     * @Security("has_role('ROLE_CHEF')")
      */
     public function editProjetAction(Request $request, Projet $projet)
     {
